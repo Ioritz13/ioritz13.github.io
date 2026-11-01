@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Foto con Móvil · Curso online (ejemplo)</title>
+<style>
+:root{--accent:#e8590c;--ink:#16130f;--muted:#6b645c;--bg:#fffaf5;--soft:#fff1e6;--line:#f0dfcf;--radius:18px}
+@media (prefers-color-scheme: dark){:root{--ink:#f5efe8;--muted:#b3a99d;--bg:#14110e;--soft:#1f1a15;--line:#33291f;--accent:#ff8a3d}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+.demo-bar{background:#16130f;color:#fff;font-size:13px;text-align:center;padding:8px 16px}
+.demo-bar a{color:#ffd54a}
+.hero{padding:72px 0 48px;text-align:center}
+.tag{display:inline-block;background:var(--soft);border:1px solid var(--line);color:var(--accent);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px}
+h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.03em;margin:18px auto 16px;max-width:800px}
+.lead{font-size:19px;color:var(--muted);max-width:600px;margin:0 auto 28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:999px;background:var(--accent);color:#fff;font-weight:800;text-decoration:none;font-size:17px}
+.meta{margin-top:14px;font-size:14px;color:var(--muted)}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,36px);letter-spacing:-.02em;margin:0 0 24px;text-align:center}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.modules{max-width:680px;margin:0 auto;display:grid;gap:10px}
+.mod{display:flex;gap:14px;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.mod b{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff}
+.price{max-width:420px;margin:0 auto;text-align:center;background:var(--soft);border:2px solid var(--accent);border-radius:var(--radius);padding:28px}
+.price .amount{font-size:52px;font-weight:900;letter-spacing:-.03em}
+.price .old{text-decoration:line-through;color:var(--muted);margin-right:8px;font-size:20px}
+.price ul{text-align:left;color:var(--muted);padding-left:20px}
+details{max-width:680px;margin:0 auto;border-bottom:1px solid var(--line);padding:14px 0}
+summary{font-weight:700;cursor:pointer}
+details p{color:var(--muted)}
+footer{padding:32px 0 48px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="demo-bar">Landing page de ejemplo · curso ficticio. ¿Quieres una así? <a href="https://wa.me/34692024735?text=Hola%20Ioritz%2C%20quiero%20una%20landing%20page">Escríbeme por WhatsApp</a></div>
+<main>
+<div class="hero"><div class="wrap">
+  <span class="tag">Curso online · 4 semanas · Plazas limitadas</span>
+  <h1>Haz fotos profesionales solo con tu móvil.</h1>
+  <p class="lead">Aprende luz, encuadre y edición en 12 lecciones cortas. Para emprendedores que quieren mejores fotos para su negocio y sus redes, sin comprar cámara.</p>
+  <a class="btn" href="#precio">Quiero apuntarme</a>
+  <p class="meta">Empieza el lunes · Acceso de por vida · Garantía de 14 días</p>
+</div></div>
+
+<section><div class="wrap">
+  <h2>Qué vas a conseguir</h2>
+  <div class="grid">
+    <div class="card"><h3>📸 Fotos de producto</h3><p>Fondos, luz natural y ángulos que venden, en la mesa de tu casa.</p></div>
+    <div class="card"><h3>💡 Dominar la luz</h3><p>Ventana, sombra y reflector casero: la diferencia entre una foto amateur y una profesional.</p></div>
+    <div class="card"><h3>🎨 Edición en 5 minutos</h3><p>Un flujo sencillo con apps gratuitas para que todas tus fotos tengan el mismo estilo.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Programa</h2>
+  <div class="modules">
+    <div class="mod"><b>1</b><span>Tu móvil como cámara: ajustes que nadie toca</span></div>
+    <div class="mod"><b>2</b><span>Luz natural y luz artificial barata</span></div>
+    <div class="mod"><b>3</b><span>Composición y encuadre para redes</span></div>
+    <div class="mod"><b>4</b><span>Edición y estilo propio</span></div>
+  </div>
+</div></section>
+
+<section id="precio"><div class="wrap">
+  <h2>Precio de lanzamiento</h2>
+  <div class="price">
+    <div><span class="old">129 €</span><span class="amount">79 €</span></div>
+    <ul><li>12 lecciones en vídeo</li><li>Plantillas de edición</li><li>Grupo privado de dudas</li><li>Acceso de por vida</li></ul>
+    <a class="btn" href="https://wa.me/34692024735?text=Hola%20Ioritz%2C%20quiero%20una%20landing%20page">Reservar plaza</a>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Preguntas</h2>
+  <details><summary>¿Necesito un móvil caro?</summary><p>No. Cualquier móvil de los últimos 5 años sirve.</p></details>
+  <details><summary>¿Y si no me gusta?</summary><p>Tienes 14 días para pedir la devolución, sin preguntas.</p></details>
+  <details><summary>¿Cuánto tiempo necesito a la semana?</summary><p>Unas 2 horas: 3 lecciones de 15 minutos y una práctica.</p></details>
+</div></section>
+</main>
+<footer><p>Ejemplo de landing page diseñado por <a href="/">Ioritz Martinez</a>. El curso es ficticio.</p></footer>
+</body>
+</html>
