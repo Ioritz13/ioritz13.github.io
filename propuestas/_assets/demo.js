@@ -11,7 +11,7 @@
   var KEY = "edit:" + location.pathname;
 
   /* ---------- Radar ---------- */
-  var radarOn = !!C.topic && !navigator.webdriver;
+  var radarOn = !!C.topic && !C.final && !navigator.webdriver;
   var prueba = /[?&]radar=test/.test(location.search);
   try {
     if (location.hash === "#yo") localStorage.setItem("radar-off", "1");
@@ -127,6 +127,7 @@
   });
 
 
+  if (C.final) return;
   /* ---------- «Cambiar colores»: estilos en directo ---------- */
   var ESTILOS = [
     ["Original", null],

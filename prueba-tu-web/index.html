@@ -245,6 +245,7 @@ footer a{color:var(--ink-2)}
       <form id="f" novalidate>
         <label>Nombre de tu negocio *<input id="negocio" name="negocio" required autocomplete="organization" placeholder="Ej.: Peluquería Ane"></label>
         <label>Tipo de negocio *<select id="tipo" name="tipo"><option value="peluqueria">Peluquería</option><option value="barberia">Barbería</option><option value="estetica">Centro de estética</option><option value="unas">Uñas</option><option value="fisioterapia">Fisioterapia o clínica</option><option value="restaurante">Bar o restaurante</option><option value="cafeteria">Cafetería</option><option value="panaderia">Panadería o pastelería</option><option value="taller">Taller mecánico</option><option value="oficios">Reformas u oficios</option><option value="tienda">Tienda</option><option value="floristeria">Floristería</option><option value="mascotas">Peluquería canina</option></select></label>
+        <label>Colores <span>(es una primera idea: luego la hacemos a tu gusto)</span><select id="estilo" name="estilo"><option value="">Los de mi sector</option><option>Noche y oro</option><option>Blanco elegante</option><option>Rosa empolvado</option><option>Verde natural</option><option>Azul moderno</option><option>Terracota</option><option>Lila</option><option>Negro y rojo</option></select></label>
         <label>Teléfono del negocio <span>(móvil, si quieres que salga el botón de WhatsApp)</span><input id="tel" name="tel" inputmode="tel" autocomplete="tel" placeholder="6XX XX XX XX"></label>
         <label>Calle o barrio <span>(para el mapa)</span><input id="dir" name="dir" placeholder="Ej.: Calle Dato 10"></label>
         <label>Servicios y precios <span>(opcional, uno por línea)</span><textarea id="serv" name="serv" placeholder="Corte de pelo 14 €&#10;Color 35 €&#10;Peinado 20 €"></textarea></label>
@@ -324,10 +325,10 @@ document.getElementById("f").addEventListener("submit", e => {
   v.srcdoc = crear(n, sector, t, dir, serv); v.hidden = false; document.getElementById("vacio").hidden = true;
   const tipoTxt = document.getElementById("tipo").selectedOptions[0].textContent;
   const ref = (new URLSearchParams(location.search).get("ref") || "").replace(/[-_]+/g," ").slice(0,60);
-  const msg = "Hola Ioritz, he visto la muestra de mi web en tu página y me interesa.\nNegocio: "+n+"\nTipo: "+tipoTxt+(t?"\nTeléfono: "+t:"")+(dir?"\nDirección: "+dir:"")+(ref?"\nMe lo ha recomendado: "+ref:"")+"\n¿Me cuentas cómo sería?";
+  const msg = "Hola Ioritz, he visto la muestra de mi web en tu página y me interesa.\nNegocio: "+n+"\nTipo: "+tipoTxt+(document.getElementById("estilo").value?"\nColores: "+document.getElementById("estilo").value:"")+(t?"\nTeléfono: "+t:"")+(dir?"\nDirección: "+dir:"")+(ref?"\nMe lo ha recomendado: "+ref:"")+"\n¿Me cuentas cómo sería?";
   document.getElementById("wa").href = "https://wa.me/34692024735?text="+encodeURIComponent(msg);
   document.getElementById("cta").classList.add("ok");
-  if(window.radar) radar("prueba", "Alguien ha probado su web: "+n, "Tipo: "+tipoTxt+(dir?"\nDirección: "+dir:"")+(ref?"\nRecomendado por: "+ref:""), 4, "test_tube", "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n+" Vitoria-Gasteiz"));
+  if(window.radar) radar("prueba", "Alguien ha probado su web: "+n, "Tipo: "+tipoTxt+(document.getElementById("estilo").value?" · colores "+document.getElementById("estilo").value:"")+(dir?"\nDirección: "+dir:"")+(ref?"\nRecomendado por: "+ref:""), 4, "test_tube", "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(n+" Vitoria-Gasteiz"));
   if(window.matchMedia("(max-width:900px)").matches) document.querySelector(".marco").scrollIntoView({behavior:"smooth",block:"start"});
 });
 </script>

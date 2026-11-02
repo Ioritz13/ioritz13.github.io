@@ -14,7 +14,24 @@
   };
   function telFmt(t) { return t && t.length === 9 ? t.slice(0, 3) + " " + t.slice(3, 5) + " " + t.slice(5, 7) + " " + t.slice(7) : t; }
 
+  var PALETAS = {
+    "Noche y oro": ["#111111", "#181716", "#1c1b19", "#f2ece2", "#b2a99b", "#2d2a26", "#c8a165", "#15120e"],
+    "Blanco elegante": ["#fafaf8", "#f0efeb", "#ffffff", "#161616", "#5a5a5a", "#e2e0da", "#161616", "#ffffff"],
+    "Rosa empolvado": ["#fbf3f3", "#f5e6e7", "#ffffff", "#2b1d20", "#6e5a5f", "#ecdcdd", "#c2667a", "#ffffff"],
+    "Verde natural": ["#f4f7f2", "#e6eee3", "#ffffff", "#1d2a20", "#56655a", "#d6e1d3", "#3f7d4e", "#ffffff"],
+    "Azul moderno": ["#f5f8fc", "#e8eef7", "#ffffff", "#0f1b2d", "#4f5d70", "#dbe3ee", "#1d4ed8", "#ffffff"],
+    "Terracota": ["#fbf6ef", "#f3eadd", "#fffaf3", "#2a1d14", "#6b5848", "#e8dac7", "#b4441d", "#ffffff"],
+    "Lila": ["#f8f5fc", "#eee7f7", "#ffffff", "#231a33", "#62577a", "#e2d9ef", "#7c4dbd", "#ffffff"],
+    "Negro y rojo": ["#0d0d0e", "#151517", "#19191b", "#ece6da", "#a9a398", "#2a2a2d", "#d6453d", "#ffffff"]
+  };
+  window.PALETAS_GEN = Object.keys(PALETAS);
+  function estiloBody(nombre) {
+    var p = PALETAS[nombre]; if (!p) return "";
+    var k = ["--bg", "--bg-2", "--card", "--ink", "--ink-2", "--line", "--accent", "--accent-ink"];
+    return ' style="' + k.map(function (x, i) { return x + ":" + p[i]; }).join(";") + '"';
+  }
   window.crearPro = function (D, n, sector, t, dir, serv) {
+    var selEst = document.getElementById("estilo"), estilo = selEst ? selEst.value : "";
     var s = D.sectores[sector] || D.sectores.peluqueria;
     var tema = sector === "tatuajes" ? "tatuajes" : (s.tema || sector);
     var cp = D.copia[sector] || D.copia[tema] || D.copia.estetica;
@@ -51,7 +68,7 @@
     var largo = Math.max.apply(null, n.split(/\s+/).map(function (w) { return w.length; }));
     var h1c = largo >= 12 ? ' class="muylargo"' : (largo >= 10 || n.length > 26 ? ' class="largo"' : "");
     return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<link rel="stylesheet" href="' + B + '_assets/demo.css"><title>' + esc(n) + "</title></head><body class=\"t-" + tema + '">' +
+      '<link rel="stylesheet" href="' + B + '_assets/demo.css"><title>' + esc(n) + "</title></head><body class=\"t-" + tema + '"' + estiloBody(estilo) + ">" +
       '<div class="pr-ribbon"><div class="wrap"><span><i></i><em>Vista previa gratis de tu web</em></span></div></div>' +
       '<header class="top"><div class="wrap"><a class="brand" href="#"><span class="mono">' + esc(ini) + "</span><b>" + esc(n) + "</b></a><nav>" +
       (t ? '<a class="btn b-main" href="tel:+34' + t + '">' + I.tel + " Llamar</a>" : "") + "</nav></div></header>" +
