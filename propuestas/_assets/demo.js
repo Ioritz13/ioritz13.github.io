@@ -114,7 +114,9 @@
   function wa(texto) { return "https://wa.me/" + IORITZ + "?text=" + encodeURIComponent(texto); }
   $$("[data-quiero]").forEach(function (a) {
     a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos? " + C.url);
-    a.addEventListener("click", function () { radar("quiero", C.n + " ha pulsado «La quiero»", "Escríbele ya: está listo para decir que sí.", 5, "fire"); });
+    a.addEventListener("click", function () {
+      var est = window.__estilo ? window.__estilo() : "";
+      a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos?" + (est ? "\n" + est : "") + "\n" + C.url); radar("quiero", C.n + " ha pulsado «La quiero»", "Escríbele ya: está listo para decir que sí.", 5, "fire"); });
   });
   $$("[data-no]").forEach(function (a) {
     a.addEventListener("click", function () { radar("no", C.n + " no está interesado", "Ha pulsado «Dímelo y la borro». No le vuelvas a escribir.", 3, "no_entry"); });
@@ -123,6 +125,72 @@
     a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y tengo una duda: ");
     a.addEventListener("click", function () { radar("duda", C.n + " tiene una duda", "Ha pulsado «Tengo una duda». Mira tu WhatsApp.", 4, "question"); });
   });
+
+
+  /* ---------- «Cambiar colores»: estilos en directo ---------- */
+  var ESTILOS = [
+    ["Original", null],
+    ["Noche y oro", {bg: "#111111", bg2: "#181716", card: "#1c1b19", ink: "#f2ece2", ink2: "#b2a99b", line: "#2d2a26", ac: "#c8a165", aci: "#15120e"}],
+    ["Blanco elegante", {bg: "#fafaf8", bg2: "#f0efeb", card: "#ffffff", ink: "#161616", ink2: "#5a5a5a", line: "#e2e0da", ac: "#161616", aci: "#ffffff"}],
+    ["Rosa empolvado", {bg: "#fbf3f3", bg2: "#f5e6e7", card: "#ffffff", ink: "#2b1d20", ink2: "#6e5a5f", line: "#ecdcdd", ac: "#c2667a", aci: "#ffffff"}],
+    ["Verde natural", {bg: "#f4f7f2", bg2: "#e6eee3", card: "#ffffff", ink: "#1d2a20", ink2: "#56655a", line: "#d6e1d3", ac: "#3f7d4e", aci: "#ffffff"}],
+    ["Azul moderno", {bg: "#f5f8fc", bg2: "#e8eef7", card: "#ffffff", ink: "#0f1b2d", ink2: "#4f5d70", line: "#dbe3ee", ac: "#1d4ed8", aci: "#ffffff"}],
+    ["Terracota", {bg: "#fbf6ef", bg2: "#f3eadd", card: "#fffaf3", ink: "#2a1d14", ink2: "#6b5848", line: "#e8dac7", ac: "#b4441d", aci: "#ffffff"}],
+    ["Lila", {bg: "#f8f5fc", bg2: "#eee7f7", card: "#ffffff", ink: "#231a33", ink2: "#62577a", line: "#e2d9ef", ac: "#7c4dbd", aci: "#ffffff"}],
+    ["Negro y rojo", {bg: "#0d0d0e", bg2: "#151517", card: "#19191b", ink: "#ece6da", ink2: "#a9a398", line: "#2a2a2d", ac: "#d6453d", aci: "#ffffff"}]
+  ];
+  var LETRAS = [["Original", null], ["Elegante", ['"Fraunces",Georgia,serif', "600", "none", "-.02em"]], ["Moderna", ['"Instrument Sans",system-ui,sans-serif', "700", "none", "-.025em"]],
+    ["Con carácter", ['"Big Shoulders",Impact,sans-serif', "800", "uppercase", ".01em"]], ["Industrial", ['"Archivo",Arial,sans-serif', "800", "uppercase", "-.01em"]]];
+  var KE = "estilo:" + location.pathname, elegido = { c: 0, f: 0, mio: "" };
+  function inkPara(hex) {
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    return (0.299 * r + 0.587 * g + 0.114 * b) > 160 ? "#15120e" : "#ffffff";
+  }
+  function aplicar() {
+    var st = document.body.style, p = ESTILOS[elegido.c][1], f = LETRAS[elegido.f][1];
+    ["--bg", "--bg-2", "--card", "--ink", "--ink-2", "--line", "--accent", "--accent-ink", "--display", "--dw", "--dcase", "--dtrack"].forEach(function (k) { st.removeProperty(k); });
+    if (p) { st.setProperty("--bg", p.bg); st.setProperty("--bg-2", p.bg2); st.setProperty("--card", p.card); st.setProperty("--ink", p.ink); st.setProperty("--ink-2", p.ink2); st.setProperty("--line", p.line); st.setProperty("--accent", p.ac); st.setProperty("--accent-ink", p.aci); }
+    if (elegido.mio) { st.setProperty("--accent", elegido.mio); st.setProperty("--accent-ink", inkPara(elegido.mio)); }
+    if (f) { st.setProperty("--display", f[0]); st.setProperty("--dw", f[1]); st.setProperty("--dcase", f[2]); st.setProperty("--dtrack", f[3]); }
+    $$(".est .sw").forEach(function (b, i) { b.setAttribute("aria-pressed", String(i === elegido.c && !elegido.mio)); });
+    $$(".est .ft").forEach(function (b, i) { b.setAttribute("aria-pressed", String(i === elegido.f)); });
+    try { localStorage.setItem(KE, JSON.stringify(elegido)); } catch (e) {}
+  }
+  window.__estilo = function () {
+    if (!elegido.c && !elegido.f && !elegido.mio) return "";
+    return "Estilo: " + ESTILOS[elegido.c][0] + (elegido.mio ? " con el color " + elegido.mio : "") + " · letra " + LETRAS[elegido.f][0];
+  };
+  var panel = document.createElement("div");
+  panel.className = "est"; panel.setAttribute("role", "dialog"); panel.setAttribute("aria-label", "Cambiar colores");
+  panel.innerHTML = '<button class="est-x" type="button" aria-label="Cerrar">×</button><h3>Elige tu estilo</h3>' +
+    '<p>Esto es solo una primera idea. Prueba colores y letra: la web cambia al momento. Luego la ajusto a tu gusto, con tu logo y tus fotos.</p>' +
+    '<div class="fila">' + ESTILOS.map(function (e, i) {
+      var c1 = e[1] ? e[1].bg : getComputedStyle(document.body).getPropertyValue("--bg"), c2 = e[1] ? e[1].ac : getComputedStyle(document.body).getPropertyValue("--accent");
+      return '<button class="sw" type="button" aria-pressed="false" data-i="' + i + '"><i style="background:' + c1 + ';--c2:' + c2 + '"></i>' + e[0] + "</button>";
+    }).join("") + '<label class="mio"><input type="color" value="#c2667a" aria-label="Tu color">Tu color</label></div>' +
+    '<div class="fila">' + LETRAS.map(function (l, i) { return '<button class="ft" type="button" aria-pressed="false" data-f="' + i + '"' + (l[1] ? ' style="font-family:' + l[1][0].replace(/"/g, "&quot;") + ";font-weight:" + l[1][1] + ";text-transform:" + l[1][2] + '"' : "") + ">" + l[0] + "</button>"; }).join("") + "</div>" +
+    '<div class="bts"><button class="btn rst" type="button" data-rst>Volver al original</button><button class="btn ok2" type="button" data-okest>Me gusta así</button></div>';
+  document.body.appendChild(panel);
+  function abrirEst() {
+    if (sheet && sheet.open) sheet.close();
+    panel.classList.add("on"); document.body.classList.add("estilando");
+    radar("colores", C.n + " está probando colores", "Ha abierto «Cambiar colores»: está personalizando su web.", 4, "art");
+  }
+  function cerrarEst() { panel.classList.remove("on"); document.body.classList.remove("estilando"); }
+  $$("[data-colores]").forEach(function (b) { b.addEventListener("click", abrirEst); });
+  panel.querySelector(".est-x").addEventListener("click", cerrarEst);
+  panel.addEventListener("click", function (e) {
+    var sw = e.target.closest(".sw"), ft = e.target.closest(".ft");
+    if (sw) { elegido.c = +sw.getAttribute("data-i"); elegido.mio = ""; aplicar(); }
+    if (ft) { elegido.f = +ft.getAttribute("data-f"); aplicar(); }
+    if (e.target.closest("[data-rst]")) { elegido = { c: 0, f: 0, mio: "" }; aplicar(); }
+    if (e.target.closest("[data-okest]")) {
+      cerrarEst();
+      if (window.__estilo()) radar("estilo", C.n + " ha elegido su estilo", window.__estilo(), 4, "art");
+    }
+  });
+  panel.querySelector("input[type=color]").addEventListener("input", function (e) { elegido.mio = e.target.value; aplicar(); });
+  try { var ge = JSON.parse(localStorage.getItem(KE) || "null"); if (ge) { elegido = ge; aplicar(); } } catch (e) {}
 
   /* ---------- «Cámbiala tú mismo» ---------- */
   var lista = $(".svc");
@@ -224,6 +292,8 @@
           if (n && n.textContent.trim()) L.push("· " + n.textContent.trim() + (pt ? " — " + pt : ""));
         });
       }
+      var est = window.__estilo ? window.__estilo() : "";
+      if (est) L.push("", est);
       L.push("", C.url);
       var txt = L.join("\n");
       radar("enviar", C.n + " te ha mandado sus cambios", txt.slice(0, 3500), 5, "incoming_envelope");
