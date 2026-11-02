@@ -113,9 +113,11 @@ document.getElementById('t').addEventListener('submit',function(e){
  document.getElementById('tit').textContent=tit;document.getElementById('txt').textContent=txt;
  var fl=document.getElementById('fallos');fl.innerHTML='';
  fal.forEach(function(q){var li=document.createElement('li');var b=document.createElement('b');b.textContent=q[0].replace('¿','').replace('?','');li.appendChild(b);li.appendChild(document.createTextNode(q[1]));fl.appendChild(li)});
+ if(window.radar) radar('test','Alguien ha hecho el test de Google Maps: '+s+'/10','Si te escribe, ya sabe su nota.',3,'clipboard');
  document.getElementById('cta').href='https://wa.me/34692024735?text='+encodeURIComponent('Hola Ioritz, he hecho el test de Google Maps y me ha salido '+s+'/10. Mi negocio es: ');
  var r=document.getElementById('res');r.style.display='block';r.scrollIntoView({behavior:'smooth',block:'start'});
 });
 </script>
+<script src="../radar.js" defer></script>
 </body>
 </html>

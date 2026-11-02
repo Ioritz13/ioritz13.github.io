@@ -1,0 +1,213 @@
+{
+ "_licencia": "Fotos de Unsplash (licencia Unsplash: uso libre, también comercial). Son de ejemplo en las propuestas.",
+ "barberia": {
+  "hero": "barberia/hero.jpg",
+  "galeria": [
+   "barberia/1.jpg",
+   "barberia/2.jpg",
+   "barberia/3.jpg"
+  ],
+  "unsplash": [
+   "1585747860715-2ba37e788b70",
+   "1593702275687-f8b402bf1fb5",
+   "1599351431202-1e0f0137899a",
+   "1532710093739-9470acff878f"
+  ]
+ },
+ "tatuajes": {
+  "hero": "tatuajes/hero.jpg",
+  "galeria": [
+   "tatuajes/1.jpg",
+   "tatuajes/2.jpg",
+   "tatuajes/3.jpg"
+  ],
+  "unsplash": [
+   "1565058379802-bbe93b2f703a",
+   "1568515045052-f9a854d70bfd",
+   "1598371839696-5c5bb00bdc28",
+   "1562962230-16e4623d36e6"
+  ]
+ },
+ "peluqueria": {
+  "hero": "peluqueria/hero.jpg",
+  "galeria": [
+   "peluqueria/1.jpg",
+   "peluqueria/2.jpg",
+   "peluqueria/3.jpg"
+  ],
+  "unsplash": [
+   "1633681926022-84c23e8cb2d6",
+   "1562322140-8baeececf3df",
+   "1580618672591-eb180b1a973f",
+   "1595476108010-b4d1f102b1b1"
+  ]
+ },
+ "estetica": {
+  "hero": "estetica/hero.jpg",
+  "galeria": [
+   "estetica/1.jpg",
+   "estetica/2.jpg",
+   "estetica/3.jpg"
+  ],
+  "unsplash": [
+   "1512290923902-8a9f81dc236c",
+   "1570172619644-dfd03ed5d881",
+   "1540555700478-4be289fbecef",
+   "1616394584738-fc6e612e71b9"
+  ]
+ },
+ "unas": {
+  "hero": "unas/hero.jpg",
+  "galeria": [
+   "unas/1.jpg",
+   "unas/2.jpg",
+   "unas/3.jpg"
+  ],
+  "unsplash": [
+   "1632345031435-8727f6897d53",
+   "1604654894610-df63bc536371",
+   "1607779097040-26e80aa78e66",
+   "1519014816548-bf5fe059798b"
+  ]
+ },
+ "fisioterapia": {
+  "hero": "fisioterapia/hero.jpg",
+  "galeria": [
+   "fisioterapia/1.jpg",
+   "fisioterapia/2.jpg",
+   "fisioterapia/3.jpg"
+  ],
+  "unsplash": [
+   "1519824145371-296894a0daa9",
+   "1597764690523-15bea4c581c9",
+   "1571019613454-1cb2f99b2d8b",
+   "1600881333168-2ef49b341f30"
+  ]
+ },
+ "restaurante": {
+  "hero": "restaurante/hero.jpg",
+  "galeria": [
+   "restaurante/1.jpg",
+   "restaurante/2.jpg",
+   "restaurante/3.jpg"
+  ],
+  "unsplash": [
+   "1514933651103-005eec06c04b",
+   "1515443961218-a51367888e4b",
+   "1504674900247-0877df9cc836",
+   "1555396273-367ea4eb4db5"
+  ]
+ },
+ "panaderia": {
+  "hero": "panaderia/hero.jpg",
+  "galeria": [
+   "panaderia/1.jpg",
+   "panaderia/2.jpg",
+   "panaderia/3.jpg"
+  ],
+  "unsplash": [
+   "1568254183919-78a4f43a2877",
+   "1509440159596-0249088772ff",
+   "1555507036-ab1f4038808a",
+   "1608198093002-ad4e005484ec"
+  ]
+ },
+ "taller": {
+  "hero": "taller/hero.jpg",
+  "galeria": [
+   "taller/1.jpg",
+   "taller/2.jpg",
+   "taller/3.jpg"
+  ],
+  "unsplash": [
+   "1625047509248-ec889cbff17f",
+   "1619642751034-765dfdf7c58e",
+   "1530046339160-ce3e530c7d2f",
+   "1486262715619-67b85e0b08d3"
+  ]
+ },
+ "floristeria": {
+  "hero": "floristeria/hero.jpg",
+  "galeria": [
+   "floristeria/1.jpg",
+   "floristeria/2.jpg",
+   "floristeria/3.jpg"
+  ],
+  "unsplash": [
+   "1487070183336-b863922373d4",
+   "1563241527-3004b7be0ffd",
+   "1561181286-d3fee7d55364",
+   "1526047932273-341f2a7631f9"
+  ]
+ },
+ "mascotas": {
+  "hero": "mascotas/hero.jpg",
+  "galeria": [
+   "mascotas/1.jpg",
+   "mascotas/2.jpg",
+   "mascotas/3.jpg"
+  ],
+  "unsplash": [
+   "1516734212186-a967f81ad0d7",
+   "1600369671236-e74521d4b6ad",
+   "1548199973-03cce0bbc87b",
+   "1587300003388-59208cc962cb"
+  ]
+ },
+ "tienda": {
+  "hero": "tienda/hero.jpg",
+  "galeria": [
+   "tienda/1.jpg",
+   "tienda/2.jpg",
+   "tienda/3.jpg"
+  ],
+  "unsplash": [
+   "1441986300917-64674bd600d8",
+   "1528698827591-e19ccd7bc23d",
+   "1567401893414-76b7b1e5a7a5",
+   "1472851294608-062f824d29cc"
+  ]
+ },
+ "cafeteria": {
+  "hero": "cafeteria/hero.jpg",
+  "galeria": [
+   "cafeteria/1.jpg",
+   "cafeteria/2.jpg",
+   "cafeteria/3.jpg"
+  ],
+  "unsplash": [
+   "1554118811-1e0d58224f24",
+   "1495474472287-4d71bcdd2085",
+   "1509042239860-f550ce710b93",
+   "1453614512568-c4024d13c247"
+  ]
+ },
+ "oficios": {
+  "hero": "oficios/hero.jpg",
+  "galeria": [
+   "oficios/1.jpg",
+   "oficios/2.jpg",
+   "oficios/3.jpg"
+  ],
+  "unsplash": [
+   "1589939705384-5185137a7f0f",
+   "1621905251189-08b45d6a269e",
+   "1503387762-592deb58ef4e",
+   "1504307651254-35680f356dfd"
+  ]
+ },
+ "deporte": {
+  "hero": "deporte/hero.jpg",
+  "galeria": [
+   "deporte/1.jpg",
+   "deporte/2.jpg",
+   "deporte/3.jpg"
+  ],
+  "unsplash": [
+   "1534438327276-14e5300c3a48",
+   "1517836357463-d25dfeac3438",
+   "1518611012118-696072aa579a",
+   "1540497077202-7c8a3999166f"
+  ]
+ }
+}
