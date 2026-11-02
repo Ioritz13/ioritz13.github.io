@@ -321,7 +321,8 @@ document.getElementById("f").addEventListener("submit", e => {
   const v = document.getElementById("vista");
   v.srcdoc = crear(n, sector, t, dir, serv); v.hidden = false; document.getElementById("vacio").hidden = true;
   const tipoTxt = document.getElementById("tipo").selectedOptions[0].textContent;
-  const msg = "Hola Ioritz, he visto la muestra de mi web en tu página y me interesa.\nNegocio: "+n+"\nTipo: "+tipoTxt+(t?"\nTeléfono: "+t:"")+(dir?"\nDirección: "+dir:"")+"\n¿Me cuentas cómo sería?";
+  const ref = (new URLSearchParams(location.search).get("ref") || "").replace(/[-_]+/g," ").slice(0,60);
+  const msg = "Hola Ioritz, he visto la muestra de mi web en tu página y me interesa.\nNegocio: "+n+"\nTipo: "+tipoTxt+(t?"\nTeléfono: "+t:"")+(dir?"\nDirección: "+dir:"")+(ref?"\nMe lo ha recomendado: "+ref:"")+"\n¿Me cuentas cómo sería?";
   document.getElementById("wa").href = "https://wa.me/34692024735?text="+encodeURIComponent(msg);
   document.getElementById("cta").classList.add("ok");
   if(window.matchMedia("(max-width:900px)").matches) document.querySelector(".marco").scrollIntoView({behavior:"smooth",block:"start"});
