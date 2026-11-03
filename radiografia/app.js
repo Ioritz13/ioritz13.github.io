@@ -196,6 +196,7 @@ var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgal
 
     var wa = "https://wa.me/" + TEL_IORITZ + "?text=" + encodeURIComponent(mensajeWa());
     $("#b-wa").href = wa; $("#b-wa2").href = wa;
+    $("#b-calc").href = "../cuanto-pierdes/?n=" + encodeURIComponent(estado.nombre);
 
     mostrar("p-resultado");
     // nota animada

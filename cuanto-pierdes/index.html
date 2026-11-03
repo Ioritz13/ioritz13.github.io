@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>¿Cuánto te cuesta no tener web? · Calculadora gratis · Ioritz Martínez</title>
+<meta name="description" content="Calcula en 20 segundos cuánto dinero dejas de ganar al año por no salir bien en Google. Gratis.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6f8f6">
+<meta property="og:title" content="¿Cuánto te cuesta no tener web?">
+<meta property="og:description" content="Calcula en 20 segundos cuánto dejas de ganar al año. Gratis.">
+<link rel="icon" href="../img/icono.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f6f8f6;--card:#fff;--ink:#14201a;--ink-2:#4f5d55;--line:#dbe4de;--verde:#0f8a4d;--verde-2:#e3f3ea;--rojo:#c0392b;--rojo-2:#fbeae7;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--font);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+a{color:var(--verde)}
+:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+.app{max-width:560px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-right,0px)) 48px max(18px,env(safe-area-inset-left,0px));display:grid;gap:18px}
+.marca{margin:0;font-size:13px;letter-spacing:.04em;color:var(--ink-2)}
+h1{margin:4px 0 0;font-size:clamp(30px,8.4vw,42px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+h1 span{color:var(--rojo)}
+.sub{margin:0;font-size:18px;color:var(--ink-2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:16px}
+label{font-weight:700;font-size:15px;display:block;margin-bottom:6px}
+.ayuda{font-weight:400;color:var(--ink-2);font-size:14px}
+input[type=text],input[type=number],select{width:100%;font:inherit;font-size:18px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+input:focus,select:focus{border-color:var(--verde);outline:none;box-shadow:0 0 0 3px var(--verde-2)}
+.fila{display:grid;grid-template-columns:1fr 92px;gap:10px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--verde);height:28px}
+.num{text-align:center;font-variant-numeric:tabular-nums}
+.res{background:var(--rojo-2);border-radius:16px;padding:20px 18px;display:grid;gap:6px;text-align:center}
+.res p{margin:0}
+.res .grande{font-size:clamp(40px,12vw,56px);font-weight:800;line-height:1;color:var(--rojo);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.res .mes{font-size:18px;color:var(--ink-2)}
+.res .cuenta{font-size:14px;color:var(--ink-2)}
+.barras{display:grid;gap:12px}
+.barra p{margin:0 0 5px;display:flex;justify-content:space-between;gap:10px;font-size:15px}
+.barra p b{font-variant-numeric:tabular-nums}
+.pista{height:22px;background:var(--bg);border-radius:8px;overflow:hidden}
+.pista i{display:block;height:100%;border-radius:8px;transition:width .4s ease-out}
+.pierde i{background:var(--rojo)}
+.web i{background:var(--verde);min-width:6px}
+.paga{background:var(--verde-2);border-radius:16px;padding:18px;display:grid;gap:4px}
+.paga p{margin:0}
+.paga .t{font-size:21px;font-weight:800;color:var(--verde);line-height:1.2}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;font:700 19px/1.2 var(--font);padding:18px 20px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;text-align:center;background:var(--verde);color:#fff;box-shadow:0 10px 24px -14px rgba(15,138,77,.8)}
+.btn:hover{background:#0c7741}
+.sec{display:block;text-align:center;font-weight:700;font-size:16px;padding:14px;border-radius:14px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card)}
+.garantia{margin:-8px 0 0;text-align:center;font-weight:700;font-size:15px}
+.nota{margin:0;font-size:13px;color:var(--ink-2)}
+.packs{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.packs li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:6px 0}
+.packs li:last-child{border:0}
+.packs s{color:var(--ink-2);font-size:13px;margin-right:6px}
+.packs li>span:last-child{white-space:nowrap;flex:none}
+@media (prefers-reduced-motion:reduce){.pista i{transition:none}}
+</style>
+</head>
+<body>
+<main class="app">
+  <p class="marca">Ioritz Martínez · Webs y Google Maps · Vitoria-Gasteiz</p>
+  <h1>¿Cuánto te cuesta <span>no tener web?</span></h1>
+  <p class="sub">Pon tus números y mira cuánto dinero se queda por el camino cada año cuando te buscan en Google y no te encuentran. 20 segundos.</p>
+
+  <form class="card" id="f" novalidate>
+    <div>
+      <label for="tipo">Tu negocio</label>
+      <select id="tipo">
+        <option value="25">Peluquería</option><option value="15">Barbería</option><option value="40">Centro de estética</option>
+        <option value="25">Uñas</option><option value="40">Fisioterapia</option><option value="15">Bar o restaurante</option>
+        <option value="120">Taller</option><option value="30">Tienda</option><option value="60">Reformas u oficios</option><option value="30">Otro</option>
+      </select>
+    </div>
+    <div>
+      <label for="cli">¿Cuántos clientes crees que pierdes al mes? <span class="ayuda">Gente que te busca en el móvil, no te encuentra y se va a otro.</span></label>
+      <div class="fila"><input id="cli-r" type="range" min="1" max="50" value="10" aria-label="Clientes perdidos al mes"><input id="cli" class="num" type="number" min="1" max="999" value="10" inputmode="numeric"></div>
+    </div>
+    <div>
+      <label for="tic">¿Cuánto gasta de media cada cliente? <span class="ayuda">En euros, por visita. Ya va puesto un ejemplo: cámbialo por el tuyo.</span></label>
+      <input id="tic" class="num" type="number" min="1" max="5000" value="25" inputmode="decimal">
+    </div>
+    <div>
+      <label for="nom">Nombre del negocio <span class="ayuda">(opcional)</span></label>
+      <input id="nom" type="text" maxlength="80" autocomplete="organization" placeholder="Ej.: Peluquería Ane">
+    </div>
+  </form>
+
+  <section class="res" aria-live="polite">
+    <p class="mes">Con tus números, dejas de ganar</p>
+    <p class="grande" id="anual">2.400 €</p>
+    <p class="mes">al año</p>
+    <p class="cuenta" id="cuenta">10 clientes/mes × 25 € = 250 €/mes × 12 meses</p>
+  </section>
+
+  <section class="card barras" aria-label="Comparación">
+    <div class="barra pierde"><p><span>Lo que pierdes en un año</span><b id="b1v">2.400 €</b></p><div class="pista"><i id="b1" style="width:100%"></i></div></div>
+    <div class="barra web"><p><span>Tu web, una sola vez</span><b>149 €</b></p><div class="pista"><i id="b2" style="width:6%"></i></div></div>
+  </section>
+
+  <section class="paga">
+    <p class="t" id="paga">Con 6 clientes que te encuentren, la web está pagada.</p>
+    <p id="paga2">A tu ritmo, eso es menos de un mes. Desde ahí, todo lo que entra es para ti.</p>
+  </section>
+
+  <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Quiero dejar de perderlos · WhatsApp</a>
+  <p class="garantia">Primero la ves. Luego decides. Sin cuotas.</p>
+
+  <section class="card">
+    <p style="margin:0;font-weight:800;font-size:18px">Precios · pago único</p>
+    <ul class="packs">
+      <li><span><b>Esencial</b> · web de una página, lista en 48 h</span><span><s>249 €</s><b>149 €</b></span></li>
+      <li><span><b>Visible ⭐</b> · web + ficha de Google Maps + reseñas</span><span><s>399 €</s><b>249 €</b></span></li>
+      <li><span><b>Completo</b> · Visible + publicaciones + cita online</span><span><s>499 €</s><b>299 €</b></span></li>
+    </ul>
+    <p class="nota">Precio de lanzamiento para los 5 primeros negocios. Sin cuotas: solo el dominio, unos 10-15 € al año (el primero va incluido en Visible y Completo). <b data-plazas hidden></b></p>
+  </section>
+
+  <a class="sec" id="radio" href="../radiografia/">¿Qué te falta exactamente? Hazte la radiografía gratis →</a>
+  <p class="nota">Los números son tuyos: es una estimación, no una promesa. Nadie puede garantizar cuántos clientes te traerá Google, pero sí que, si no estás, no te van a encontrar. <a href="../privacidad.html">Privacidad</a> · <a href="../">Ioritz Martínez</a> · 692 02 47 35</p>
+</main>
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s)}, WEB=149, TEL="34692024735", RADAR="radar-iori-w55l9b611ksj13";
+  var eur=function(n){return Math.round(n).toLocaleString("es-ES")+" €"};
+  var tocado=false, enviado=false;
+  function radar(t,c,p,tag){
+    var prueba=/[?&]radar=test/.test(location.search);
+    try{if(localStorage.getItem("radar-off")&&!prueba)return}catch(e){}
+    var u="https://ntfy.sh/"+RADAR+"?title="+encodeURIComponent((prueba?"[PRUEBA] ":"")+t)+"&tags="+tag+"&priority="+p+"&click="+encodeURIComponent(location.origin+location.pathname);
+    try{if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([c+" #calculadora"],{type:"text/plain"})))return}catch(e){}
+    try{fetch(u,{method:"POST",body:c+" #calculadora",mode:"no-cors",keepalive:true})}catch(e){}
+  }
+  function calc(){
+    var cli=Math.max(1,Math.min(999,parseFloat($("#cli").value)||0)), tic=Math.max(1,Math.min(5000,parseFloat(String($("#tic").value).replace(",","."))||0));
+    var mes=cli*tic, anio=mes*12, nec=Math.ceil(WEB/tic), dias=WEB/mes*30;
+    $("#anual").textContent=eur(anio);
+    $("#cuenta").textContent=cli+(cli===1?" cliente":" clientes")+"/mes × "+eur(tic)+" = "+eur(mes)+"/mes × 12 meses";
+    $("#b1v").textContent=eur(anio);
+    $("#b2").style.width=Math.max(2,Math.min(100,WEB/anio*100))+"%";
+    $("#b1").style.width=anio>=WEB?"100%":(anio/WEB*100)+"%";
+    $("#paga").textContent="Con "+nec+(nec===1?" cliente":" clientes")+" que te encuentren, la web está pagada.";
+    $("#paga2").textContent=dias<=31?"A tu ritmo, eso es "+(dias<7?"menos de una semana":dias<14?"un par de semanas":"menos de un mes")+". Desde ahí, todo lo que entra es para ti.":
+      "A tu ritmo, en unos "+Math.ceil(dias/30)+" meses. Desde ahí, todo lo que entra es para ti.";
+    var n=$("#nom").value.trim();
+    var m="Hola Ioritz"+(n?", soy "+n:"")+". He usado la calculadora: creo que pierdo unos "+cli+" clientes al mes (unos "+eur(anio)+" al año). ¿Me preparas una primera idea de mi web?";
+    $("#wa").href="https://wa.me/"+TEL+"?text="+encodeURIComponent(m);
+    $("#radio").href="../radiografia/"+(n?"?n="+encodeURIComponent(n):"");
+    return {cli:cli,tic:tic,anio:anio,n:n};
+  }
+  function cambio(){
+    var r=calc();
+    if(tocado&&!enviado){clearTimeout(cambio.t);cambio.t=setTimeout(function(){enviado=true;
+      radar("Calculadora: "+(r.n||"alguien")+" · "+eur(r.anio)+"/año","Cree que pierde "+r.cli+" clientes/mes de "+eur(r.tic)+" ("+$("#tipo").selectedOptions[0].textContent+").",3,"moneybag")},4000)}
+  }
+  $("#cli-r").addEventListener("input",function(){$("#cli").value=this.value;tocado=true;cambio()});
+  $("#cli").addEventListener("input",function(){var v=parseInt(this.value,10);if(v>=1&&v<=50)$("#cli-r").value=v;tocado=true;cambio()});
+  $("#tic").addEventListener("input",function(){tocado=true;cambio()});
+  $("#tipo").addEventListener("change",function(){$("#tic").value=this.value;tocado=true;cambio()});
+  $("#nom").addEventListener("input",cambio);
+  $("#f").addEventListener("submit",function(e){e.preventDefault()});
+  $("#wa").addEventListener("click",function(){var r=calc();radar("🔥 "+(r.n||"Alguien")+" quiere su web (calculadora)","Cree que pierde "+eur(r.anio)+"/año. Mira tu WhatsApp.",5,"tada")});
+  try{var q=new URLSearchParams(location.search);if(q.get("n"))$("#nom").value=q.get("n").slice(0,80)}catch(e){}
+  calc();
+})();
+</script>
+<script src="../plazas.js" defer></script>
+</body>
+</html>

@@ -128,3 +128,5 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 .compartir { margin: 8px 0 0; text-align: center; font-size: 15px; }
 .otra { margin: 0; text-align: center; }
 .aviso { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 15px; z-index: 9; max-width: calc(100% - 32px); }
+
+.calc { display: block; text-align: center; font-weight: 700; font-size: 16px; padding: 14px; border-radius: 14px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; background: var(--card); }
