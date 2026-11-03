@@ -192,6 +192,10 @@
   });
   panel.querySelector("input[type=color]").addEventListener("input", function (e) { elegido.mio = e.target.value; aplicar(); });
   try { var ge = JSON.parse(localStorage.getItem(KE) || "null"); if (ge) { elegido = ge; aplicar(); } } catch (e) {}
+  /* ?e=3-1 (estilo-letra) o ?e=0-0-c2667a: el estilo elegido en la reunión viaja en el enlace */
+  var pe = (location.search.match(/[?&]e=(\d+)-(\d+)(?:-([0-9a-fA-F]{6}))?/) || null);
+  if (pe && ESTILOS[+pe[1]] && LETRAS[+pe[2]]) { elegido = { c: +pe[1], f: +pe[2], mio: pe[3] ? "#" + pe[3] : "" }; aplicar(); }
+  window.__elegir = function (c, f, mio) { elegido = { c: c, f: f, mio: mio || "" }; aplicar(); };
 
   /* ---------- «Cámbiala tú mismo» ---------- */
   var lista = $(".svc");
