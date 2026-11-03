@@ -208,6 +208,20 @@ var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgal
     resultado.t = setInterval(function () { n = Math.min(r.nota, n + paso); cifra.textContent = n; if (n >= r.nota) clearInterval(resultado.t); }, 30);
 
     guardar({ accion: "lead", id: estado.id, nombre: estado.nombre, tiene_web: !!d, url: estado.url, nota: r.nota, fallos: r.fallos.join(" | ") });
+    radar("Radiografía: " + estado.nombre + " · " + r.nota + "/100", (d ? "Web: " + estado.url : "No tiene web") + "\n" + (r.cortos.join(", ") || "sin fallos") + "\nEstá en tu hoja de leads.", 4, "stethoscope");
+  }
+
+  // ---------- aviso al móvil de Ioritz (Radar, ntfy.sh). Los servidores de Google no llegan a ntfy, así que sale de aquí.
+  //            En el móvil de Ioritz se silencia abriendo una vez /yo/. Con ?radar=test se fuerza para probar.
+  var RADAR = "radar-iori-w55l9b611ksj13";
+  function radar(titulo, cuerpo, prio, tag) {
+    var prueba = /[?&]radar=test/.test(location.search);
+    try { if (localStorage.getItem("radar-off") && !prueba) return; } catch (e) {}
+    var u = "https://ntfy.sh/" + RADAR + "?title=" + encodeURIComponent((prueba ? "[PRUEBA] " : "") + titulo) +
+      "&tags=" + encodeURIComponent(tag) + "&priority=" + prio + "&click=" + encodeURIComponent("https://ioritz13.github.io/radiografia/");
+    var b = cuerpo + " #radiografia";
+    try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([b], { type: "text/plain" }))) return; } catch (e) {}
+    try { fetch(u, { method: "POST", body: b, mode: "no-cors", keepalive: true }); } catch (e) {}
   }
 
   // ---------- leads (si falla, no pasa nada) ----------
@@ -220,7 +234,7 @@ var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgal
     } catch (e) {}
     try { fetch(API_URL, { method: "POST", body: cuerpo, headers: { "Content-Type": "text/plain;charset=utf-8" }, mode: "no-cors", keepalive: true }); } catch (e) {}
   }
-  function clicWa() { if (estado.id && !clicWa.hecho) { clicWa.hecho = true; guardar({ accion: "clic", id: estado.id }); } }
+  function clicWa() { if (estado.id && !clicWa.hecho) { clicWa.hecho = true; guardar({ accion: "clic", id: estado.id }); radar("🔥 " + estado.nombre + " quiere arreglar su web", "Ha pulsado «Lo arreglo · WhatsApp» con un " + estado.nota + "/100. Mira tu WhatsApp.", 5, "tada"); } }
   $("#b-wa").addEventListener("click", clicWa);
   $("#b-wa2").addEventListener("click", clicWa);
 
