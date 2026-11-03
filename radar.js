@@ -3,6 +3,7 @@
 (function () {
   var T = "radar-iori-w55l9b611ksj13";
   var prueba = /[?&]radar=test/.test(location.search);
+  try { if (location.hash === "#yo") localStorage.setItem("radar-off", "1"); } catch (e) {}
   function off() { try { return !!localStorage.getItem("radar-off"); } catch (e) { return false; } }
   function disp() { var u = navigator.userAgent; return /iPhone|iPad/.test(u) ? "iPhone" : /Android/.test(u) ? "Android" : /Macintosh/.test(u) ? "Mac" : /Windows/.test(u) ? "PC" : "otro"; }
   var hecho = {};

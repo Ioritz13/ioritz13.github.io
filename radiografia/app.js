@@ -215,12 +215,14 @@ var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgal
   // ---------- aviso al móvil de Ioritz (Radar, ntfy.sh). Los servidores de Google no llegan a ntfy, así que sale de aquí.
   //            En el móvil de Ioritz se silencia abriendo una vez /yo/. Con ?radar=test se fuerza para probar.
   var RADAR = "radar-iori-w55l9b611ksj13";
+  try { if (location.hash === "#yo") localStorage.setItem("radar-off", "1"); } catch (e) {}
+  function disp() { var u = navigator.userAgent; return /FBAN|FBAV|Instagram/.test(u) ? "navegador de Instagram/Facebook" : /iPhone|iPad/.test(u) ? "iPhone" : /Android/.test(u) ? "Android" : /Macintosh/.test(u) ? "Mac" : /Windows/.test(u) ? "PC" : "otro"; }
   function radar(titulo, cuerpo, prio, tag) {
     var prueba = /[?&]radar=test/.test(location.search);
     try { if (localStorage.getItem("radar-off") && !prueba) return; } catch (e) {}
     var u = "https://ntfy.sh/" + RADAR + "?title=" + encodeURIComponent((prueba ? "[PRUEBA] " : "") + titulo) +
       "&tags=" + encodeURIComponent(tag) + "&priority=" + prio + "&click=" + encodeURIComponent("https://ioritz13.github.io/radiografia/");
-    var b = cuerpo + " #radiografia";
+    var b = cuerpo + " (" + disp() + ") #radiografia";
     try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([b], { type: "text/plain" }))) return; } catch (e) {}
     try { fetch(u, { method: "POST", body: b, mode: "no-cors", keepalive: true }); } catch (e) {}
   }
