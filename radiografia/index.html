@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radiografía gratis de tu negocio en Google · Ioritz Martínez</title>
+<meta name="description" content="Escribe el nombre de tu negocio y en 30 segundos ves qué te está haciendo perder clientes en Google. Gratis y sin compromiso.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6f8f6">
+<meta property="og:title" content="¿Cómo te ve Google? Radiografía gratis de tu negocio">
+<meta property="og:description" content="En 30 segundos: tu nota del 0 al 100 y lo que te hace perder clientes. Gratis.">
+<meta property="og:type" content="website">
+<link rel="icon" href="../img/icono.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app" id="app">
+
+  <!-- Pantalla 1 · Inicio -->
+  <section class="pantalla" id="p-inicio" aria-labelledby="t-inicio">
+    <p class="marca">Ioritz Martínez · Webs y Google Maps · Vitoria-Gasteiz</p>
+    <h1 id="t-inicio">¿Cómo te ve Google? <span>Radiografía gratis de tu negocio</span></h1>
+    <p class="sub">Escribe el nombre de tu negocio y te digo, en 30 segundos, qué te está haciendo perder clientes. Gratis y sin compromiso.</p>
+    <form id="f-inicio" novalidate>
+      <label for="nombre">Nombre del negocio</label>
+      <input id="nombre" name="nombre" type="text" autocomplete="organization" maxlength="80" placeholder="Ej.: Peluquería Ane" required>
+      <p class="error" id="e-nombre" role="alert" hidden>Escribe el nombre de tu negocio.</p>
+      <button class="btn principal" type="submit">Empezar</button>
+    </form>
+    <p class="legal">Guardo el nombre y la web que escribas para poder ayudarte. No se comparten con nadie. <a href="../privacidad.html">Privacidad</a>.</p>
+  </section>
+
+  <!-- Pantalla 2 · Web -->
+  <section class="pantalla" id="p-web" aria-labelledby="t-web" hidden>
+    <button class="volver" type="button" data-volver="p-inicio">← Atrás</button>
+    <h2 id="t-web">¿<span id="n-web">Tu negocio</span> tiene página web?</h2>
+    <form id="f-web" novalidate>
+      <div class="opciones" role="radiogroup" aria-label="¿Tienes web?">
+        <button class="opcion" type="button" role="radio" aria-checked="false" data-web="si">
+          <b>Sí, tengo web</b><span>Pega la dirección y la reviso</span>
+        </button>
+        <button class="opcion" type="button" role="radio" aria-checked="false" data-web="no">
+          <b>No tengo web</b><span>Te digo qué te estás perdiendo</span>
+        </button>
+      </div>
+      <div class="campo-url" id="campo-url" hidden>
+        <label for="url">Dirección de tu web</label>
+        <input id="url" name="url" type="url" inputmode="url" autocomplete="url" maxlength="300" placeholder="Ej.: peluqueriaane.com">
+      </div>
+      <p class="error" id="e-web" role="alert" hidden></p>
+      <button class="btn principal" type="submit" id="b-ver">Ver mi radiografía</button>
+    </form>
+  </section>
+
+  <!-- Cargando -->
+  <section class="pantalla" id="p-cargando" aria-live="polite" hidden>
+    <div class="escaner" aria-hidden="true"><i></i></div>
+    <h2>Haciendo tu radiografía…</h2>
+    <ul class="pasos" id="pasos">
+      <li>Abriendo tu web</li>
+      <li>Mirando cómo se ve en el móvil</li>
+      <li>Buscando botones de llamar y WhatsApp</li>
+      <li>Buscando precios, horario y señales para Google</li>
+    </ul>
+  </section>
+
+  <!-- Pantalla 3 · Resultado -->
+  <section class="pantalla" id="p-resultado" aria-labelledby="t-res" hidden>
+    <p class="marca">Radiografía de <b id="n-res"></b></p>
+    <div class="nota" id="nota">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="fondo" cx="60" cy="60" r="52"/><circle class="arco" id="arco" cx="60" cy="60" r="52"/></svg>
+      <div class="cifra"><b id="cifra">0</b><span>/100</span></div>
+    </div>
+    <h2 id="t-res" class="etiqueta"></h2>
+
+    <div class="bloque malo" id="b-fallos">
+      <h3>Lo que te hace perder clientes</h3>
+      <ul id="fallos"></ul>
+    </div>
+    <div class="bloque bueno" id="b-bien">
+      <h3>Lo que ya haces bien</h3>
+      <ul id="bien"></ul>
+    </div>
+
+    <a class="btn wa" id="b-wa" href="#" target="_blank" rel="noopener">Lo arreglo · WhatsApp</a>
+    <p class="garantia">Primero la ves. Luego decides. Sin cuotas.</p>
+
+    <h3 class="t-packs">Cómo lo arreglamos</h3>
+    <p class="nota-packs">Pago único. Precio de lanzamiento para los 5 primeros negocios. <b data-plazas hidden></b></p>
+    <div class="packs" id="packs">
+      <article class="pack" data-pack="esencial">
+        <p class="reco">Recomendado para ti</p>
+        <div class="cab"><h4>Esencial</h4><p><s>249 €</s> <b>149 €</b></p></div>
+        <p>Web de una página adaptada al móvil, botones de llamar y WhatsApp, servicios/precios/horario/mapa, aviso legal y privacidad. Lista en 48 h.</p>
+      </article>
+      <article class="pack" data-pack="visible">
+        <p class="reco">Recomendado para ti</p>
+        <div class="cab"><h4>Visible <span class="estrella" title="El más elegido">⭐</span></h4><p><s>399 €</s> <b>249 €</b></p></div>
+        <p>Todo el Esencial + ficha de Google Maps a punto + kit de reseñas con QR + cartel QR para el escaparate + dominio propio el primer año.</p>
+      </article>
+      <article class="pack" data-pack="completo">
+        <p class="reco">Recomendado para ti</p>
+        <div class="cab"><h4>Completo</h4><p><s>499 €</s> <b>299 €</b></p></div>
+        <p>Todo el Visible + descripción de Google y 4 publicaciones + una sección por servicio + botón de cita online + 1 mes de cambios gratis.</p>
+      </article>
+    </div>
+
+    <a class="btn wa" id="b-wa2" href="#" target="_blank" rel="noopener">Lo arreglo · WhatsApp</a>
+    <p class="garantia">Primero la ves. Luego decides. Sin cuotas.</p>
+
+    <p class="compartir"><a href="#" id="b-compartir">¿Conoces otro negocio al que le pueda venir bien? Pásale esta herramienta.</a></p>
+    <p class="otra"><button class="enlace" type="button" id="b-otra">Hacer otra radiografía</button></p>
+    <p class="legal">La radiografía revisa la página que indicas tal y como la ve Google, sin entrar en tu cuenta ni tocar nada. <a href="../">Ioritz Martínez · Vitoria-Gasteiz</a> · 692 02 47 35</p>
+  </section>
+
+</main>
+<div class="aviso" id="aviso" role="status" hidden></div>
+<script src="app.js"></script>
+<script src="../plazas.js" defer></script>
+</body>
+</html>
