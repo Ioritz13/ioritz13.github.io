@@ -25,7 +25,7 @@
   }
   function origen() {
     var q = (location.search.match(/[?&]qr=([a-z]+)/) || [])[1];
-    return q === "hoja" ? "desde la hoja que dejaste" : q === "tarjeta" ? "desde tu tarjeta" : "desde el enlace";
+    return q === "hoja" ? "desde la hoja que dejaste" : q === "tarjeta" ? "desde tu tarjeta" : q === "presupuesto" ? "desde el presupuesto" : "desde el enlace";
   }
   function radar(tipo, titulo, cuerpo, prio, tag) {
     if (!radarOn || enviados[tipo]) return;
