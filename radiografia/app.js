@@ -1,7 +1,7 @@
 /* Radiografía en Google · lógica del front (sin dependencias).
    El backend es un Web App de Google Apps Script (radiografia/backend.gs en el proyecto).
    Pega aquí la URL que termina en /exec al desplegarlo: */
-var API_URL = "";
+var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgaln075YorUeRhbCQ4Q3LFKOqhOYbgztnOlwaKLp2vVfbIw/exec";
 
 (function () {
   "use strict";
