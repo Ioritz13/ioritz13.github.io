@@ -1,0 +1,179 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instagram de Clínica Maimú · Primer mes</title><meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Propuesta de Instagram para Clínica Maimú: perfil y calendario del primer mes.">
+<link rel="preload" href="fuentes/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Source Sans 3";font-weight:200 900;font-display:swap;src:url(fuentes/source-sans-3-latin.woff2) format("woff2")}
+:root{--bg:#fbf9f7;--bg2:#f4ede5;--ink:#312124;--ink2:#6b5a4e;--line:#e7ded6;--marron:#614c39;--topo:#bbaa9c;--salvia:#a6ad9c;--arena:#d6b592;--f:"Source Sans 3",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--f)}img{max-width:100%;display:block}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-weight:300;text-transform:uppercase;letter-spacing:.06em;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(30px,5vw,48px)}h2{font-size:clamp(24px,3.4vw,34px)}h3{font-size:17px;font-weight:400;letter-spacing:.05em}
+.eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);font-weight:600;margin-bottom:8px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line)}header img{height:38px;width:auto;margin-bottom:28px}
+.lead{color:var(--ink2);font-size:18.5px;max-width:62ch;margin:0}
+section{padding:54px 0}section.alt{background:var(--bg2)}
+.leyenda{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:14.5px;color:var(--ink2);margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.chip.b{background:#dfe2d9;border-color:#dfe2d9}.chip.c{background:#efdfcb;border-color:#efdfcb}.chip.r{background:#fff4e0;border-color:#f0dcae}
+/* perfil */
+.perfil{display:grid;grid-template-columns:360px 1fr;gap:44px;align-items:start}
+.movil{background:#fff;border-radius:34px;border:10px solid #231719;box-shadow:0 20px 50px rgb(49 33 36/.18);overflow:hidden}
+.movil .top{padding:16px 16px 8px;display:flex;gap:16px;align-items:center}
+.avatar{width:78px;height:78px;border-radius:50%;background:#fbf9f7;border:1px solid var(--line);display:grid;place-items:center;flex:none}.avatar img{width:62px}
+.cifras{display:flex;gap:16px;font-size:13px;text-align:center}.cifras b{display:block;font-size:16px}
+.movil .bio{padding:0 16px 10px;font-size:13.5px;line-height:1.4}.movil .bio b{display:block}
+.movil .enlace{color:#00376b;font-weight:600}
+.dest{display:flex;gap:12px;padding:6px 14px 14px;overflow:hidden}
+.dest div{text-align:center;font-size:11px;flex:none;width:58px}
+.dest i{display:block;width:58px;height:58px;border-radius:50%;border:1px solid var(--line);background:var(--bg2) center/cover;margin-bottom:4px;box-shadow:inset 0 0 0 3px #fff}
+.rejilla{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.rejilla div{aspect-ratio:4/5;background:center/cover;position:relative}
+.rejilla span{position:absolute;inset:auto 0 0 0;padding:20px 6px 6px;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:linear-gradient(transparent,rgb(49 33 36/.78))}
+.notas li{margin-bottom:10px;color:var(--ink2)}.notas b{color:var(--ink)}
+@media (max-width:860px){.perfil{grid-template-columns:1fr}.movil{max-width:360px;margin:0 auto}}
+/* calendario */
+.semana{margin-top:30px}.semana h3{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.post{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.portada{aspect-ratio:4/5;background:center/cover;position:relative;display:flex;align-items:flex-end}
+.portada:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgb(49 33 36/.82))}
+.portada b{position:relative;z-index:1;color:#fff;font-weight:300;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.05em;padding:18px}
+.portada .tipo{position:absolute;top:12px;right:12px;z-index:1;background:rgb(255 255 255/.92);color:var(--ink);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.post .t{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.post .dia{font-size:13px;color:var(--ink2);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.post .chips{display:flex;flex-wrap:wrap;gap:6px}
+.post p{margin:0;font-size:15.5px;color:var(--ink2)}
+.post details{font-size:14.5px}.post summary{cursor:pointer;color:var(--marron);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.post pre{white-space:pre-wrap;font:inherit;background:var(--bg);border-radius:10px;padding:12px;margin:8px 0 0;color:var(--ink)}
+@media (max-width:900px){.posts{grid-template-columns:1fr 1fr}}@media (max-width:560px){.posts{grid-template-columns:1fr}}
+.historias{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.historias div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.historias b{display:block;margin-bottom:4px;font-weight:600}
+.historias p{margin:0;font-size:15px;color:var(--ink2)}
+@media (max-width:900px){.historias{grid-template-columns:1fr 1fr}}@media (max-width:520px){.historias{grid-template-columns:1fr}}
+.pasos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 40px;padding:0;list-style:none;counter-reset:p}
+.pasos li{counter-increment:p;padding-left:44px;position:relative;color:var(--ink2)}.pasos li b{color:var(--ink);display:block}
+.pasos li:before{content:counter(p);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--marron);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:600}
+@media (max-width:700px){.pasos{grid-template-columns:1fr}}
+.cta{background:var(--ink);color:#f4ede5;text-align:center}.cta .lead{color:#d9cdc2;margin:0 auto 24px}
+.btn{display:inline-flex;gap:10px;align-items:center;background:#f4ede5;color:var(--ink);text-decoration:none;font-weight:600;padding:14px 24px;border-radius:999px}
+footer{font-size:13.5px;color:var(--ink2);padding:22px 0 40px;text-align:center}
+</style></head><body>
+<header><div class="wrap"><img src="img/logo.svg" alt="Clínica Maimú" width="701" height="280">
+<div class="eyebrow">Instagram · @clinicamaimu</div><h1>Vuestro primer mes en Instagram</h1>
+<p class="lead">Así quedarían el perfil y las publicaciones del primer mes, con vuestras fotos y vuestros tratamientos. Es una primera idea: cambiamos lo que queráis (temas, textos, días u orden).</p>
+<div class="leyenda"><span class="chip b">Básico y Completo</span><span>Entra en las dos opciones (8 publicaciones)</span>
+<span class="chip c">Solo Completo</span><span>Se añade en la opción Completa (12 publicaciones, con 2 reels)</span>
+<span class="chip r">🩺 Lo revisa Amagoia</span><span>Habla de salud: se publica solo con su visto bueno</span></div></div></header>
+
+<section><div class="wrap perfil">
+<div class="movil" aria-label="Vista previa del perfil">
+<div class="top"><div class="avatar"><img src="img/logo.svg" alt=""></div><div><b>clinicamaimu</b><div style="font-size:13px;color:var(--ink2)">Centro de fisioterapia</div></div></div>
+<div class="bio"><b>Clínica Maimú</b><span>Fisioterapia en Salburua, Vitoria-Gasteiz</span><br><span>Ecoguiada · Osteopatía · Rehab. cardíaca · Pilates</span><br><span>L-V 9-21 h</span><br><span>💬 Cita por WhatsApp 👇</span><br><span class="enlace">clinicamaimu.com</span></div>
+<div class="dest"><div><i style="background-image:url(img/consulta.webp)"></i>Tratamientos</div><div><i style="background-image:url(img/fuerza.webp)"></i>Clases</div><div><i style="background-image:url(img/horario.webp)"></i>Horario</div><div><i style="background-image:url(img/equipo.webp)"></i>Equipo</div><div><i style="background-image:url(img/fachada-dia.webp)"></i>Cómo llegar</div><div><i style="background-image:url(img/hero.webp)"></i>Cita</div></div>
+<div class="rejilla"><div style="background-image:url(img/deportiva.webp)"><span>El equipo de fisios</span></div><div style="background-image:url(img/ondas.webp)"><span>Ondas de choque focales</span></div><div style="background-image:url(img/fuerza.webp)"><span>¿Por qué entrenar fuerza?</span></div><div style="background-image:url(img/manual.webp)"><span>Consejos del fisio</span></div><div style="background-image:url(img/horario.webp)"><span>Clases dirigidas 2025/26</span></div><div style="background-image:url(img/eco.webp)"><span>Vemos lo que tratamos</span></div><div style="background-image:url(img/equipo.webp)"><span>Conoce al equipo</span></div><div style="background-image:url(img/fachada.webp)"><span>Un paseo por la clínica</span></div><div style="background-image:url(img/mimo.webp)"><span>Maimú = mimo</span></div></div></div>
+<div><div class="eyebrow">El perfil</div><h2>Lo dejamos a punto el primer mes</h2>
+<ul class="notas">
+<li><b>Biografía clara:</b> qué hacéis, dónde estáis, el horario y un botón para pedir cita por WhatsApp.</li>
+<li><b>Enlace a la web nueva</b> y al WhatsApp de administración.</li>
+<li><b>Historias destacadas:</b> Tratamientos, Clases, Horario, Equipo, Cómo llegar, Cita. Quien entra encuentra todo en dos toques.</li>
+<li><b>Mismo estilo que la web:</b> vuestros colores, vuestra letra y vuestras fotos, para que todo se reconozca como Maimú.</li>
+<li><b>Fotos nuevas:</b> en la sesión de cada mes hacemos fotos y vídeos del equipo, las clases y los tratamientos.</li>
+</ul></div></div></section>
+
+<section class="alt"><div class="wrap"><div class="eyebrow">Calendario</div><h2>Las publicaciones del primer mes</h2>
+<p class="lead">Tres por semana (martes, jueves y sábado). Toca «Ver el texto» para leer cada publicación tal y como saldría.</p>
+<div class="semana"><h3>Semana 1</h3><div class="posts"><article class="post"><div class="portada" style="background-image:url(img/mimo.webp)"><span class="tipo">Carrusel</span><b>Maimú = mimo</b></div>
+<div class="t"><span class="dia">Martes</span><div class="chips"><span class="chip b">Básico y Completo</span></div><p>Presentación: qué significa Maimú y cómo tratamos a los pacientes.</p>
+<details><summary>Ver el texto</summary><pre>¿Sabes qué significa Maimú? 🌿
+Del japonés マイム: mimo.
+
+En el teatro, el mimo se expresa con el movimiento, y nuestra misión es mantener el tuyo. Y «mimar» es tratar a alguien con cariño y delicadeza: así queremos que te sientas desde el primer día.
+
+Cada paciente es único, pero todos tienen algo en común: quieren un trato con mimo, quieren Maimú.
+
+📍 Salburua, Vitoria-Gasteiz · 💬 Cita por WhatsApp (enlace en el perfil)</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/fachada.webp)"><span class="tipo">Reel</span><b>Un paseo por la clínica</b></div>
+<div class="t"><span class="dia">Jueves</span><div class="chips"><span class="chip c">Solo Completo</span></div><p>Vídeo corto recorriendo la clínica: entrada, pasillo, salas y sala de clases. Se graba en la sesión del mes.</p>
+<details><summary>Ver el texto</summary><pre>Pasa, que te enseñamos la clínica 👀
+Un espacio luminoso y tranquilo, pensado para que estés cómodo desde que entras.
+
+📍 P.º de Estrasburgo 15, Salburua
+🕘 Lunes a viernes, de 9:00 a 21:00</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/equipo.webp)"><span class="tipo">Foto</span><b>Conoce al equipo</b></div>
+<div class="t"><span class="dia">Sábado</span><div class="chips"><span class="chip b">Básico y Completo</span></div><p>Presentación de Amagoia, fisioterapeuta, osteópata y directora. Foto nueva de la sesión.</p>
+<details><summary>Ver el texto</summary><pre>Os presentamos a Amagoia 👋
+Fisioterapeuta, osteópata y directora de Clínica Maimú.
+
+Ella lidera un equipo de especialistas en fisioterapia, osteopatía, ejercicio terapéutico y nutrición, todos colegiados y en formación continua.
+
+Las próximas semanas os presentamos al resto del equipo 💛</pre></details></div></article></div></div><div class="semana"><h3>Semana 2</h3><div class="posts"><article class="post"><div class="portada" style="background-image:url(img/eco.webp)"><span class="tipo">Carrusel</span><b>Vemos lo que tratamos</b></div>
+<div class="t"><span class="dia">Martes</span><div class="chips"><span class="chip b">Básico y Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Qué es la fisioterapia ecoguiada y por qué ayuda: ver el tejido en tiempo real.</p>
+<details><summary>Ver el texto</summary><pre>Fisioterapia ecoguiada: vemos lo que tratamos 🔍
+
+Con la ecografía en tiempo real vemos músculos, tendones y ligamentos. Así localizamos el origen del dolor, aplicamos cada técnica con más precisión y seguimos tu evolución sesión a sesión.
+
+👉 Desliza para ver qué técnicas usamos.</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/horario.webp);background-size:contain;background-repeat:no-repeat;background-color:#f4e6d6"><span class="tipo">Foto</span><b>Clases dirigidas 2025/26</b></div>
+<div class="t"><span class="dia">Jueves</span><div class="chips"><span class="chip b">Básico y Completo</span></div><p>El cartel del horario de clases: pilates, pilates para embarazadas, fuerza y rehabilitación cardíaca.</p>
+<details><summary>Ver el texto</summary><pre>Nuestro horario de clases dirigidas 2025/26 🗓️
+
+Pilates · Pilates para embarazadas · Entrenamiento de fuerza · Rehabilitación cardíaca
+
+Plazas limitadas: reserva previa en el 662 603 624 o por WhatsApp.
+¿Te guardas el horario? 📌</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/manual.webp)"><span class="tipo">Carrusel</span><b>Consejos del fisio</b></div>
+<div class="t"><span class="dia">Sábado</span><div class="chips"><span class="chip c">Solo Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Un consejo práctico que elija el equipo (p. ej., postura o pausas en el trabajo). Lo escribe o graba un fisio de Maimú.</p>
+<details><summary>Ver el texto</summary><pre>[Texto que prepara el equipo: un consejo sencillo para el día a día, explicado por un fisio de Maimú.]
+
+Si la molestia no se va, no lo dejes: escríbenos y lo valoramos 💬</pre></details></div></article></div></div><div class="semana"><h3>Semana 3</h3><div class="posts"><article class="post"><div class="portada" style="background-image:url(img/fuerza.webp)"><span class="tipo">Reel</span><b>¿Por qué entrenar fuerza?</b></div>
+<div class="t"><span class="dia">Martes</span><div class="chips"><span class="chip c">Solo Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Vídeo de una clase de fuerza con 2-3 frases sobre por qué es buena para la salud. Se graba en la sesión.</p>
+<details><summary>Ver el texto</summary><pre>Entrenar fuerza no es solo cosa de gimnasio 💪
+
+Ayuda a mantener el metabolismo, protege músculos y huesos y cuida tu corazón. En nuestras clases te guían profesionales y se adaptan a tu nivel.
+
+📅 Grupos de mañana y de tarde · Plazas limitadas</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/ondas.webp)"><span class="tipo">Carrusel</span><b>Ondas de choque focales</b></div>
+<div class="t"><span class="dia">Jueves</span><div class="chips"><span class="chip b">Básico y Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Qué son y para qué se usan, con la lista de problemas que tratan en Maimú.</p>
+<details><summary>Ver el texto</summary><pre>Ondas de choque focales ⚡
+
+Ondas acústicas de alta energía que usamos sobre todo en problemas de tendones:
+· Fascitis plantar
+· Tendinitis de hombro con calcificaciones
+· Epicondilitis («codo de tenista»)
+· Tendinitis aquílea
+
+Ayudan a reducir el dolor y a estimular la reparación del tejido. ¿Tienes dudas? Pregúntanos 💬</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/deportiva.webp)"><span class="tipo">Carrusel</span><b>El equipo de fisios</b></div>
+<div class="t"><span class="dia">Sábado</span><div class="chips"><span class="chip b">Básico y Completo</span></div><p>Presentación de Irati, Nereida, Hodei y Eneko: una foto de cada uno de la sesión.</p>
+<details><summary>Ver el texto</summary><pre>Ellos son parte del equipo que te cuida en Maimú 💛
+Irati, Nereida, Hodei y Eneko, nuestros fisioterapeutas.
+
+👉 Desliza para conocerlos.</pre></details></div></article></div></div><div class="semana"><h3>Semana 4</h3><div class="posts"><article class="post"><div class="portada" style="background-image:url(img/cardio.webp)"><span class="tipo">Carrusel</span><b>Rehabilitación cardíaca fase III</b></div>
+<div class="t"><span class="dia">Martes</span><div class="chips"><span class="chip b">Básico y Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Qué es la fase de mantenimiento, por qué no hay que dejarla y cómo se controla cada sesión.</p>
+<details><summary>Ver el texto</summary><pre>Rehabilitación cardíaca: la fase III también cuenta ❤️
+
+Tras un evento cardíaco, la fase de mantenimiento es la que muchos pacientes dejan… y es clave. Te preparamos un programa según tu última prueba de esfuerzo y en cada sesión controlamos tensión, frecuencia cardíaca y esfuerzo.
+
+Los datos se pueden compartir con tu cardiólogo en las revisiones.</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/pilates.webp)"><span class="tipo">Foto</span><b>Pilates para embarazadas</b></div>
+<div class="t"><span class="dia">Jueves</span><div class="chips"><span class="chip c">Solo Completo</span></div><p>Las clases de pilates adaptadas al embarazo, con el horario (lunes y miércoles de 16:00 a 17:00).</p>
+<details><summary>Ver el texto</summary><pre>Pilates para embarazadas 🤰
+Una clase adaptada a cada etapa del embarazo.
+
+🗓️ Lunes y miércoles, de 16:00 a 17:00
+Plazas limitadas: reserva por WhatsApp en el 662 603 624.</pre></details></div></article><article class="post"><div class="portada" style="background-image:url(img/sala.webp)"><span class="tipo">Carrusel</span><b>Nuevo en Maimú</b></div>
+<div class="t"><span class="dia">Sábado</span><div class="chips"><span class="chip b">Básico y Completo</span><span class="chip r">🩺 Lo revisa Amagoia</span></div><p>Uno de los 2 tratamientos nuevos (cuando David me pase la información).</p>
+<details><summary>Ver el texto</summary><pre>[Texto del tratamiento nuevo, con la información que nos paséis.]</pre></details></div></article></div></div></div></section>
+
+<section><div class="wrap"><div class="eyebrow">Historias</div><h2>Cada semana, en historias</h2>
+<p class="lead">Las historias mantienen la cuenta viva entre publicación y publicación (opción Completa).</p>
+<div class="historias"><div><b>Lunes</b><p>El horario de clases de la semana y cuántas plazas quedan.</p></div><div><b>Miércoles</b><p>Detrás de las cámaras: un momento del día en la clínica (preparando la sala, una clase…).</p></div><div><b>Viernes</b><p>Una pregunta o encuesta («¿Qué te molesta más: espalda, cuello o rodilla?») para conocer a los seguidores.</p></div><div><b>Cada vez que haya post</b><p>Compartirlo en historias con un enlace a la página o al WhatsApp.</p></div></div></div></section>
+
+<section class="alt"><div class="wrap"><div class="eyebrow">Cómo trabajaríamos</div><h2>Sencillo para vosotros</h2>
+<ol class="pasos">
+<li><b>Os paso el calendario antes de cada mes</b>Lo miráis, cambiáis lo que queráis y no se publica nada sin vuestro visto bueno.</li>
+<li><b>Amagoia revisa lo que habla de salud</b>Así todo lo que se dice de los tratamientos es correcto.</li>
+<li><b>Una sesión al mes en la clínica</b>Una o dos horas para grabar y hacer fotos, cuando mejor os venga.</li>
+<li><b>Sin pasarme la contraseña</b>Me dais acceso desde Meta Business Suite, y lo podéis quitar cuando queráis.</li>
+<li><b>Sin permanencia</b>Probamos 3 meses y, si no os convence, se deja.</li>
+<li><b>Un resumen cada mes</b>Qué se ha publicado, cuánta gente lo ha visto y qué ha funcionado mejor.</li>
+</ol></div></section>
+
+<section class="cta"><div class="wrap"><h2>¿Qué os parece?</h2>
+<p class="lead">Decidme qué opción os encaja más o qué cambiaríais, y lo ajustamos.</p>
+<a class="btn" href="https://wa.me/34692024735?text=Hola%20Ioritz%2C%20he%20visto%20la%20propuesta%20de%20Instagram%20de%20Maim%C3%BA." target="_blank" rel="noopener">💬 Escribir a Ioritz</a></div></section>
+<footer>Propuesta preparada por Ioritz Martínez · Fotos y textos de Clínica Maimú</footer>
+</body></html>

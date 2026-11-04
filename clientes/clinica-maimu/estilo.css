@@ -91,6 +91,14 @@ header .btn{padding:10px 16px;font-size:15px}
 .galeria img:nth-child(1){grid-column:span 4;grid-row:span 2;aspect-ratio:auto}
 .galeria img:nth-child(n+2){grid-column:span 2}
 @media (max-width:700px){.galeria{grid-template-columns:1fr 1fr}.galeria img:nth-child(1){grid-column:span 2;aspect-ratio:3/2}.galeria img:nth-child(n+2){grid-column:span 1}.galeria img:nth-child(6){display:none}}
+.tec.sin-foto{grid-template-columns:1fr}
+.nuevo{display:inline-block;background:var(--marron);color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.equipo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:18px}
+.persona{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}
+.persona img,.persona .inicial{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 14px}
+.persona .inicial{display:grid;place-items:center;background:var(--bg2);font-size:44px;font-weight:300;color:var(--marron)}
+.persona h3{font-size:18px;margin-bottom:2px}.persona .cargo{color:var(--marron);font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
+.persona p{margin:0;color:var(--ink2);font-size:15px}
 /* contacto */
 .contacto{background:var(--ink);color:#f4ede5}
 .contacto .eyebrow{color:var(--topo)}
