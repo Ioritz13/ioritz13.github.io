@@ -74,6 +74,7 @@ section{padding:30px 0}
 
 <div class="total"><div class="wrap"><div class="fila2"><div><div class="cifra" id="cifra"></div><div class="resumen" id="resumen"></div></div>
 <a class="btn" id="wa" href="#" target="_blank" rel="noopener">💬 Me interesa esto</a></div></div></div>
+<script src="../../../radar.js"></script>
 <script>
 const P={"post": 15, "reel": 40, "historias": 40, "sesion": 40, "comentarios": 30},BASE=30;
 const est={post:8,reel:0,historias:true,sesion:false,comentarios:false};
@@ -102,4 +103,6 @@ const PRESETS={a:{post:8,reel:0,historias:true,sesion:false,comentarios:false},
  c:{post:10,reel:2,historias:true,sesion:true,comentarios:true}};
 document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{Object.assign(est,PRESETS[b.dataset.preset]);pintar()});
 pintar();
+setTimeout(function(){window.radar&&window.radar("igp","Maimú está mirando el presupuesto de Instagram","Lo está mirando ahora. #F15 #precio",4,"page_facing_up",location.href)},1500);
+$('#wa').addEventListener('click',function(){window.radar&&window.radar("igq","¡Maimú ha elegido su Instagram!","Ha pulsado «Me interesa esto»: "+$('#resumen').textContent+" → "+$('#cifra').textContent+". Mira tu WhatsApp. #F15 #quiero",5,"tada",location.href)});
 </script></body></html>
