@@ -83,6 +83,7 @@ header .btn{padding:10px 16px;font-size:15px}
 .horario-movil li{display:flex;gap:12px;padding:9px 12px;border-radius:10px;margin-bottom:5px;font-size:15px}
 .horario-movil li span{font-variant-numeric:tabular-nums;color:var(--ink2);min-width:96px}
 @media (max-width:760px){.horario{display:none}.horario-movil{display:block}}
+.cartel{margin-top:14px;color:var(--marron)}.cartel-img{border-radius:var(--r);border:1px solid var(--line);width:100%}
 .reserva{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
 .reserva p{margin:0;color:var(--ink2)}
 /* clínica */
@@ -95,10 +96,11 @@ header .btn{padding:10px 16px;font-size:15px}
 .nuevo{display:inline-block;background:var(--marron);color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
 .equipo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:18px}
 .persona{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}
-.persona img,.persona .inicial{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 14px}
+.persona img,.persona .inicial{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:50% 20%;margin:0 auto 14px}
 .persona .inicial{display:grid;place-items:center;background:var(--bg2);font-size:44px;font-weight:300;color:var(--marron)}
 .persona h3{font-size:18px;margin-bottom:2px}.persona .cargo{color:var(--marron);font-size:14px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px}
 .persona p{margin:0;color:var(--ink2);font-size:15px}
+@media (max-width:560px){.equipo{grid-template-columns:1fr 1fr;gap:10px}.persona{padding:14px 10px}.persona img,.persona .inicial{width:76px;height:76px;margin-bottom:10px}.persona .inicial{font-size:30px}.persona .inicial svg{width:38px;height:38px}.persona h3{font-size:15px}.persona .cargo{font-size:11.5px;letter-spacing:.04em}.persona p{font-size:13.5px}}
 /* contacto */
 .contacto{background:var(--ink);color:#f4ede5}
 .contacto .eyebrow{color:var(--topo)}
