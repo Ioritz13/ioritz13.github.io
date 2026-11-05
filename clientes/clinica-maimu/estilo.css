@@ -49,14 +49,14 @@ header .btn{padding:10px 16px;font-size:15px}
 @media (max-width:980px){.areas{grid-template-columns:1fr 1fr}}@media (max-width:520px){.areas{grid-template-columns:1fr}}
 /* técnicas */
 .tecnicas{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px}
-.tec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:42% 1fr}
+.tec{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:42% 1fr;isolation:isolate}
 .tec img{width:100%;height:100%;object-fit:cover;min-height:220px}
-.tec .t{padding:22px 22px 18px}.tec h3{margin-bottom:8px}.tec p{margin:0 0 8px;color:var(--ink2);font-size:16px}
+.tec .t{padding:22px 22px 18px;position:relative;z-index:1;background:var(--card)}.tec h3{margin-bottom:8px}.tec p{margin:0 0 8px;color:var(--ink2);font-size:16px}
 .tec details{font-size:15.5px;color:var(--ink2)}.tec summary{cursor:pointer;color:var(--marron);font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;list-style:none;padding:6px 0}
 .tec summary::-webkit-details-marker{display:none}.tec summary:after{content:" +"}.tec details[open] summary:after{content:" –"}
 .tec ul{padding-left:18px;margin:8px 0 0}.tec li{margin-bottom:6px}
 @media (max-width:980px){.tecnicas{grid-template-columns:1fr}}
-@media (max-width:560px){.tec{grid-template-columns:1fr}.tec img{aspect-ratio:16/10;min-height:0}}
+@media (max-width:560px){.tec{grid-template-columns:1fr;grid-template-rows:auto auto}.tec img{height:auto;aspect-ratio:16/10;min-height:0;max-height:62vw}}
 /* bloques de servicio */
 .servicio+.servicio{margin-top:72px}
 .servicio ul.lista{padding-left:20px;color:var(--ink2)}.servicio .lista li{margin-bottom:4px}
@@ -69,7 +69,7 @@ header .btn{padding:10px 16px;font-size:15px}
 .clase.f:before{background:var(--salvia)}.clase.r:before{background:var(--topo)}
 @media (max-width:980px){.clases{grid-template-columns:1fr 1fr}}@media (max-width:520px){.clases{grid-template-columns:1fr}}
 .fotos-clases{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:40px}
-.fotos-clases img{border-radius:var(--r);width:100%;height:100%;object-fit:cover;aspect-ratio:3/2}
+.fotos-clases img{border-radius:var(--r);width:100%;height:auto;object-fit:cover;aspect-ratio:3/2}
 @media (max-width:620px){.fotos-clases{grid-template-columns:1fr}}
 .horario{width:100%;border-collapse:separate;border-spacing:4px;font-size:14.5px;background:var(--card);border-radius:var(--r);padding:10px;border:1px solid var(--line)}
 .horario th{font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13px;padding:8px 6px;color:var(--ink2);text-align:center}
@@ -91,7 +91,7 @@ header .btn{padding:10px 16px;font-size:15px}
 .galeria img{border-radius:14px;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
 .galeria img:nth-child(1){grid-column:span 4;grid-row:span 2;aspect-ratio:auto}
 .galeria img:nth-child(n+2){grid-column:span 2}
-@media (max-width:700px){.galeria{grid-template-columns:1fr 1fr}.galeria img:nth-child(1){grid-column:span 2;aspect-ratio:3/2}.galeria img:nth-child(n+2){grid-column:span 1}.galeria img:nth-child(6){display:none}}
+@media (max-width:700px){.galeria{grid-template-columns:1fr 1fr}.galeria img{height:auto}.galeria img:nth-child(1){grid-column:span 2;aspect-ratio:3/2}.galeria img:nth-child(n+2){grid-column:span 1}.galeria img:nth-child(6){display:none}}
 .tec.sin-foto{grid-template-columns:1fr}
 .nuevo{display:inline-block;background:var(--marron);color:#fff;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
 .equipo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:18px}
