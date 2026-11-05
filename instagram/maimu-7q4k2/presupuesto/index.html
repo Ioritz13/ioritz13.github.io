@@ -44,8 +44,8 @@ section{padding:30px 0}
 <div class="eyebrow">Instagram · @clinicamaimu</div><h1>Elegid lo que queráis</h1>
 <p class="lead">Cada cosa tiene su precio: sumad solo lo que os interese y abajo veis el total al mes. Sin permanencia, y si algo no os encaja, se cambia.</p>
 <div class="rapidos" role="group" aria-label="Combinaciones de ejemplo">
-<button type="button" data-preset="a">Solo publicaciones · 150 €</button>
-<button type="button" data-preset="b">Publicaciones + historias + sesión · 290 €</button>
+<button type="button" data-preset="a">⭐ Recomendado: 8 publicaciones + historias · 190 €</button>
+<button type="button" data-preset="b">Lo mismo + comentarios · 220 €</button>
 <button type="button" data-preset="c">Todo, con reels · 370 €</button></div></div></header>
 
 <main class="wrap"><section>
@@ -76,7 +76,7 @@ section{padding:30px 0}
 <a class="btn" id="wa" href="#" target="_blank" rel="noopener">💬 Me interesa esto</a></div></div></div>
 <script>
 const P={"post": 15, "reel": 40, "historias": 40, "sesion": 40, "comentarios": 30},BASE=30;
-const est={post:8,reel:0,historias:false,sesion:false,comentarios:false};
+const est={post:8,reel:0,historias:true,sesion:false,comentarios:false};
 const $=s=>document.querySelector(s);
 const eur=n=>n.toLocaleString('es-ES')+' €';
 function pintar(){
@@ -97,8 +97,8 @@ function pintar(){
 function paso(k,d,max){est[k]=Math.max(0,Math.min(max,est[k]+d));pintar()}
 document.querySelectorAll('[data-paso]').forEach(b=>b.onclick=()=>paso(b.dataset.paso,+b.dataset.d,+b.dataset.max));
 ['h:historias','s:sesion','c:comentarios'].forEach(x=>{const[i,k]=x.split(':');$('#'+i).onchange=ev=>{est[k]=ev.target.checked;pintar()}});
-const PRESETS={a:{post:8,reel:0,historias:false,sesion:false,comentarios:false},
- b:{post:12,reel:0,historias:true,sesion:true,comentarios:false},
+const PRESETS={a:{post:8,reel:0,historias:true,sesion:false,comentarios:false},
+ b:{post:8,reel:0,historias:true,sesion:false,comentarios:true},
  c:{post:10,reel:2,historias:true,sesion:true,comentarios:true}};
 document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{Object.assign(est,PRESETS[b.dataset.preset]);pintar()});
 pintar();
