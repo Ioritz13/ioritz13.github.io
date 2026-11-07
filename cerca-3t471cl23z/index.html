@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="referrer" content="no-referrer">
+<meta name="referrer" content="strict-origin">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <meta name="theme-color" content="#17181c">
 <title>Cerca de mí</title>
 <style>
@@ -48,6 +49,20 @@ h1 .m{background:linear-gradient(transparent 72%,var(--mark) 72%);padding:0 .04e
 .vacio{text-align:center;color:var(--ink2);padding:30px 10px}
 footer{color:var(--ink2);font-size:13px;margin-top:22px;line-height:1.5}
 footer a{color:var(--blue)}
+.vista{display:flex;gap:8px;padding:4px 0 10px}
+.vista button{flex:1;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:11px;font:700 15px/1 "Instrument Sans",sans-serif;cursor:pointer}
+.vista button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+#mapa{display:none;height:min(68vh,560px);border-radius:18px;border:1px solid var(--line);overflow:hidden;margin-bottom:10px;z-index:0}
+.leyenda{display:none;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink2);margin:0 0 12px}
+.leyenda i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px;box-shadow:0 0 0 2px #fff}
+.pop{font:400 14px/1.35 "Instrument Sans",sans-serif;min-width:200px}
+.pop b{font:800 16px/1.2 "Bricolage",sans-serif;display:block;margin-bottom:2px}
+.pop .pa{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.pop .pa a,.pop .pa button{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:10px;border:1.5px solid #dcd7cc;background:#fff;color:#17181c;font:600 13.5px/1 "Instrument Sans",sans-serif;text-decoration:none;cursor:pointer}
+.pop .pa .pr{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+.pop .pa .tj{grid-column:1/-1}
+.pop .pa .tj[aria-pressed=true]{border-color:#15803d;color:#15803d}
+.leaflet-container{font-family:"Instrument Sans",sans-serif}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 </style>
@@ -55,6 +70,7 @@ footer a{color:var(--blue)}
 <body>
 <div class="wrap">
 <header><h1>Cerca <span class="m">de mí</span></h1><p class="sub">Negocios de tu lista a pocos minutos. Entra, deja la tarjeta y enséñales su web.</p></header>
+<div class="vista" role="group" aria-label="Vista"><button type="button" data-v="lista" aria-pressed="true">☰ Lista</button><button type="button" data-v="mapa" aria-pressed="false">🗺️ Mapa</button></div>
 <div class="desde" id="desde" role="group" aria-label="Calcular desde"></div>
 <div class="filtros" role="group" aria-label="Filtros">
 <button type="button" data-f="abiertos" aria-pressed="true">Abiertos ahora</button>
@@ -62,11 +78,15 @@ footer a{color:var(--blue)}
 <button type="button" data-f="sin" aria-pressed="false">Solo sin contactar</button>
 </div>
 <p class="aviso" id="aviso" aria-live="polite"></p>
+<div id="mapa" role="region" aria-label="Mapa de negocios"></div>
+<div class="leyenda" id="leyenda"><span><i style="background:#1d4ed8"></i>Sin contactar</span><span><i style="background:#d97706"></i>Ya le escribiste</span><span><i style="background:#15803d"></i>Te respondió / interesado</span><span><i style="background:#8b8f98"></i>Tarjeta dejada</span><span><i style="background:#17181c"></i>Tú</span></div>
 <div class="lista" id="lista"></div>
 <footer><p>«Abiertos ahora» usa el horario de su ficha pública: los que no tienen horario fiable salen con «horario desconocido» (no se ocultan). Lo de «visitado» solo se guarda en este móvil.</p>
+<p>Mapa © colaboradores de OpenStreetMap. «Tarjeta dejada» solo se guarda en este móvil.</p>
 <p>Datos del <span id="fecha"></span> · <a id="panel" target="_blank" rel="noopener">Abrir el panel</a> para marcar cómo ha ido.</p></footer>
 </div>
 <div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
 (function(){
 "use strict";
@@ -75,7 +95,8 @@ var $ = function(s){return document.querySelector(s)};
 var esc = function(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
 var origen = null, desde = "gps", f = {abiertos:true, cerca:true, sin:false};
 var vis = {}; try{ vis = JSON.parse(localStorage.getItem("cerca-visitados")||"{}"); }catch(e){}
-var hoy = new Date().toISOString().slice(0,10);
+var hoy = new Date().toISOString().slice(0,10), vista = "lista", mapa = null, capa = null, yo = null;
+function fch(i){return i.split("-").reverse().slice(0,2).join("/")}
 function toast(t){var el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(function(){el.classList.remove("on")},1600)}
 function distM(a,b,c,d){var R=6371e3,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
 function minutos(m){return Math.max(1,Math.round(m*1.3/80))}
@@ -94,8 +115,9 @@ function pintarDesde(){
   $("#desde").innerHTML=b.join("");
 }
 function pintar(){
+  if(vista==="mapa"){ pintarMapa(); return; }
   if(!origen){ $("#lista").innerHTML='<div class="vacio">Pulsa «📍 Dónde estoy» o elige uno de tus sitios de siempre.</div>'; return; }
-  var L=D.items.map(function(it){ var m=distM(origen[0],origen[1],it.lat,it.lon); return Object.assign({},it,{m:m,e:estado(it.sem),v:vis[it.id]===hoy}); });
+  var L=D.items.map(function(it){ var m=distM(origen[0],origen[1],it.lat,it.lon); return Object.assign({},it,{m:m,e:estado(it.sem),v:!!vis[it.id]}); });
   L=L.filter(function(it){ return (!f.cerca || minutos(it.m)<=15) && (!f.abiertos || !it.e || it.e.on) && (!f.sin || it.est==="Sin contactar"); });
   L.sort(function(a,b){ return (a.v-b.v) || (a.m-b.m); });
   if(!L.length){ $("#lista").innerHTML='<div class="vacio">No hay nadie de tu lista cerca con estos filtros. Quita «Abiertos ahora» o «A 15 min o menos».</div>'; return; }
@@ -105,12 +127,61 @@ function pintar(){
     var est=it.e?'<span class="t '+(it.e.on?"on":"off")+'">'+esc(it.e.t)+'</span>':'<span class="t off">Horario desconocido</span>';
     return '<article class="c'+(it.v?" vis":"")+'" data-id="'+it.id+'"><div class="top"><div><p class="n">'+esc(it.n)+'</p><div class="s">'+esc(it.s)+'</div></div>'+
       '<div class="dist">'+mins+' min<small>'+dist+' andando</small></div></div>'+
-      '<div class="meta">'+est+'<span class="t est">'+esc(it.v?"Visitado hoy":it.est)+'</span></div>'+
+      '<div class="meta">'+est+'<span class="t est">'+esc(it.v?"Tarjeta dejada el "+fch(vis[it.id]):it.est)+'</span></div>'+
       (it.g?'<div class="g">'+esc(it.g)+'</div>':'')+'<p class="dir">'+esc(it.dir)+'</p>'+
       '<div class="acts"><a class="prim" href="'+dirU+'" target="_blank" rel="noopener">Cómo llegar</a><a href="'+esc(it.demo)+'" target="_blank" rel="noopener">Su demo</a>'+
       '<button type="button" data-copiar>Copiar la frase</button>'+(it.tel?'<a href="tel:+34'+esc(it.tel)+'">Llamar</a>':'<button type="button" disabled>Sin teléfono</button>')+
-      '<button type="button" class="vis-b" data-vis aria-pressed="'+it.v+'" style="grid-column:1/-1">'+(it.v?"✓ Visitado hoy":"Marcar como visitado")+'</button></div></article>';
+      '<button type="button" class="vis-b" data-vis aria-pressed="'+it.v+'" style="grid-column:1/-1">'+(it.v?"✓ Tarjeta dejada el "+fch(vis[it.id])+" (quitar)":"Marcar tarjeta dejada")+'</button></div></article>';
   }).join("");
+}
+function alternar(id){
+  if(vis[id]) delete vis[id]; else vis[id]=hoy;
+  try{ localStorage.setItem("cerca-visitados",JSON.stringify(vis)); }catch(err){}
+  toast(vis[id]?"Apuntado. Luego márcalo en el panel":"Quitado"); pintar();
+}
+var COL={"Sin contactar":"#1d4ed8","Ya le escribiste":"#d97706","Te respondió":"#15803d","Interesado":"#15803d"};
+function filtrarMapa(){
+  var L=D.items.map(function(it){ var m=origen?distM(origen[0],origen[1],it.lat,it.lon):0; return Object.assign({},it,{m:m,e:estado(it.sem),v:!!vis[it.id]}); });
+  return L.filter(function(it){ return (!origen||!f.cerca||minutos(it.m)<=15) && (!f.abiertos||!it.e||it.e.on) && (!f.sin||it.est==="Sin contactar"); });
+}
+function pintarMapa(){
+  if(typeof L==="undefined"){ $("#aviso").textContent="No se ha podido cargar el mapa (sin conexión). Usa la lista."; return; }
+  if(!mapa){
+    mapa=L.map("mapa",{zoomControl:true,attributionControl:true}).setView([42.8467,-2.6716],13);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa);
+    capa=L.layerGroup().addTo(mapa);
+    mapa.on("popupopen",function(e){
+      var el=e.popup.getElement(); var b=el&&el.querySelector("[data-tj]");
+      if(b) b.addEventListener("click",function(){ alternar(b.getAttribute("data-tj")); });
+    });
+  }
+  capa.clearLayers();
+  var puntos=[], L2=filtrarMapa();
+  L2.forEach(function(it){
+    var col=it.v?"#8b8f98":(COL[it.est]||"#1d4ed8");
+    var dirU="https://www.google.com/maps/dir/?api=1&travelmode=walking&destination="+encodeURIComponent(it.n+" "+it.dir);
+    var est=it.e?esc(it.e.t):"Horario desconocido";
+    var h='<div class="pop"><b>'+esc(it.n)+'</b>'+esc(it.s)+'<br>'+esc(it.dir)+'<br><span style="color:#4b4f58">'+est+' · '+esc(it.v?"Tarjeta dejada el "+fch(vis[it.id]):it.est)+'</span>'+
+      (origin_txt(it))+'<div class="pa"><a class="pr" href="'+dirU+'" target="_blank" rel="noopener">Cómo llegar</a><a href="'+esc(it.demo)+'" target="_blank" rel="noopener">Su demo</a>'+
+      '<button type="button" class="tj" data-tj="'+it.id+'" aria-pressed="'+it.v+'">'+(it.v?"✓ Tarjeta dejada (quitar)":"Marcar tarjeta dejada")+'</button></div></div>';
+    L.circleMarker([it.lat,it.lon],{radius:9,color:"#fff",weight:2.5,fillColor:col,fillOpacity:.95}).bindPopup(h).addTo(capa);
+    puntos.push([it.lat,it.lon]);
+  });
+  if(yo){ mapa.removeLayer(yo); yo=null; }
+  if(origen){ yo=L.circleMarker(origen,{radius:8,color:"#fff",weight:3,fillColor:"#17181c",fillOpacity:1}).addTo(mapa); }
+  $("#aviso").textContent=L2.length+" negocios en el mapa"+(origen?" (a 15 min o menos, si el filtro está activo)":"")+". Toca un punto.";
+  setTimeout(function(){
+    mapa.invalidateSize();
+    var ps=puntos.slice(); if(origen) ps.push(origen);
+    if(ps.length>1) mapa.fitBounds(ps,{padding:[30,30],maxZoom:16}); else if(ps.length===1) mapa.setView(ps[0],16);
+  },60);
+}
+function origin_txt(it){ return origen?'<br><b style="font:700 13.5px/1.3 \'Instrument Sans\',sans-serif">'+minutos(it.m)+' min andando</b>':""; }
+function cambiarVista(v){
+  vista=v;
+  document.querySelectorAll(".vista button").forEach(function(b){ b.setAttribute("aria-pressed",String(b.getAttribute("data-v")===v)); });
+  $("#mapa").style.display=v==="mapa"?"block":"none"; $("#leyenda").style.display=v==="mapa"?"flex":"none"; $("#lista").style.display=v==="mapa"?"none":"grid";
+  pintar();
 }
 function usarGPS(){
   if(!navigator.geolocation){ $("#aviso").textContent="Este navegador no da la ubicación: elige uno de tus sitios."; return; }
@@ -135,11 +206,10 @@ $("#lista").addEventListener("click",function(e){
     var t=D.frase; (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast("Frase copiada")},function(){toast("Mantén pulsado para copiar")});
   }
   if(e.target.closest("[data-vis]")){
-    if(vis[id]===hoy) delete vis[id]; else vis[id]=hoy;
-    try{ localStorage.setItem("cerca-visitados",JSON.stringify(vis)); }catch(err){}
-    toast(vis[id]===hoy?"Apuntado. Luego márcalo en el panel":"Quitado"); pintar();
+    alternar(id);
   }
 });
+document.querySelector(".vista").addEventListener("click",function(e){ var b=e.target.closest("button"); if(b) cambiarVista(b.getAttribute("data-v")); });
 $("#fecha").textContent=D.fecha.split("-").reverse().join("/");
 $("#panel").href=D.panel;
 pintarDesde(); usarGPS();
