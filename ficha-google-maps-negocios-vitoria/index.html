@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Me garantizas salir el primero?", "acceptedAnswer": {"@type": "Answer", "text": "No, y desconfía de quien te lo prometa. Google ordena por cercanía, por lo completa que está la ficha y por las reseñas. Las dos últimas son las que podemos mejorar, y es lo que hago."}}, {"@type": "Question", "name": "¿Y si no tengo ficha todavía?", "acceptedAnswer": {"@type": "Answer", "text": "La creamos juntos y te acompaño en la verificación de Google, que a veces pide un vídeo del local o una carta."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Va incluido en el pack Visible (249 €), junto con la web y el kit de reseñas. Si ya tienes una web que te gusta, pregúntame y te digo un precio solo por la ficha."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ioritz13.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Google Maps", "item": "https://ioritz13.github.io/ficha-google-maps-negocios-vitoria/"}]}, {"@type": "Service", "name": "Tu ficha de Google Maps, completa y al día.", "serviceType": "Diseño web y Google Maps", "areaServed": {"@type": "City", "name": "Vitoria-Gasteiz"}, "provider": {"@type": "ProfessionalService", "name": "Ioritz Martínez", "url": "https://ioritz13.github.io/", "telephone": "+34692024735"}, "offers": {"@type": "AggregateOffer", "lowPrice": "149", "highPrice": "299", "priceCurrency": "EUR"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Me garantizas salir el primero?", "acceptedAnswer": {"@type": "Answer", "text": "No, y desconfía de quien te lo prometa. Google ordena por cercanía, por lo completa que está la ficha y por las reseñas. Las dos últimas son las que podemos mejorar, y es lo que hago."}}, {"@type": "Question", "name": "¿Y si no tengo ficha todavía?", "acceptedAnswer": {"@type": "Answer", "text": "La creamos juntos y te acompaño en la verificación de Google, que a veces pide un vídeo del local o una carta."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Va incluido en el pack Visible (249 €), junto con la web y el kit de reseñas. Si ya tienes una web que te gusta, pregúntame y te digo un precio solo por la ficha."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ioritz13.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Google Maps", "item": "https://ioritz13.github.io/ficha-google-maps-negocios-vitoria/"}]}, {"@type": "Service", "name": "Tu ficha de Google Maps, completa y al día.", "serviceType": "Diseño web y Google Maps", "areaServed": {"@type": "City", "name": "Vitoria-Gasteiz"}, "provider": {"@type": "ProfessionalService", "name": "Ioritz Martínez", "url": "https://ioritz13.github.io/", "telephone": "+34692024735"}, "offers": {"@type": "AggregateOffer", "lowPrice": "149", "highPrice": "349", "priceCurrency": "EUR"}}]}</script>
 <style>
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700 800;font-display:swap;src:url(../fonts/bricolage-grotesque.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;src:url(../fonts/instrument-sans.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
@@ -171,9 +171,40 @@ label.rd-fila:hover{border-color:var(--ink-2)}
 .rd-total .btn{width:100%}
 .rd-total .small{margin-top:12px}
 .rd-combo{margin-top:16px;padding:12px 14px;border-radius:var(--r-s);background:var(--paper-2);font-size:14px}
+.igm{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-bottom:12px}
+.igm .av{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--line)}
+.gcard.good .igm .av{background:var(--blue);border:3px solid var(--marker);display:grid;place-items:center;color:#fff;font:800 22px/1 var(--display)}
+.igm .st{display:flex;gap:18px;font-size:13px;color:var(--ink-2)}
+.igm .st b{display:block;font:800 17px/1.1 var(--display);color:var(--ink)}
+.igbio{font-size:14px;line-height:1.45;margin-bottom:12px;min-height:42px}
+.igbio b{display:block}
+.gcard.bad .igbio span{color:var(--ink-2);font-style:italic}
+.ighl{display:flex;gap:12px;margin-bottom:14px;min-height:58px}
+.ighl i{display:grid;justify-items:center;gap:4px;font-style:normal;font-size:11px;color:var(--ink-2)}
+.ighl i:before{content:"";width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--paper-2)}
+.gcard.good .ighl i:before{border-color:var(--ink);background:var(--marker)}
+.iggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:16px;border-radius:8px;overflow:hidden;max-width:300px}
+.iggrid i{aspect-ratio:1;background:var(--paper-2);position:relative}
+.gcard.bad .iggrid i:nth-child(n+4){background:transparent;border:1px dashed var(--line)}
+.gcard.bad .iggrid i:first-child:after{content:"hace 8 meses";position:absolute;left:6px;bottom:6px;font-size:10px;color:var(--ink-2)}
+.gcard.good .iggrid i:nth-child(3n+1){background:var(--blue)}
+.gcard.good .iggrid i:nth-child(3n+2){background:var(--ink)}
+.gcard.good .iggrid i:nth-child(3n){background:var(--marker)}
+.gcard.good .iggrid i:before{content:"";position:absolute;left:14%;right:30%;top:40%;height:8%;background:rgb(255 255 255/.85);border-radius:3px;box-shadow:0 14px 0 -2px rgb(255 255 255/.55)}
+.gcard.good .iggrid i:nth-child(3n):before{background:rgb(23 24 28/.8);box-shadow:0 14px 0 -2px rgb(23 24 28/.45)}
+.sl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.sl{border:1px solid var(--line);border-radius:var(--r-m);padding:24px;display:flex;flex-direction:column;background:var(--paper)}
+.sl h3{font-size:20px}
+.sl p{font-size:15px;color:var(--ink-2);margin:8px 0 16px}
+.sl .pr{font:800 34px/1 var(--display);letter-spacing:-.02em;margin-top:auto}
+.sl .pr small{font:600 14px/1 var(--text);color:var(--ink-2);letter-spacing:0}
+.sl .btn{margin-top:16px;width:100%}
+@media (max-width:900px){.sl-grid{grid-template-columns:1fr;max-width:520px}}
 @media (max-width:900px){.rd-calc{grid-template-columns:1fr}.rd-total{position:static}.rd-promesas{grid-template-columns:1fr}.rd-movil{display:block}}
 @media (max-width:520px){.rd-fila{grid-template-columns:1fr}.rd-fila .rd-step{justify-self:start}}
 /* redes-css:fin */
+.noinc{margin-top:28px;padding:16px 20px;border-radius:var(--r-m);background:var(--paper-2);font-size:15px;color:var(--ink-2);max-width:820px}
+.noinc b{color:var(--ink)}
 .pack{border:1px solid var(--line);border-radius:var(--r-m);padding:28px 24px;background:var(--paper);position:relative}
 .pack.rec{border:2px solid var(--ink);box-shadow:var(--shadow)}
 .pack .badge{position:absolute;top:-14px;left:24px;background:var(--marker);color:#17181c;font-size:13px;font-weight:600;padding:4px 10px;border-radius:var(--r-s)}
@@ -337,7 +368,7 @@ footer a{color:var(--ink-2)}
   <div class="kicker">Precios · pago único</div>
   <h2>Pagas una vez. Sin cuotas.</h2>
   <p class="lead" style="margin-top:16px">Precio de lanzamiento para los 5 primeros negocios. Ves la web terminada antes de pagar.</p>
-  <div class="minipacks"><div><b>Esencial</b><div class="price">149 €</div><p>La web de una página con precios, horario, mapa, llamar y WhatsApp.</p></div><div class="rec"><b>Visible</b><div class="price">249 €</div><p>La web, más tu ficha de Google Maps completa, el kit de reseñas y el cartel con QR.</p></div><div><b>Completo</b><div class="price">299 €</div><p>Todo lo anterior, más publicaciones de Google, cita online y un mes de cambios gratis.</p></div></div>
+  <div class="minipacks"><div><b>Esencial</b><div class="price">149 €</div><p>La web de una página con precios, horario, mapa, llamar y WhatsApp.</p></div><div class="rec"><b>Visible</b><div class="price">249 €</div><p>La web, más tu ficha de Google Maps completa, el kit de reseñas y el cartel con QR.</p></div><div><b>Completo</b><div class="price">349 €</div><p>Todo lo anterior, más publicaciones de Google, cita online y un mes de cambios gratis.</p></div></div>
   <p class="note"><a href="../#precios">Ver qué incluye cada pack</a>. Cambios después: 15 € cada vez, aunque sean varios a la vez. ¿Y tu Instagram? <a href="../#redes">También te lo llevo</a>, desde 90 € al mes.</p>
 </div></section>
 
@@ -364,8 +395,8 @@ footer a{color:var(--ink-2)}
 </div></section>
 </main>
 <footer><div class="wrap">
-  <span>Ioritz Martínez · Webs y Google Maps para negocios · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
-  <span><a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></span>
+  <span>Ioritz Martínez · Webs, Google Maps y redes sociales para negocios · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
+  <span><a href="../condiciones/">Condiciones</a> · <a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></span>
 </div></footer>
 <div class="sticky">
   <a class="btn btn-wa" href="https://wa.me/34692024735?text=Hola%20Ioritz%2C%20quiero%20que%20me%20revises%20la%20ficha%20de%20Google%20Maps%20de%20mi%20negocio%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Propuesta gratis</a>
