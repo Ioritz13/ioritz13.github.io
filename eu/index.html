@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Web orriak eta Google Maps Vitoria-Gasteizko negozioentzat · Ioritz Martínez</title>
-<meta name="description" content="Zure negozioaren web orria eta Google Mapseko fitxa, mugikorretik aurki zaitzaten eta dei diezazuten. 48 ordutan prest, ordainketa bakarra, kuotarik gabe.">
+<meta name="description" content="Zure negozioaren web orria eta Google Mapseko fitxa, mugikorretik aurki zaitzaten eta dei diezazuten. 48 ordutan prest, ordainketa bakarra, kuotarik gabe. Zure Instagrama ere eraman dezaket, hilean 90 €-tik aurrera.">
 <link rel="canonical" href="https://ioritz13.github.io/eu/">
 <link rel="alternate" hreflang="eu" href="https://ioritz13.github.io/eu/">
 <link rel="alternate" hreflang="es" href="https://ioritz13.github.io/">
@@ -129,6 +129,51 @@ header .btn{min-height:40px;padding:0 16px;font-size:15px}
 /* precios */
 .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;align-items:start}
 @media (max-width:900px){.packs{grid-template-columns:1fr;max-width:520px}}
+/* redes-css:inicio */
+.price .mes{font:600 15px/1 var(--text);color:var(--ink-2)}
+.rd-promesas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;padding:0;list-style:none}
+.rd-promesas li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
+.rd-promesas b{display:block;color:var(--ink);font-size:16px}
+.rd-promesas svg{width:24px;height:24px;flex:none;color:var(--blue);margin-top:2px}
+.rd-calc{display:grid;grid-template-columns:1fr 360px;gap:32px;margin-top:40px;align-items:start}
+.rd-rapidos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.rd-rapidos span{flex-basis:100%;font-size:14px;color:var(--ink-2)}
+.rd-movil{display:none;margin:-4px 0 16px;font-size:15px;color:var(--ink-2)}
+.rd-movil b{color:var(--ink);font:800 20px/1 var(--display)}
+.rd-rapidos button{font:600 15px/1 var(--text);min-height:44px;padding:0 16px;border-radius:var(--r-full);border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.rd-rapidos button:hover{border-color:var(--ink)}
+.rd-rapidos button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.rd-fila{display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--paper);margin-bottom:10px}
+label.rd-fila{cursor:pointer;font-weight:400}
+label.rd-fila:hover{border-color:var(--ink-2)}
+.rd-fila.fija{background:var(--paper-2);border-color:var(--paper-2)}
+.rd-fila h3{font-size:18px;margin-bottom:4px}
+.rd-fila p{font-size:15px;color:var(--ink-2)}
+.rd-fila .pr{font-size:14px;color:var(--ink-2);margin-top:6px}
+.rd-fila .pr b{color:var(--ink);font-size:16px}
+.rd-step{display:flex;align-items:center;gap:6px}
+.rd-step button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:600 22px/1 var(--text);cursor:pointer}
+.rd-step button:disabled{opacity:.3;cursor:default}
+.rd-step output{min-width:36px;text-align:center;font:800 24px/1 var(--display)}
+.rd-sw{position:relative;width:52px;height:30px;flex:none}
+.rd-sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.rd-sw i{position:absolute;inset:0;border-radius:var(--r-full);background:var(--line);transition:background .15s}
+.rd-sw i:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.3);transition:transform .15s}
+.rd-sw input:checked+i{background:var(--blue)}
+.rd-sw input:checked+i:after{transform:translateX(22px)}
+.rd-sw input:focus-visible+i{outline:3px solid var(--blue);outline-offset:2px}
+.rd-total{position:sticky;top:88px;border:2px solid var(--ink);border-radius:var(--r-m);padding:24px;background:var(--paper);box-shadow:var(--shadow)}
+.rd-cifra{font:800 52px/1 var(--display);letter-spacing:-.03em;margin:6px 0 4px}
+.rd-cifra small{font:600 15px/1 var(--text);color:var(--ink-2);letter-spacing:0}
+.rd-total ul{list-style:none;padding:16px 0;margin:12px 0 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;font-size:15px}
+.rd-total li{display:flex;justify-content:space-between;gap:12px}
+.rd-total li span:last-child{color:var(--ink-2);white-space:nowrap}
+.rd-total .btn{width:100%}
+.rd-total .small{margin-top:12px}
+.rd-combo{margin-top:16px;padding:12px 14px;border-radius:var(--r-s);background:var(--paper-2);font-size:14px}
+@media (max-width:900px){.rd-calc{grid-template-columns:1fr}.rd-total{position:static}.rd-promesas{grid-template-columns:1fr}.rd-movil{display:block}}
+@media (max-width:520px){.rd-fila{grid-template-columns:1fr}.rd-fila .rd-step{justify-self:start}}
+/* redes-css:fin */
 .pack{border:1px solid var(--line);border-radius:var(--r-m);padding:28px 24px;background:var(--paper);position:relative}
 .pack.rec{border:2px solid var(--ink);box-shadow:var(--shadow)}
 .pack .badge{position:absolute;top:-14px;left:24px;background:var(--marker);color:#17181c;font-size:13px;font-weight:600;padding:4px 10px;border-radius:var(--r-s)}
@@ -233,6 +278,22 @@ footer a{color:var(--ink-2)}
 .otros{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .otros a{border:1px solid var(--line);border-radius:var(--r-full);padding:10px 16px;color:var(--ink);text-decoration:none;font-size:15px}
 .otros a:hover{border-color:var(--ink)}
+
+.eu-redes{display:grid;grid-template-columns:1fr 340px;gap:32px;margin-top:40px;align-items:start}
+.eu-lista{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden}
+.eu-lista li{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.eu-lista li:last-child{border-bottom:0}
+.eu-lista li:first-child{background:var(--paper-2)}
+.eu-lista b{font:700 17px/1.3 var(--display)}
+.eu-lista p{grid-column:1;font-size:15px;color:var(--ink-2)}
+.eu-lista .pr{grid-row:1;grid-column:2;white-space:nowrap;font-weight:600}
+.eu-adib{border:2px solid var(--ink);border-radius:var(--r-m);padding:24px;box-shadow:var(--shadow)}
+.eu-adib ul{list-style:none;padding:0;margin:12px 0 18px;display:grid;gap:12px}
+.eu-adib li{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.eu-adib li b{display:block;font-size:16px}
+.eu-adib li span:last-child{font:800 22px/1 var(--display);white-space:nowrap}
+.eu-adib .btn{width:100%}
+@media (max-width:900px){.eu-redes{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -240,15 +301,16 @@ footer a{color:var(--ink-2)}
   <a class="brand" href="./"><img src="../img/icono.svg" alt="">Ioritz Martínez</a>
   <nav aria-label="Nagusia">
     <a class="nl" href="#prezioak">Prezioak</a>
+    <a class="nl" href="#sareak">Sare sozialak</a>
     <a class="nl" href="../" hreflang="es" lang="es">Castellano</a>
     <a class="btn btn-wa" href="https://wa.me/34692024735?text=Kaixo%20Ioritz%2C%20nire%20negoziorako%20doako%20proposamena%20ikusi%20nahi%20nuke%3A%20" target="_blank" rel="noopener">WhatsApp</a>
   </nav>
 </div></header>
 <main>
 <div class="hero"><div class="wrap" style="display:block">
-  <div class="kicker">Web diseinua eta Google Maps · Vitoria-Gasteiz</div>
+  <div class="kicker">Web diseinua, Google Maps eta sare sozialak · Vitoria-Gasteiz</div>
   <h1>Google-n aurki zaitzaten <span class="mark">eta dei diezazuten.</span></h1>
-  <p class="lead" style="margin:20px 0 28px">Ioritz naiz, Gasteizkoa. Zure negozioaren web orria egiten dut eta Google Mapseko fitxa txukuntzen dut, mugikorretik bilatzen zaituenak zure prezioak ikusi eta ukitu batekin dei diezazun. Ordaindu aurretik amaituta erakutsiko dizut.</p>
+  <p class="lead" style="margin:20px 0 28px">Ioritz naiz, Gasteizkoa. Zure negozioaren web orria egiten dut eta Google Mapseko fitxa txukuntzen dut, mugikorretik bilatzen zaituenak zure prezioak ikusi eta ukitu batekin dei diezazun. Ordaindu aurretik amaituta erakutsiko dizut. Eta Instagramerako denborarik ez baduzu, <a href="#sareak">nik eramango dizut</a>.</p>
   <div class="cta">
     <a class="btn btn-wa" href="https://wa.me/34692024735?text=Kaixo%20Ioritz%2C%20nire%20negoziorako%20doako%20proposamena%20ikusi%20nahi%20nuke%3A%20" target="_blank" rel="noopener">Eskatu doako proposamena</a>
     <a class="btn btn-line" href="#prezioak">Ikusi prezioak</a>
@@ -279,6 +341,41 @@ footer a{color:var(--ink-2)}
   <p class="note">Ondoren aldaketak: 15 € bakoitza. Weba eta domeinua zureak dira.</p>
 </div></section>
 
+<section id="sareak"><div class="wrap">
+  <div class="kicker">Sare sozialak · Instagram eta Facebook</div>
+  <h2>Zure Instagrama egunean, <span class="mark">buruhausterik gabe.</span></h2>
+  <p class="lead" style="margin-top:16px">Hilabete osoa prestatzen dut: zer argitaratu, testuak eta diseinuak, zure kolore eta logoarekin. Zuk mugikorrean ikusten duzu, WhatsAppez «ados» esaten didazu, eta bere kabuz argitaratzen da, Facebooken ere bai.</p>
+  <ul class="rd-promesas">
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span><b>Lehen hilabetea, ordaindu aurretik ikusiko duzu</b>Prestatzen dizudana gustatzen ez bazaizu, ez duzu ezer ordainduko eta ez da ezer argitaratuko.</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><b>Pasahitzik eman gabe</b>Meta Business Suite bidez ematen didazu sarbidea, eta nahi duzunean kendu ahal didazu.</span></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span><b>3 hilabete, eta gero hilez hile</b>Horrenbeste behar da emaitzak nabaritzeko. Gero, nahi duzunean aldatu edo utzi dezakezu.</span></li>
+  </ul>
+  <div class="eu-redes">
+    <div>
+      <h3 style="margin-bottom:12px">Zuk aukeratzen duzu zer nahi duzun</h3>
+      <ul class="eu-lista">
+        <li><b>Beti barne</b><span class="pr">30 € hilean</span><p>Hilabeteko egutegia zure oniritziarekin, zure markarekin egindako diseinuak, Instagramen eta Facebooken programatuta, hileko txosten erraza eta, lehen hilabetean, zure profila txukunduta.</p></li>
+        <li><b>Argitalpenak</b><span class="pr">15 € bakoitza</span><p>Argazkiak, diseinuak edo karruselak, testuarekin eta Gasteizko traolekin. Hilean 4tik 16ra.</p></li>
+        <li><b>Astero istorioak</b><span class="pr">+40 € hilean</span><p>Astean 3 (hilean 12): ordutegia, egunerokoa eta inkestak.</p></li>
+        <li><b>Argitalpenak zure Google fitxan</b><span class="pr">+20 € hilean</span><p>Hilean 4 Google Mapsen (eskaintzak eta berriak), fitxa bizirik ikus dadin.</p></li>
+        <li><b>Iruzkinei eta mezuei erantzuten diet</b><span class="pr">+30 € hilean</span><p>Astelehenetik ostiralera, gauza errazak. Garrantzitsua dena zuri pasatzen dizut.</p></li>
+        <li><b>Argazki saioa zure lokalean</b><span class="pr">+40 € hilean</span><p>Hilean behin, ordubete, argazki berriak izateko.</p></li>
+      </ul>
+      <p class="small" style="margin-top:12px">Ez dago erositako jarraitzailerik. Ordaindutako iragarkiak ez daude barne. Kalkulagailua gaztelaniaz: <a href="../#redes">hemen</a>.</p>
+    </div>
+    <aside class="eu-adib">
+      <div class="small">Adibideak, hilean</div>
+      <ul>
+        <li><span><b>Oinarrizkoa</b>4 argitalpen</span><span>90 €</span></li>
+        <li><span><b>Gomendatzen dudana</b>8 argitalpen + istorioak</span><span>190 €</span></li>
+        <li><span><b>Dena eginda</b>8 argitalpen + gehigarri guztiak</span><span>280 €</span></li>
+      </ul>
+      <a class="btn btn-wa" href="https://wa.me/34692024735?text=Kaixo%20Ioritz%2C%20zure%20webgunean%20sare%20sozialena%20ikusi%20dut.%20Nire%20negozioa%20hau%20da%3A%20" target="_blank" rel="noopener">Galdetu WhatsApp bidez</a>
+      <p class="small" style="margin-top:12px">BEZa aparte. Weba ere nirekin egiten baduzu, sare sozialen lehen hilabetea erdi prezioan.</p>
+    </aside>
+  </div>
+</div></section>
+
 <section><div class="wrap">
   <div class="kicker">Nola lan egiten dut</div>
   <h2>Lehenik ikusi. Gero erabaki.</h2>
@@ -294,7 +391,8 @@ footer a{color:var(--ink-2)}
   <div><div class="kicker">Argi eta garbi</div><h2>Zer ez dizudan aginduko.</h2></div>
   <ul class="no-list">
     <li><b>Ez dizut aginduko Google-n lehena aterako zarenik.</b><span>Inork ezin du hori zintzotasunez agindu. Fitxa osatuta utziko dizut eta iritziak lortzen lagunduko dizut, horrek baitu pisu handiena.</span></li>
-    <li><b>Ez dago kuotarik.</b><span>Behin ordaintzen duzu, eta weba eta domeinua zureak dira.</span></li>
+    <li><b>Webak ez du kuotarik.</b><span>Behin ordaintzen duzu, eta weba eta domeinua zureak dira. Sare sozialak hilero ordaintzen dira, baina lehen 3 hilabeteen ondoren nahi duzunean utz ditzakezu.</span></li>
+    <li><b>Ez dizut milaka jarraitzaile aginduko.</b><span>Konstantzia agintzen dizut: astero argitalpen txukunak, zure negozioa bizirik dagoela ikus dezaten. Jarraitzaileak eta bezeroak pixkanaka etortzen dira.</span></li>
     <li><b>Ez naiz agentzia bat.</b><span>Gasteizko pertsona bat naiz: niri idazten didazu eta nik erantzuten dizut.</span></li>
   </ul>
 </div></section>
@@ -310,7 +408,7 @@ footer a{color:var(--ink-2)}
 </div></section>
 </main>
 <footer><div class="wrap">
-  <span>Ioritz Martínez · Webak eta Google Maps negozioentzat · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
+  <span>Ioritz Martínez · Webak, Google Maps eta sare sozialak negozioentzat · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
   <span><a href="../aviso-legal">Lege oharra</a> · <a href="../privacidad">Pribatutasuna</a></span>
 </div></footer>
 </body>

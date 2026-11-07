@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ya tengo Instagram y Fresha, ¿para qué quiero una web?", "acceptedAnswer": {"@type": "Answer", "text": "No hay que quitarlos. Pero quien no te conoce te busca en Google, no en Instagram. La web y la ficha de Maps hacen que te encuentre y que llegue a tu botón de reservar de Fresha o Booksy."}}, {"@type": "Question", "name": "¿Puedo cambiar los precios cuando suban?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Me mandas un WhatsApp con los precios nuevos y los cambio (15 € el cambio). Con el pack Completo, el primer mes de cambios es gratis."}}, {"@type": "Question", "name": "¿Necesito fotos profesionales?", "acceptedAnswer": {"@type": "Answer", "text": "No. Fotos de tu móvil con luz de día y el local recogido quedan bien. Te mando una guía corta para hacerlas."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ioritz13.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Peluquerías", "item": "https://ioritz13.github.io/web-para-peluquerias-vitoria/"}]}, {"@type": "Service", "name": "Una web para tu peluquería que llene la agenda.", "serviceType": "Diseño web y Google Maps", "areaServed": {"@type": "City", "name": "Vitoria-Gasteiz"}, "provider": {"@type": "ProfessionalService", "name": "Ioritz Martínez", "url": "https://ioritz13.github.io/", "telephone": "+34692024735"}, "offers": {"@type": "AggregateOffer", "lowPrice": "149", "highPrice": "299", "priceCurrency": "EUR"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Ya tengo Instagram y Fresha, ¿para qué quiero una web?", "acceptedAnswer": {"@type": "Answer", "text": "No hay que quitarlos. Pero quien no te conoce te busca en Google, no en Instagram. La web y la ficha de Maps hacen que te encuentre y que llegue a tu botón de reservar de Fresha o Booksy."}}, {"@type": "Question", "name": "¿Puedo cambiar los precios cuando suban?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Me mandas un WhatsApp con los precios nuevos y los cambio (15 € cada vez, aunque sean varios cambios a la vez). Con el pack Completo, el primer mes de cambios es gratis."}}, {"@type": "Question", "name": "¿Necesito fotos profesionales?", "acceptedAnswer": {"@type": "Answer", "text": "No. Fotos de tu móvil con luz de día y el local recogido quedan bien. Te mando una guía corta para hacerlas."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ioritz13.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Peluquerías", "item": "https://ioritz13.github.io/web-para-peluquerias-vitoria/"}]}, {"@type": "Service", "name": "Una web para tu peluquería que llene la agenda.", "serviceType": "Diseño web y Google Maps", "areaServed": {"@type": "City", "name": "Vitoria-Gasteiz"}, "provider": {"@type": "ProfessionalService", "name": "Ioritz Martínez", "url": "https://ioritz13.github.io/", "telephone": "+34692024735"}, "offers": {"@type": "AggregateOffer", "lowPrice": "149", "highPrice": "299", "priceCurrency": "EUR"}}]}</script>
 <style>
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700 800;font-display:swap;src:url(../fonts/bricolage-grotesque.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;src:url(../fonts/instrument-sans.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
@@ -129,6 +129,51 @@ header .btn{min-height:40px;padding:0 16px;font-size:15px}
 /* precios */
 .packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;align-items:start}
 @media (max-width:900px){.packs{grid-template-columns:1fr;max-width:520px}}
+/* redes-css:inicio */
+.price .mes{font:600 15px/1 var(--text);color:var(--ink-2)}
+.rd-promesas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;padding:0;list-style:none}
+.rd-promesas li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
+.rd-promesas b{display:block;color:var(--ink);font-size:16px}
+.rd-promesas svg{width:24px;height:24px;flex:none;color:var(--blue);margin-top:2px}
+.rd-calc{display:grid;grid-template-columns:1fr 360px;gap:32px;margin-top:40px;align-items:start}
+.rd-rapidos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.rd-rapidos span{flex-basis:100%;font-size:14px;color:var(--ink-2)}
+.rd-movil{display:none;margin:-4px 0 16px;font-size:15px;color:var(--ink-2)}
+.rd-movil b{color:var(--ink);font:800 20px/1 var(--display)}
+.rd-rapidos button{font:600 15px/1 var(--text);min-height:44px;padding:0 16px;border-radius:var(--r-full);border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.rd-rapidos button:hover{border-color:var(--ink)}
+.rd-rapidos button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.rd-fila{display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--paper);margin-bottom:10px}
+label.rd-fila{cursor:pointer;font-weight:400}
+label.rd-fila:hover{border-color:var(--ink-2)}
+.rd-fila.fija{background:var(--paper-2);border-color:var(--paper-2)}
+.rd-fila h3{font-size:18px;margin-bottom:4px}
+.rd-fila p{font-size:15px;color:var(--ink-2)}
+.rd-fila .pr{font-size:14px;color:var(--ink-2);margin-top:6px}
+.rd-fila .pr b{color:var(--ink);font-size:16px}
+.rd-step{display:flex;align-items:center;gap:6px}
+.rd-step button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:600 22px/1 var(--text);cursor:pointer}
+.rd-step button:disabled{opacity:.3;cursor:default}
+.rd-step output{min-width:36px;text-align:center;font:800 24px/1 var(--display)}
+.rd-sw{position:relative;width:52px;height:30px;flex:none}
+.rd-sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.rd-sw i{position:absolute;inset:0;border-radius:var(--r-full);background:var(--line);transition:background .15s}
+.rd-sw i:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.3);transition:transform .15s}
+.rd-sw input:checked+i{background:var(--blue)}
+.rd-sw input:checked+i:after{transform:translateX(22px)}
+.rd-sw input:focus-visible+i{outline:3px solid var(--blue);outline-offset:2px}
+.rd-total{position:sticky;top:88px;border:2px solid var(--ink);border-radius:var(--r-m);padding:24px;background:var(--paper);box-shadow:var(--shadow)}
+.rd-cifra{font:800 52px/1 var(--display);letter-spacing:-.03em;margin:6px 0 4px}
+.rd-cifra small{font:600 15px/1 var(--text);color:var(--ink-2);letter-spacing:0}
+.rd-total ul{list-style:none;padding:16px 0;margin:12px 0 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;font-size:15px}
+.rd-total li{display:flex;justify-content:space-between;gap:12px}
+.rd-total li span:last-child{color:var(--ink-2);white-space:nowrap}
+.rd-total .btn{width:100%}
+.rd-total .small{margin-top:12px}
+.rd-combo{margin-top:16px;padding:12px 14px;border-radius:var(--r-s);background:var(--paper-2);font-size:14px}
+@media (max-width:900px){.rd-calc{grid-template-columns:1fr}.rd-total{position:static}.rd-promesas{grid-template-columns:1fr}.rd-movil{display:block}}
+@media (max-width:520px){.rd-fila{grid-template-columns:1fr}.rd-fila .rd-step{justify-self:start}}
+/* redes-css:fin */
 .pack{border:1px solid var(--line);border-radius:var(--r-m);padding:28px 24px;background:var(--paper);position:relative}
 .pack.rec{border:2px solid var(--ink);box-shadow:var(--shadow)}
 .pack .badge{position:absolute;top:-14px;left:24px;background:var(--marker);color:#17181c;font-size:13px;font-weight:600;padding:4px 10px;border-radius:var(--r-s)}
@@ -293,13 +338,13 @@ footer a{color:var(--ink-2)}
   <h2>Pagas una vez. Sin cuotas.</h2>
   <p class="lead" style="margin-top:16px">Precio de lanzamiento para los 5 primeros negocios. Ves la web terminada antes de pagar.</p>
   <div class="minipacks"><div><b>Esencial</b><div class="price">149 €</div><p>La web de una página con precios, horario, mapa, llamar y WhatsApp.</p></div><div class="rec"><b>Visible</b><div class="price">249 €</div><p>La web, más tu ficha de Google Maps completa, el kit de reseñas y el cartel con QR.</p></div><div><b>Completo</b><div class="price">299 €</div><p>Todo lo anterior, más publicaciones de Google, cita online y un mes de cambios gratis.</p></div></div>
-  <p class="note"><a href="../#precios">Ver qué incluye cada pack</a>. Cambios después: 15 € cada vez, aunque sean varios a la vez.</p>
+  <p class="note"><a href="../#precios">Ver qué incluye cada pack</a>. Cambios después: 15 € cada vez, aunque sean varios a la vez. ¿Y tu Instagram? <a href="../#redes">También te lo llevo</a>, desde 90 € al mes.</p>
 </div></section>
 
 <section><div class="wrap">
   <div class="kicker">Preguntas</div>
   <h2>Lo que suelen preguntarme.</h2>
-  <div class="faq"><details><summary>Ya tengo Instagram y Fresha, ¿para qué quiero una web?</summary><p>No hay que quitarlos. Pero quien no te conoce te busca en Google, no en Instagram. La web y la ficha de Maps hacen que te encuentre y que llegue a tu botón de reservar de Fresha o Booksy.</p></details><details><summary>¿Puedo cambiar los precios cuando suban?</summary><p>Sí. Me mandas un WhatsApp con los precios nuevos y los cambio (15 € el cambio). Con el pack Completo, el primer mes de cambios es gratis.</p></details><details><summary>¿Necesito fotos profesionales?</summary><p>No. Fotos de tu móvil con luz de día y el local recogido quedan bien. Te mando una guía corta para hacerlas.</p></details></div>
+  <div class="faq"><details><summary>Ya tengo Instagram y Fresha, ¿para qué quiero una web?</summary><p>No hay que quitarlos. Pero quien no te conoce te busca en Google, no en Instagram. La web y la ficha de Maps hacen que te encuentre y que llegue a tu botón de reservar de Fresha o Booksy.</p></details><details><summary>¿Puedo cambiar los precios cuando suban?</summary><p>Sí. Me mandas un WhatsApp con los precios nuevos y los cambio (15 € cada vez, aunque sean varios cambios a la vez). Con el pack Completo, el primer mes de cambios es gratis.</p></details><details><summary>¿Necesito fotos profesionales?</summary><p>No. Fotos de tu móvil con luz de día y el local recogido quedan bien. Te mando una guía corta para hacerlas.</p></details></div>
 </div></section>
 
 <section class="contact"><div class="wrap">
