@@ -46,7 +46,7 @@ section{padding:30px 0}
 <div class="rapidos" role="group" aria-label="Combinaciones de ejemplo">
 <button type="button" data-preset="a">⭐ Recomendado: 8 publicaciones + historias · 190 €</button>
 <button type="button" data-preset="b">Lo mismo + comentarios · 220 €</button>
-<button type="button" data-preset="c">Todo, con reels · 370 €</button></div></div></header>
+<button type="button" data-preset="c">Todo: 10 publicaciones, historias, sesión y comentarios · 290 €</button></div></div></header>
 
 <main class="wrap"><section>
 <h2>Siempre incluido</h2>
@@ -57,12 +57,11 @@ section{padding:30px 0}
 
 <section><h2>Lo que queréis publicar</h2>
 <div class="fila"><div><h3>Publicaciones</h3><p>Foto, diseño o carrusel con su texto, con vuestras fotos y vuestro estilo.</p><div class="precio" style="margin-top:6px"><b>15 €</b> cada una</div></div><div class="ctrl"><button type="button" aria-label="Quitar uno" data-paso="post" data-d="-1" data-max="20">–</button><output id="post-n" aria-live="polite">0</output><button type="button" aria-label="Añadir uno" data-paso="post" data-d="1" data-max="20">+</button></div></div>
-<div class="fila"><div><h3>Reels (vídeos cortos)</h3><p>Guion y edición a partir de lo que grabemos en la sesión. Opcionales: para empezar no hacen falta.</p><div class="precio" style="margin-top:6px"><b>40 €</b> cada uno</div></div><div class="ctrl"><button type="button" aria-label="Quitar uno" data-paso="reel" data-d="-1" data-max="6">–</button><output id="reel-n" aria-live="polite">0</output><button type="button" aria-label="Añadir uno" data-paso="reel" data-d="1" data-max="6">+</button></div></div>
 <div class="fila"><div><h3>Historias semanales</h3><p>3 historias a la semana: horario de clases, un vistazo al día a día, una pregunta a los seguidores…</p><div class="precio" style="margin-top:6px"><b>40 €</b> / mes</div></div><label class="sw"><input type="checkbox" id="h" aria-label="Historias semanales"><i></i></label></div>
 </section>
 
 <section><h2>Extras</h2>
-<div class="fila"><div><h3>Sesión de fotos y vídeo en la clínica</h3><p>Una vez al mes, con el equipo, las clases y los tratamientos (de 1 a 2 horas, cuando os venga bien). Así siempre hay fotos nuevas.</p><div class="precio" style="margin-top:6px"><b>40 €</b> / mes</div></div><label class="sw"><input type="checkbox" id="s" aria-label="Sesión mensual"><i></i></label></div>
+<div class="fila"><div><h3>Sesión de fotos en la clínica</h3><p>Una vez al mes, con el equipo, las clases y los tratamientos (de 1 a 2 horas, cuando os venga bien). Así siempre hay fotos nuevas.</p><div class="precio" style="margin-top:6px"><b>40 €</b> / mes</div></div><label class="sw"><input type="checkbox" id="s" aria-label="Sesión mensual"><i></i></label></div>
 <div class="fila"><div><h3>Comentarios y mensajes sencillos</h3><p>Respondo a los comentarios y a los mensajes simples. Las preguntas sobre dolores o tratamientos os las paso a administración.</p><div class="precio" style="margin-top:6px"><b>30 €</b> / mes</div></div><label class="sw"><input type="checkbox" id="c" aria-label="Comentarios y mensajes"><i></i></label></div>
 </section>
 
@@ -76,19 +75,18 @@ section{padding:30px 0}
 <a class="btn" id="wa" href="#" target="_blank" rel="noopener">💬 Me interesa esto</a></div></div></div>
 <script src="../../../radar.js"></script>
 <script>
-const P={"post": 15, "reel": 40, "historias": 40, "sesion": 40, "comentarios": 30},BASE=30;
-const est={post:8,reel:0,historias:true,sesion:false,comentarios:false};
+const P={"post": 15, "historias": 40, "sesion": 40, "comentarios": 30},BASE=30;
+const est={post:8,historias:true,sesion:false,comentarios:false};
 const $=s=>document.querySelector(s);
 const eur=n=>n.toLocaleString('es-ES')+' €';
 function pintar(){
   const lin=[['Calendario y gestión',BASE]];
   if(est.post)lin.push([est.post+(est.post==1?' publicación':' publicaciones'),est.post*P.post]);
-  if(est.reel)lin.push([est.reel+(est.reel==1?' reel':' reels'),est.reel*P.reel]);
   if(est.historias)lin.push(['Historias semanales',P.historias]);
-  if(est.sesion)lin.push(['Sesión de fotos y vídeo',P.sesion]);
+  if(est.sesion)lin.push(['Sesión de fotos',P.sesion]);
   if(est.comentarios)lin.push(['Comentarios y mensajes',P.comentarios]);
   const t=lin.reduce((a,l)=>a+l[1],0);
-  $('#post-n').textContent=est.post;$('#reel-n').textContent=est.reel;
+  $('#post-n').textContent=est.post;
   $('#h').checked=est.historias;$('#s').checked=est.sesion;$('#c').checked=est.comentarios;
   $('#cifra').innerHTML=eur(t)+' <small>al mes</small>';
   $('#resumen').textContent=lin.map(l=>l[0]).join(' · ');
@@ -98,9 +96,9 @@ function pintar(){
 function paso(k,d,max){est[k]=Math.max(0,Math.min(max,est[k]+d));pintar()}
 document.querySelectorAll('[data-paso]').forEach(b=>b.onclick=()=>paso(b.dataset.paso,+b.dataset.d,+b.dataset.max));
 ['h:historias','s:sesion','c:comentarios'].forEach(x=>{const[i,k]=x.split(':');$('#'+i).onchange=ev=>{est[k]=ev.target.checked;pintar()}});
-const PRESETS={a:{post:8,reel:0,historias:true,sesion:false,comentarios:false},
- b:{post:8,reel:0,historias:true,sesion:false,comentarios:true},
- c:{post:10,reel:2,historias:true,sesion:true,comentarios:true}};
+const PRESETS={a:{post:8,historias:true,sesion:false,comentarios:false},
+ b:{post:8,historias:true,sesion:false,comentarios:true},
+ c:{post:10,historias:true,sesion:true,comentarios:true}};
 document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{Object.assign(est,PRESETS[b.dataset.preset]);pintar()});
 pintar();
 setTimeout(function(){window.radar&&window.radar("igp","Maimú está mirando el presupuesto de Instagram","Lo está mirando ahora. #F15 #precio",4,"page_facing_up",location.href)},1500);
