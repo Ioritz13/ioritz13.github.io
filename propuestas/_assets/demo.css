@@ -309,3 +309,7 @@ body.t-taller .lnk{color:var(--ink)}
 .est .rst{background:#ece8df;color:#17181c}
 .est-x{position:absolute;top:10px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:#ece8df;font-size:18px;cursor:pointer}
 body.estilando .bar,body.estilando .pr-pill{display:none!important}
+
+/* portada sin foto (sectores sin foto de ejemplo que encaje): degradado del color del negocio y su inicial de fondo */
+.hero.nofoto{min-height:min(68svh,600px);background:#111 radial-gradient(130% 95% at 88% 0%,color-mix(in srgb,var(--accent) 62%,#111) 0%,color-mix(in srgb,var(--accent) 16%,#111) 46%,#111 78%)}
+.hero.nofoto::before{content:attr(data-ini);position:absolute;right:-.06em;top:.02em;font-family:var(--display);font-weight:var(--dw,700);font-size:min(64vw,440px);line-height:.82;color:#fff;opacity:.07;pointer-events:none;letter-spacing:-.04em}

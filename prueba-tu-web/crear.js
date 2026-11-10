@@ -34,8 +34,8 @@
     var selEst = document.getElementById("estilo"), estilo = selEst ? selEst.value : "";
     var s = D.sectores[sector] || D.sectores.peluqueria;
     var tema = sector === "tatuajes" ? "tatuajes" : (s.tema || sector);
-    var cp = D.copia[sector] || D.copia[tema] || D.copia.estetica;
-    var fotos = D.fotos[sector] || D.fotos[tema] || null;
+    var cp = D.copia[s.fam || sector] || D.copia[tema] || D.copia.estetica;
+    var fotos = ("fotos" in s) ? s.fotos : (D.fotos[sector] || D.fotos[tema] || null);   // null = sin foto (mejor que una que no encaja)
     var movil = /^[67]\d{8}$/.test(t);
     var calle = dir || "Vitoria-Gasteiz";
     var direccion = dir ? dir + ", Vitoria-Gasteiz" : "Vitoria-Gasteiz";
@@ -56,9 +56,9 @@
     var bMain = movil ? '<a class="btn b-wa" href="' + waNeg + '" target="_blank" rel="noopener">' + I.wa + " " + esc(cp.cta) + " por WhatsApp</a>"
       : t ? '<a class="btn b-main" href="tel:+34' + t + '">' + I.tel + " " + esc(cp.cta) + " · " + telFmt(t) + "</a>" : "";
     var bSec = movil ? '<a class="btn b-glass" href="tel:+34' + t + '">' + I.tel + " Llamar · " + telFmt(t) + "</a>" : "";
-    var pasos = cp.pasos ? '<section class="alt"><div class="wrap"><div class="eyebrow">Cómo pedir cita</div><h2>En tres pasos</h2><div class="steps">' +
+    var pasos = cp.pasos ? '<section class="alt"><div class="wrap"><div class="eyebrow">' + esc(cp.pasos_t || "Cómo pedir cita") + '</div><h2>En tres pasos</h2><div class="steps">' +
       cp.pasos.map(function (p) { return '<div class="step"><h3>' + esc(p[0]) + "</h3><p>" + esc(p[1].replace("{calle}", calle)) + "</p></div>"; }).join("") + "</div></div></section>" : "";
-    var gal = fotos ? '<section><div class="wrap"><div class="eyebrow">El local</div><h2>Así trabajamos</h2><div class="gal">' +
+    var gal = fotos && fotos.galeria && fotos.galeria.length ? '<section><div class="wrap"><div class="eyebrow">El local</div><h2>Así trabajamos</h2><div class="gal">' +
       fotos.galeria.slice(0, 3).map(function (g) { return '<figure><img src="' + B + "_fotos/" + g + '" alt=""><span class="ph-tag">Foto de ejemplo</span></figure>'; }).join("") + "</div></div></section>" : "";
     var contacto = (t ? '<li>' + I.tel + '<div><b>Teléfono</b><a href="tel:+34' + t + '">' + telFmt(t) + "</a></div></li>" : "") +
       (movil ? '<li>' + I.wa + '<div><b>WhatsApp</b><a href="' + waNeg + '" target="_blank" rel="noopener">Escríbenos</a></div></li>' : "") +
@@ -68,19 +68,20 @@
     var largo = Math.max.apply(null, n.split(/\s+/).map(function (w) { return w.length; }));
     var h1c = largo >= 12 ? ' class="muylargo"' : (largo >= 10 || n.length > 26 ? ' class="largo"' : "");
     return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
-      '<link rel="stylesheet" href="' + B + '_assets/demo.css"><title>' + esc(n) + "</title></head><body class=\"t-" + tema + '"' + estiloBody(estilo) + ">" +
+      '<link rel="stylesheet" href="' + B + '_assets/demo.css"><title>' + esc(n) + "</title></head><body class=\"t-" + tema + '"' + estiloBody(estilo || s.paleta || "") + ">" +
       '<div class="pr-ribbon"><div class="wrap"><span><i></i><em>Vista previa gratis de tu web</em></span></div></div>' +
       '<header class="top"><div class="wrap"><a class="brand" href="#"><span class="mono">' + esc(ini) + "</span><b>" + esc(n) + "</b></a><nav>" +
       (t ? '<a class="btn b-main" href="tel:+34' + t + '">' + I.tel + " Llamar</a>" : "") + "</nav></div></header>" +
-      '<div class="hero">' + (fotos ? '<img src="' + B + "_fotos/" + fotos.hero + '" alt=""><span class="ph-tag">Foto de ejemplo</span>' : "") +
+      '<div class="hero' + (fotos && fotos.hero ? "" : " nofoto") + '"' + (fotos && fotos.hero ? "" : ' data-ini="' + esc(ini) + '"') + ">" +
+      (fotos && fotos.hero ? '<img src="' + B + "_fotos/" + fotos.hero + '" alt=""><span class="ph-tag">Foto de ejemplo</span>' : "") +
       '<div class="wrap"><div class="eyebrow">' + esc(s.txt) + " · Vitoria-Gasteiz</div><h1" + h1c + ">" + esc(n) + '</h1><p class="lead">' + esc(s.lema) + "</p>" +
       '<div class="cta">' + bMain + bSec + '</div><div class="chips"><a class="chip" href="' + maps + '" target="_blank" rel="noopener">' + I.pin + " " + esc(calle) + "</a></div></div></div>" +
-      '<section id="servicios"><div class="wrap"><div class="eyebrow">' + esc(cp.svc_t) + "</div><h2>Lo que hacemos</h2>" +
+      '<section id="servicios"><div class="wrap"><div class="eyebrow">' + esc(cp.svc_t) + "</div><h2>" + esc(cp.svc_h || "Lo que hacemos") + "</h2>" +
       '<p class="sub">Pregunta sin compromiso: te contestamos enseguida.</p><ul class="svc" style="margin-top:28px">' + filas + "</ul>" +
       (lineas.length ? "" : '<p class="note"><b>Servicios de ejemplo.</b> En tu web van los tuyos, con tus precios.</p>') + "</div></section>" +
       pasos + gal +
       '<section class="alt"><div class="wrap about"><div><div class="eyebrow">Sobre nosotros</div><h2>' + esc(n) + '</h2><p class="txt">' + esc(cp.sobre.replace("{n}", n)) + "</p></div>" +
-      '<div class="facts"><div class="fact">' + I.check + "<div><b>Cómo pedir cita</b><span>" + (t ? (movil ? "Por WhatsApp o llamando al " : "Llamando al ") + telFmt(t) + "." : "Pásate a vernos.") + "</span></div></div>" +
+      '<div class="facts"><div class="fact">' + I.check + "<div><b>" + esc(cp.cita_t || "Cómo pedir cita") + "</b><span>" + (t ? (movil ? "Por WhatsApp o llamando al " : "Llamando al ") + telFmt(t) + "." : "Pásate a vernos.") + "</span></div></div>" +
       '<div class="fact">' + I.check + "<div><b>Dónde estamos</b><span>" + esc(direccion) + "</span></div></div></div></div></section>" +
       '<section><div class="wrap"><div class="eyebrow">Opiniones</div><h2>Lo que dicen de nosotros</h2><div class="rev"><div><h3>¿Ya nos conoces?</h3>' +
       '<p>Tu opinión en Google ayuda a que más gente nos encuentre. ¡Gracias!</p></div><a class="btn b-main" href="' + maps + '" target="_blank" rel="noopener">Dejar una opinión en Google ' + I.arrow + "</a></div></div></section>" +

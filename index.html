@@ -90,6 +90,14 @@ header .btn{min-height:40px;padding:0 16px;font-size:15px}
 .hero .lead{margin-bottom:32px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .cta-note{margin-top:12px;font-size:15px;color:var(--ink-2);max-width:440px}
+.ya{margin:20px 0 18px;max-width:580px;background:var(--paper-2);border:1.5px solid var(--line);border-radius:18px;padding:16px 16px 14px}
+.ya label{font-weight:700;font-size:16px;line-height:1.3}
+.ya-f{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto;gap:8px;margin-top:10px}
+.ya-f .btn{width:auto;margin:0;white-space:nowrap}
+.ya p{font-size:14px;color:var(--ink-2);margin-top:10px}
+@media (max-width:640px){.ya-f{grid-template-columns:minmax(0,1fr)}.ya-f .btn{width:100%}}
+.hola-qr{display:inline-block;background:var(--mark,#ffd84d);color:#17181c;font-weight:600;font-size:15px;line-height:1.35;padding:8px 14px;border-radius:14px;margin-bottom:16px}
+.hola-qr[hidden]{display:none}
 .launch{display:flex;gap:10px;align-items:flex-start;margin-top:24px;padding:14px 16px;border:1px dashed var(--ink-2);border-radius:var(--r-s);max-width:460px;font-size:15px}
 .launch b{font-weight:600}
 .phones{position:relative;height:540px}
@@ -315,14 +323,32 @@ footer a{color:var(--ink-2)}
 <main>
 <div class="hero"><div class="wrap">
   <div>
+    <p class="hola-qr" id="hola-qr" hidden>👋 Gracias por escanear mi tarjeta. Aquí tienes ejemplos, precios y tu web de muestra.</p>
     <div class="kicker">Diseño web, Google Maps y redes · Vitoria-Gasteiz</div>
     <h1>Que te encuentren en Google <span class="mark">y te llamen.</span></h1>
     <p class="lead">Soy Ioritz, de Vitoria. Hago la web de tu negocio y pongo a punto tu ficha de Google Maps para que quien te busque desde el móvil vea tus precios y te llame con un toque. Te la enseño terminada antes de que pagues nada. Y si no tienes tiempo para Instagram, <a href="#redes">también te lo llevo</a>.</p>
+    <form class="ya" id="ya" action="prueba-tu-web/" method="get">
+      <label for="ya-n">¿Cómo quedaría la web de tu negocio? Mírala ahora, con tu nombre:</label>
+      <div class="ya-f">
+        <input id="ya-n" name="n" required maxlength="80" autocomplete="organization" placeholder="Nombre de tu negocio">
+        <select name="tipo" aria-label="Tipo de negocio">
+          <option value="">Tipo de negocio</option>
+          <option value="peluqueria">Peluquería</option><option value="barberia">Barbería</option><option value="estetica">Estética</option><option value="unas">Uñas</option>
+          <option value="restaurante">Bar o restaurante</option><option value="cafeteria">Cafetería</option><option value="panaderia">Panadería o pastelería</option>
+          <option value="carniceria">Carnicería</option><option value="pescaderia">Pescadería</option><option value="fruteria">Frutería</option>
+          <option value="ropa">Tienda de ropa</option><option value="zapateria">Zapatería</option><option value="libreria">Librería o papelería</option>
+          <option value="floristeria">Floristería</option><option value="taller">Taller</option><option value="oficios">Reformas u oficios</option>
+          <option value="tienda">Otro</option>
+        </select>
+        <input type="hidden" name="ver" value="1">
+        <button class="btn btn-main" type="submit">Ver mi web</button>
+      </div>
+      <p>Gratis y sin registrarte: sale al momento en tu móvil. Es una primera idea; luego la hago a tu gusto.</p>
+    </form>
     <div class="cta">
       <a class="btn btn-wa" href="https://wa.me/34692024735?text=Hola%20Ioritz%2C%20quiero%20ver%20una%20propuesta%20gratis%20para%20mi%20negocio%3A%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Pide tu propuesta gratis</a>
       <a class="btn btn-line" href="#precios">Ver precios</a>
     </div>
-    <p class="cta-note">Dime el nombre de tu negocio y te preparo una muestra con tus datos. Gratis y sin compromiso. O <a href="prueba-tu-web/">mira tú mismo cómo quedaría tu web en 30 segundos</a>.</p>
     <p class="launch"><svg width="20" height="20" style="flex:none;margin-top:2px"><use href="#i-tag"/></svg><span><b>Precio de lanzamiento</b> para los 5 primeros negocios de Vitoria. Después vuelve al precio normal. Si me escribes antes del 30 de noviembre, tu web está lista antes de diciembre.</span></p>
   </div>
   <div class="phones" aria-hidden="true">
@@ -665,5 +691,6 @@ pintar();
 
 <script src="radar.js" defer></script>
 <script src="plazas.js" defer></script>
+<script>if(/[?&]qr=tarjeta/.test(location.search)){var hq=document.getElementById("hola-qr");if(hq)hq.hidden=false}</script>
 </body>
 </html>
