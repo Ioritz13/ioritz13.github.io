@@ -39,8 +39,10 @@
     try { fetch(url, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) {}
   }
   setTimeout(function () {
-    if (document.visibilityState === "visible")
-      radar("abre", C.n + " ha abierto su web", "Buen momento para escribirle.", 3, "eyes");
+    if (document.visibilityState !== "visible") return;
+    var tj = /[?&]qr=tarjeta/.test(location.search);   // viene del QR de la tarjeta que le dejaste en el local
+    radar("abre", C.n + (tj ? " ha escaneado su tarjeta" : " ha abierto su web"),
+      tj ? "Está mirando la web que le hiciste. Pásate otra vez por el local o llámale." : "Buen momento para escribirle.", tj ? 4 : 3, "eyes");
   }, 2500);
 
   /* ---------- horario: hoy y abierto ahora ---------- */
