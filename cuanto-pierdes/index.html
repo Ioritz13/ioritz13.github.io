@@ -6,18 +6,18 @@
 <title>¿Cuánto te cuesta no tener web? · Calculadora gratis · Ioritz Martínez</title>
 <meta name="description" content="Calcula en 20 segundos cuánto dinero dejas de ganar al año por no salir bien en Google. Gratis.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#f6f8f6">
+<meta name="theme-color" content="#f7f8fb">
 <meta property="og:title" content="¿Cuánto te cuesta no tener web?">
 <meta property="og:description" content="Calcula en 20 segundos cuánto dejas de ganar al año. Gratis.">
 <link rel="icon" href="../img/icono.svg" type="image/svg+xml">
-<style>
-:root{--bg:#f6f8f6;--card:#fff;--ink:#14201a;--ink-2:#4f5d55;--line:#dbe4de;--verde:#0f8a4d;--verde-2:#e3f3ea;--rojo:#c0392b;--rojo-2:#fbeae7;
-  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+<style>@font-face{font-family:"Bricolage Grotesque";font-weight:700 800;font-display:swap;src:url(../fonts/bricolage-grotesque.woff2) format("woff2")}@font-face{font-family:"Instrument Sans";font-weight:400 600;font-display:swap;src:url(../fonts/instrument-sans.woff2) format("woff2")}
+:root{--bg:#f7f8fb;--card:#fff;--ink:#0b1220;--ink-2:#4d5669;--line:#dde2eb;--verde:#0f8a4d;--verde-2:#e3f3ea;--marca:#1463ff;--marca-2:#e3ecff;--rojo:#c0392b;--rojo-2:#fbeae7;
+  --font:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--font);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
 [hidden]{display:none!important}
-a{color:var(--verde)}
-:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+a{color:var(--marca)}
+:focus-visible{outline:3px solid var(--marca);outline-offset:2px}
 .app{max-width:560px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-right,0px)) 48px max(18px,env(safe-area-inset-left,0px));display:grid;gap:18px}
 .marca{margin:0;font-size:13px;letter-spacing:.04em;color:var(--ink-2)}
 h1{margin:4px 0 0;font-size:clamp(30px,8.4vw,42px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
@@ -27,9 +27,9 @@ h1 span{color:var(--rojo)}
 label{font-weight:700;font-size:15px;display:block;margin-bottom:6px}
 .ayuda{font-weight:400;color:var(--ink-2);font-size:14px}
 input[type=text],input[type=number],select{width:100%;font:inherit;font-size:18px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
-input:focus,select:focus{border-color:var(--verde);outline:none;box-shadow:0 0 0 3px var(--verde-2)}
+input:focus,select:focus{border-color:var(--marca);outline:none;box-shadow:0 0 0 3px var(--marca-2)}
 .fila{display:grid;grid-template-columns:1fr 92px;gap:10px;align-items:center}
-input[type=range]{width:100%;accent-color:var(--verde);height:28px}
+input[type=range]{width:100%;accent-color:var(--marca);height:28px}
 .num{text-align:center;font-variant-numeric:tabular-nums}
 .res{background:var(--rojo-2);border-radius:16px;padding:20px 18px;display:grid;gap:6px;text-align:center}
 .res p{margin:0}
@@ -46,7 +46,7 @@ input[type=range]{width:100%;accent-color:var(--verde);height:28px}
 .paga{background:var(--verde-2);border-radius:16px;padding:18px;display:grid;gap:4px}
 .paga p{margin:0}
 .paga .t{font-size:21px;font-weight:800;color:var(--verde);line-height:1.2}
-.btn{display:flex;align-items:center;justify-content:center;width:100%;font:700 19px/1.2 var(--font);padding:18px 20px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;text-align:center;background:var(--verde);color:#fff;box-shadow:0 10px 24px -14px rgba(15,138,77,.8)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;font:700 19px/1.2 var(--font);padding:18px 20px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;text-align:center;background:var(--marca);color:#fff;box-shadow:0 10px 24px -14px rgba(15,138,77,.8)}
 .btn:hover{background:#0c7741}
 .sec{display:block;text-align:center;font-weight:700;font-size:16px;padding:14px;border-radius:14px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--card)}
 .garantia{margin:-8px 0 0;text-align:center;font-weight:700;font-size:15px}
@@ -57,11 +57,11 @@ input[type=range]{width:100%;accent-color:var(--verde);height:28px}
 .packs s{color:var(--ink-2);font-size:13px;margin-right:6px}
 .packs li>span:last-child{white-space:nowrap;flex:none}
 @media (prefers-reduced-motion:reduce){.pista i{transition:none}}
-</style>
+.marca{display:inline-flex;align-items:center;gap:10px;margin:0 0 6px;font:800 18px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}.marca img{width:34px;height:34px;border-radius:9px}h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.025em}</style>
 </head>
 <body>
 <main class="app">
-  <p class="marca">Ioritz Martínez · Webs y Google Maps · Vitoria-Gasteiz</p>
+  <a class="marca" href="../"><img src="../img/icono.svg" alt="" width="34" height="34">Ioritz Martínez</a>
   <h1>¿Cuánto te cuesta <span>no tener web?</span></h1>
   <p class="sub">Pon tus números y mira cuánto dinero se queda por el camino cada año cuando te buscan en Google y no te encuentran. 20 segundos.</p>
 

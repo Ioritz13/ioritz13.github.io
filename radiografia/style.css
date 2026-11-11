@@ -1,19 +1,19 @@
-/* Radiografía en Google · móvil primero, sin dependencias */
+@font-face{font-family:"Bricolage Grotesque";font-weight:700 800;font-display:swap;src:url(../fonts/bricolage-grotesque.woff2) format("woff2")}@font-face{font-family:"Instrument Sans";font-weight:400 600;font-display:swap;src:url(../fonts/instrument-sans.woff2) format("woff2")}/* Radiografía en Google · móvil primero, sin dependencias */
 :root {
-  --bg: #f6f8f6;
+  --bg: #f7f8fb;
   --card: #ffffff;
-  --ink: #14201a;
-  --ink-2: #4f5d55;
-  --line: #dbe4de;
+  --ink: #0b1220;
+  --ink-2: #4d5669;
+  --line: #dde2eb;
   --verde: #0f8a4d;
-  --verde-2: #e3f3ea;
+  --verde-2: #e3f3ea;--marca:#1463ff;--marca-2:#e3ecff;
   --rojo: #c0392b;
   --rojo-2: #fbeae7;
   --ambar: #d98a00;
   --ambar-2: #fdf2dc;
   --nota: #c0392b;
   --r: 16px;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -23,8 +23,8 @@ body {
   padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
 }
 [hidden] { display: none !important; }
-a { color: var(--verde); }
-:focus-visible { outline: 3px solid var(--verde); outline-offset: 2px; }
+a { color: var(--marca); }
+:focus-visible { outline: 3px solid var(--marca); outline-offset: 2px; }
 
 .app { max-width: 560px; margin: 0 auto; padding: 28px max(18px, env(safe-area-inset-right, 0px)) 48px max(18px, env(safe-area-inset-left, 0px)); }
 .pantalla { display: grid; gap: 16px; animation: entra .25s ease-out; }
@@ -33,7 +33,7 @@ a { color: var(--verde); }
 
 .marca { margin: 0; font-size: 13px; letter-spacing: .04em; color: var(--ink-2); }
 h1 { margin: 6px 0 0; font-size: clamp(30px, 8.4vw, 42px); line-height: 1.05; letter-spacing: -.02em; text-wrap: balance; }
-h1 span { display: block; color: var(--verde); }
+h1 span { display: block; color: var(--marca); }
 h2 { margin: 0; font-size: clamp(24px, 6.6vw, 30px); line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; }
 h3 { margin: 0 0 8px; font-size: 18px; }
 .sub { margin: 0; font-size: 18px; color: var(--ink-2); }
@@ -44,7 +44,7 @@ input {
   width: 100%; font: inherit; font-size: 18px; padding: 15px 16px; border-radius: 12px;
   border: 1.5px solid var(--line); background: var(--card); color: var(--ink);
 }
-input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px var(--verde-2); }
+input:focus { border-color: var(--marca); outline: none; box-shadow: 0 0 0 3px var(--marca-2); }
 .error { margin: 0; color: var(--rojo); font-size: 15px; font-weight: 600; }
 
 .btn {
@@ -62,7 +62,7 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 .btn[disabled] { opacity: .6; cursor: wait; }
 
 .volver, .enlace { justify-self: start; background: none; border: 0; padding: 4px 0; font: 600 15px var(--font); color: var(--ink-2); cursor: pointer; }
-.enlace { color: var(--verde); text-decoration: underline; }
+.enlace { color: var(--marca); text-decoration: underline; }
 
 .opciones { display: grid; gap: 10px; }
 .opcion {
@@ -71,7 +71,7 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 }
 .opcion b { font-size: 19px; }
 .opcion span { font-size: 15px; color: var(--ink-2); }
-.opcion[aria-checked="true"] { border-color: var(--verde); background: var(--verde-2); }
+.opcion[aria-checked="true"] { border-color: var(--marca); background: var(--marca-2); }
 .campo-url { display: grid; gap: 8px; }
 
 .legal { margin: 0; font-size: 13px; color: var(--ink-2); }
@@ -79,7 +79,7 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 /* Cargando */
 #p-cargando { justify-items: center; text-align: center; padding-top: 40px; }
 .escaner { width: 120px; height: 160px; border-radius: 18px; border: 3px solid var(--ink); background: var(--card); position: relative; overflow: hidden; }
-.escaner i { position: absolute; left: 0; right: 0; height: 4px; background: var(--verde); box-shadow: 0 0 14px 4px rgba(15, 138, 77, .35); top: 0; animation: barre 1.4s ease-in-out infinite alternate; }
+.escaner i { position: absolute; left: 0; right: 0; height: 4px; background: var(--marca); box-shadow: 0 0 14px 4px rgba(20, 99, 255, .35); top: 0; animation: barre 1.4s ease-in-out infinite alternate; }
 @keyframes barre { to { top: calc(100% - 4px); } }
 .pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; color: var(--ink-2); font-size: 15px; }
 .pasos li { opacity: .35; transition: opacity .3s; }
@@ -120,8 +120,8 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 .pack .cab p { margin: 0; font-size: 15px; color: var(--ink-2); white-space: nowrap; }
 .pack .cab b { font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums; }
 .pack > p { margin: 0; font-size: 15px; color: var(--ink-2); }
-.pack .reco { display: none; justify-self: start; margin: 0; background: var(--verde); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px; border-radius: 7px; }
-.pack.elegido { border: 2.5px solid var(--verde); box-shadow: 0 12px 30px -20px rgba(15, 138, 77, .9); }
+.pack .reco { display: none; justify-self: start; margin: 0; background: var(--marca); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 5px 9px; border-radius: 7px; }
+.pack.elegido { border: 2.5px solid var(--marca); box-shadow: 0 12px 30px -20px rgba(20, 99, 255, .9); }
 .pack.elegido .reco { display: block; }
 .estrella { font-size: 16px; }
 
@@ -130,3 +130,4 @@ input:focus { border-color: var(--verde); outline: none; box-shadow: 0 0 0 3px v
 .aviso { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 15px; z-index: 9; max-width: calc(100% - 32px); }
 
 .calc { display: block; text-align: center; font-weight: 700; font-size: 16px; padding: 14px; border-radius: 14px; border: 1.5px solid var(--ink); color: var(--ink); text-decoration: none; background: var(--card); }
+.marca{display:inline-flex;align-items:center;gap:10px;margin:0 0 6px;font:800 18px/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}.marca img{width:34px;height:34px;border-radius:9px}h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.025em}
