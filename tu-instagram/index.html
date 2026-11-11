@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mira gratis cómo quedaría el Instagram de tu negocio · Vitoria-Gasteiz</title>
+<meta name="description" content="Escribe el nombre de tu negocio y mira al momento cómo quedaría tu Instagram ordenado: perfil, destacados y las publicaciones del primer mes. Gratis y sin registrarte.">
+<link rel="canonical" href="https://ioritz13.github.io/tu-instagram/">
+<meta name="theme-color" content="#f8f6f1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://ioritz13.github.io/tu-instagram/">
+<meta property="og:title" content="¿Cómo quedaría el Instagram de tu negocio? Míralo gratis">
+<meta property="og:description" content="Escribe el nombre de tu negocio y mira al momento cómo quedaría tu Instagram ordenado: perfil, destacados y las publicaciones del primer mes. Gratis y sin registrarte.">
+<meta property="og:image" content="https://ioritz13.github.io/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../img/icono.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700 800;font-display:swap;src:url(../fonts/bricolage-grotesque.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 600;font-display:swap;src:url(../fonts/instrument-sans.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+:root{
+  --paper:#f8f6f1;--paper-2:#efece4;--ink:#17181c;--ink-2:#4b4f58;--line:#dcd7cc;
+  --blue:#1d4ed8;--blue-hover:#1a45c2;--blue-ink:#fff;--marker:#ffd84d;--wa:#25d366;--ok:#15803d;
+  --r-s:8px;--r-m:16px;--r-full:999px;
+  --shadow:0 1px 2px rgb(0 0 0 / .06),0 12px 32px rgb(0 0 0 / .08);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --text:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#121316;--paper-2:#1b1d22;--ink:#eeece6;--ink-2:#b3b0a8;--line:#2c2f36;
+  --blue:#7b9cff;--blue-hover:#94afff;--blue-ink:#0d1530;--ok:#4ade80;
+  --shadow:0 1px 2px rgb(0 0 0 / .4),0 12px 32px rgb(0 0 0 / .45);
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(40px,7vw,64px);line-height:1.0}
+h2{font-size:clamp(30px,4.5vw,44px);line-height:1.05}
+h3{font-size:22px;line-height:1.3;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+.lead{font-size:18px;color:var(--ink-2);max-width:62ch}
+.small{font-size:14px;color:var(--ink-2)}
+.mark{background:linear-gradient(transparent 58%,var(--marker) 58%,var(--marker) 92%,transparent 92%);padding:0 .08em;color:inherit}
+@media (prefers-color-scheme:dark){.mark{background:linear-gradient(transparent 62%,rgb(255 216 77 / .45) 62%,rgb(255 216 77 / .45) 92%,transparent 92%)}}
+section{padding:96px 0;border-top:1px solid var(--line)}
+@media (max-width:720px){section{padding:64px 0}}
+.kicker{font-size:14px;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--r-full);font:600 16px/1 var(--text);text-decoration:none;border:0;cursor:pointer;transition:background .15s}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-main{background:var(--blue);color:var(--blue-ink)}
+.btn-main:hover{background:var(--blue-hover)}
+.btn-wa{background:var(--wa);color:#0b2e17}
+.btn-wa:hover{background:#1fbd5a}
+.btn-line{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+.btn-line:hover{background:var(--paper-2)}
+
+/* cabecera */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font:800 18px/1 var(--display);letter-spacing:-.01em}
+.brand img{width:32px;height:32px;border-radius:8px}
+nav{display:flex;align-items:center;gap:24px}
+nav a.nl{color:var(--ink);text-decoration:none;font-size:15px}
+nav a.nl:hover{text-decoration:underline}
+@media (max-width:760px){nav a.nl{display:none}}
+@media (max-width:720px){header .btn-wa{display:none}body .hero{padding:28px 0 48px}body .hero h1{margin-bottom:16px}body .hero .lead{margin-bottom:22px;font-size:17px}}
+header .btn{min-height:40px;padding:0 16px;font-size:15px}
+
+/* hero */
+.hero{padding:72px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{margin-bottom:24px}
+.hero .lead{margin-bottom:32px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.cta-note{margin-top:12px;font-size:15px;color:var(--ink-2);max-width:440px}
+.ya{margin:20px 0 18px;max-width:580px;background:var(--paper-2);border:1.5px solid var(--line);border-radius:18px;padding:16px 16px 14px}
+.ya label{font-weight:700;font-size:16px;line-height:1.3}
+.ya-f{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto;gap:8px;margin-top:10px}
+.ya-f .btn{width:auto;margin:0;white-space:nowrap}
+.ya p{font-size:14px;color:var(--ink-2);margin-top:10px}
+@media (max-width:640px){.ya-f{grid-template-columns:minmax(0,1fr)}.ya-f .btn{width:100%}}
+.hola-qr{display:inline-block;background:var(--mark,#ffd84d);color:#17181c;font-weight:600;font-size:15px;line-height:1.35;padding:8px 14px;border-radius:14px;margin-bottom:16px}
+.hola-qr[hidden]{display:none}
+.launch{display:flex;gap:10px;align-items:flex-start;margin-top:24px;padding:14px 16px;border:1px dashed var(--ink-2);border-radius:var(--r-s);max-width:460px;font-size:15px}
+.launch b{font-weight:600}
+.phones{position:relative;height:540px}
+.phone{position:absolute;width:236px;aspect-ratio:9/18.5;border:8px solid var(--ink);border-radius:30px;overflow:hidden;background:var(--paper-2);box-shadow:var(--shadow)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.phones .p1{right:150px;top:0;transform:rotate(-4deg)}
+.phones .p2{right:0;top:56px;transform:rotate(3deg)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.phones{height:420px;max-width:420px}.phone{width:190px}.phones .p1{left:0;right:auto}.phones .p2{left:170px;right:auto}}
+@media (max-width:520px){.phones{height:300px;max-width:none;margin-top:8px}.phone{width:150px;border-width:6px;border-radius:24px}.phones .p1{left:8%}.phones .p2{left:auto;right:8%;top:28px}}
+
+/* antes / después */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+@media (max-width:760px){.compare{grid-template-columns:1fr}}
+.gcard{border:1px solid var(--line);border-radius:var(--r-m);padding:24px;background:var(--paper)}
+.gcard .tag{display:inline-block;font-size:13px;font-weight:600;padding:4px 10px;border-radius:var(--r-s);margin-bottom:16px}
+.gcard.bad .tag{background:var(--paper-2);color:var(--ink-2)}
+.gcard.good{border:2px solid var(--ink)}
+.gcard.good .tag{background:var(--marker);color:#17181c}
+.gname{font:700 20px/1.2 var(--display)}
+.gmeta{font-size:14px;color:var(--ink-2);margin:4px 0 16px}
+.gbtns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.gbtns span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:var(--r-full);border:1px solid var(--line)}
+.gcard.bad .gbtns span{color:var(--ink-2);border-style:dashed}
+.gcard.good .gbtns span{border-color:var(--ink)}
+.glist{list-style:none;padding:0;margin:0;font-size:15px;display:grid;gap:8px}
+.glist li{display:flex;gap:10px;align-items:flex-start}
+.glist svg{width:18px;height:18px;flex:none;margin-top:3px}
+.gcard.bad .glist svg{color:var(--ink-2)}
+.gcard.good .glist svg{color:var(--ok)}
+
+/* ejemplos */
+.ex-row{display:flex;gap:20px;overflow-x:auto;padding:8px 2px 24px;margin-top:40px;scroll-snap-type:x mandatory}
+.ex{flex:none;width:200px;scroll-snap-align:start;color:var(--ink);text-decoration:none}
+.ex .phone{position:static;width:200px;margin-bottom:12px;box-shadow:none;transition:transform .2s}
+.ex:hover .phone{transform:translateY(-4px)}
+.ex b{display:block;font-weight:600}
+.ex span{font-size:14px;color:var(--ink-2)}
+.sectores{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.sectores a{border:1px solid var(--line);border-radius:var(--r-full);padding:10px 16px;color:var(--ink);text-decoration:none;font-size:15px;background:var(--paper)}
+.sectores a:hover{border-color:var(--ink)}
+
+/* precios */
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;align-items:start}
+@media (max-width:900px){.packs{grid-template-columns:1fr;max-width:520px}}
+/* redes-css:inicio */
+.price .mes{font:600 15px/1 var(--text);color:var(--ink-2)}
+.rd-promesas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;padding:0;list-style:none}
+.rd-promesas li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
+.rd-promesas b{display:block;color:var(--ink);font-size:16px}
+.rd-promesas svg{width:24px;height:24px;flex:none;color:var(--blue);margin-top:2px}
+.rd-calc{display:grid;grid-template-columns:1fr 360px;gap:32px;margin-top:40px;align-items:start}
+.rd-rapidos{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.rd-rapidos span{flex-basis:100%;font-size:14px;color:var(--ink-2)}
+.rd-movil{display:none;margin:-4px 0 16px;font-size:15px;color:var(--ink-2)}
+.rd-movil b{color:var(--ink);font:800 20px/1 var(--display)}
+.rd-rapidos button{font:600 15px/1 var(--text);min-height:44px;padding:0 16px;border-radius:var(--r-full);border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.rd-rapidos button:hover{border-color:var(--ink)}
+.rd-rapidos button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.rd-fila{display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--paper);margin-bottom:10px}
+label.rd-fila{cursor:pointer;font-weight:400}
+label.rd-fila:hover{border-color:var(--ink-2)}
+.rd-fila.fija{background:var(--paper-2);border-color:var(--paper-2)}
+.rd-fila h3{font-size:18px;margin-bottom:4px}
+.rd-fila p{font-size:15px;color:var(--ink-2)}
+.rd-fila .pr{font-size:14px;color:var(--ink-2);margin-top:6px}
+.rd-fila .pr b{color:var(--ink);font-size:16px}
+.rd-step{display:flex;align-items:center;gap:6px}
+.rd-step button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:600 22px/1 var(--text);cursor:pointer}
+.rd-step button:disabled{opacity:.3;cursor:default}
+.rd-step output{min-width:36px;text-align:center;font:800 24px/1 var(--display)}
+.rd-sw{position:relative;width:52px;height:30px;flex:none}
+.rd-sw input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.rd-sw i{position:absolute;inset:0;border-radius:var(--r-full);background:var(--line);transition:background .15s}
+.rd-sw i:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0/.3);transition:transform .15s}
+.rd-sw input:checked+i{background:var(--blue)}
+.rd-sw input:checked+i:after{transform:translateX(22px)}
+.rd-sw input:focus-visible+i{outline:3px solid var(--blue);outline-offset:2px}
+.rd-total{position:sticky;top:88px;border:2px solid var(--ink);border-radius:var(--r-m);padding:24px;background:var(--paper);box-shadow:var(--shadow)}
+.rd-cifra{font:800 52px/1 var(--display);letter-spacing:-.03em;margin:6px 0 4px}
+.rd-cifra small{font:600 15px/1 var(--text);color:var(--ink-2);letter-spacing:0}
+.rd-total ul{list-style:none;padding:16px 0;margin:12px 0 16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;font-size:15px}
+.rd-total li{display:flex;justify-content:space-between;gap:12px}
+.rd-total li span:last-child{color:var(--ink-2);white-space:nowrap}
+.rd-total .btn{width:100%}
+.rd-total .small{margin-top:12px}
+.rd-combo{margin-top:16px;padding:12px 14px;border-radius:var(--r-s);background:var(--paper-2);font-size:14px}
+.igm{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;margin-bottom:12px}
+.igm .av{width:64px;height:64px;border-radius:50%;background:var(--paper-2);border:2px solid var(--line)}
+.gcard.good .igm .av{background:var(--blue);border:3px solid var(--marker);display:grid;place-items:center;color:#fff;font:800 22px/1 var(--display)}
+.igm .st{display:flex;gap:18px;font-size:13px;color:var(--ink-2)}
+.igm .st b{display:block;font:800 17px/1.1 var(--display);color:var(--ink)}
+.igbio{font-size:14px;line-height:1.45;margin-bottom:12px;min-height:42px}
+.igbio b{display:block}
+.gcard.bad .igbio span{color:var(--ink-2);font-style:italic}
+.ighl{display:flex;gap:12px;margin-bottom:14px;min-height:58px}
+.ighl i{display:grid;justify-items:center;gap:4px;font-style:normal;font-size:11px;color:var(--ink-2)}
+.ighl i:before{content:"";width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--paper-2)}
+.gcard.good .ighl i:before{border-color:var(--ink);background:var(--marker)}
+.iggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:16px;border-radius:8px;overflow:hidden;max-width:300px}
+.iggrid i{aspect-ratio:1;background:var(--paper-2);position:relative}
+.gcard.bad .iggrid i:nth-child(n+4){background:transparent;border:1px dashed var(--line)}
+.gcard.bad .iggrid i:first-child:after{content:"hace 8 meses";position:absolute;left:6px;bottom:6px;font-size:10px;color:var(--ink-2)}
+.gcard.good .iggrid i:nth-child(3n+1){background:var(--blue)}
+.gcard.good .iggrid i:nth-child(3n+2){background:var(--ink)}
+.gcard.good .iggrid i:nth-child(3n){background:var(--marker)}
+.gcard.good .iggrid i:before{content:"";position:absolute;left:14%;right:30%;top:40%;height:8%;background:rgb(255 255 255/.85);border-radius:3px;box-shadow:0 14px 0 -2px rgb(255 255 255/.55)}
+.gcard.good .iggrid i:nth-child(3n):before{background:rgb(23 24 28/.8);box-shadow:0 14px 0 -2px rgb(23 24 28/.45)}
+.sl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.sl{border:1px solid var(--line);border-radius:var(--r-m);padding:24px;display:flex;flex-direction:column;background:var(--paper)}
+.sl h3{font-size:20px}
+.sl p{font-size:15px;color:var(--ink-2);margin:8px 0 16px}
+.sl .pr{font:800 34px/1 var(--display);letter-spacing:-.02em;margin-top:auto}
+.sl .pr small{font:600 14px/1 var(--text);color:var(--ink-2);letter-spacing:0}
+.sl .btn{margin-top:16px;width:100%}
+@media (max-width:900px){.sl-grid{grid-template-columns:1fr;max-width:520px}}
+@media (max-width:900px){.rd-calc{grid-template-columns:1fr}.rd-total{position:static}.rd-promesas{grid-template-columns:1fr}.rd-movil{display:block}}
+@media (max-width:520px){.rd-fila{grid-template-columns:1fr}.rd-fila .rd-step{justify-self:start}}
+/* redes-css:fin */
+.noinc{margin-top:28px;padding:16px 20px;border-radius:var(--r-m);background:var(--paper-2);font-size:15px;color:var(--ink-2);max-width:820px}
+.noinc b{color:var(--ink)}
+.pack{border:1px solid var(--line);border-radius:var(--r-m);padding:28px 24px;background:var(--paper);position:relative}
+.pack.rec{border:2px solid var(--ink);box-shadow:var(--shadow)}
+.pack .badge{position:absolute;top:-14px;left:24px;background:var(--marker);color:#17181c;font-size:13px;font-weight:600;padding:4px 10px;border-radius:var(--r-s)}
+.pack h3{margin-bottom:4px}
+.pack .for{font-size:15px;color:var(--ink-2);margin-bottom:20px;min-height:48px}
+.price{font:800 48px/1 var(--display);letter-spacing:-.03em}
+.price small{font:600 15px/1 var(--text);letter-spacing:0;color:var(--ink-2)}
+.after{font-size:14px;color:var(--ink-2);margin:8px 0 20px}
+.after s{text-decoration-thickness:1.5px}
+.inc{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:10px;font-size:15px}
+.inc li{display:flex;gap:10px;align-items:flex-start}
+.inc svg{width:18px;height:18px;flex:none;margin-top:3px;color:var(--ok)}
+.inc .plus{font-weight:600}
+.pack .btn{width:100%}
+.monthly{margin-top:56px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--r-m);overflow:hidden;margin-top:20px}
+.mgrid.two{grid-template-columns:1fr 1fr}
+.mgrid > div{padding:24px;border-right:1px solid var(--line)}
+.mgrid > div:last-child{border-right:0}
+@media (max-width:760px){.mgrid,.mgrid.two{grid-template-columns:1fr}.mgrid > div{border-right:0;border-bottom:1px solid var(--line)}.mgrid > div:last-child{border-bottom:0}}
+.mgrid .m-price{font:800 28px/1 var(--display);margin:8px 0 10px}
+.mgrid .m-price small{font:600 14px/1 var(--text);color:var(--ink-2)}
+.mgrid p{font-size:15px;color:var(--ink-2)}
+.extras{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.extras span{border:1px solid var(--line);border-radius:var(--r-full);padding:10px 16px;font-size:15px}
+.extras b{font-weight:600}
+.note{margin-top:20px;font-size:14px;color:var(--ink-2)}
+
+/* cómo trabajo */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:40px;counter-reset:s}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);display:block;font:800 44px/1 var(--display);color:var(--line);margin-bottom:12px}
+@media (prefers-color-scheme:dark){.step::before{color:#3a3e47}}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{font-size:15px;color:var(--ink-2)}
+
+/* honestidad */
+.honest{background:var(--paper-2)}
+.honest .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+@media (max-width:820px){.honest .wrap{grid-template-columns:1fr;gap:24px}}
+.no-list{list-style:none;padding:0;margin:0;display:grid;gap:20px}
+.no-list li{border-left:3px solid var(--ink);padding-left:16px}
+.no-list b{display:block;font-weight:600;margin-bottom:2px}
+.no-list span{color:var(--ink-2);font-size:15px}
+
+/* faq */
+.faq{max-width:760px;margin-top:32px}
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 24px/1 var(--text);color:var(--ink-2)}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 20px;color:var(--ink-2);max-width:62ch}
+
+/* contacto */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.contact-card{border:2px solid var(--ink);border-radius:var(--r-m);padding:28px;box-shadow:var(--shadow)}
+@media (max-width:820px){.contact .wrap{grid-template-columns:1fr}}
+.contact .lead{margin:16px 0 24px}
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-weight:600;font-size:15px}
+input,select,textarea{font:400 16px/1.4 var(--text);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-s);padding:12px;min-height:48px;width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 30%,transparent)}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;color:var(--ink-2)}
+.check input{width:20px;height:20px;min-height:0;margin:2px 0 0;flex:none;accent-color:var(--blue)}
+.hidden{display:none}
+form .btn{justify-self:start}
+
+footer{border-top:1px solid var(--line);padding:32px 0 104px;font-size:14px;color:var(--ink-2)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{color:var(--ink-2)}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;display:none;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);z-index:20}
+.sticky .btn{flex:1;padding:0 12px;font-size:15px;white-space:nowrap}
+.sticky .btn-line{background:var(--paper)}
+@media (max-width:720px){.sticky{display:flex}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.ig{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:start;margin-top:32px}
+@media (max-width:900px){.ig{grid-template-columns:minmax(0,1fr)}.ig>div{min-width:0}}
+.ig form{display:grid;gap:16px;max-width:520px}
+.ig label span{font-weight:400;color:var(--ink-2);font-size:14px}
+.err{color:#b91c1c;font-size:14px;min-height:1em}
+.movil{width:390px;max-width:100%;border:12px solid var(--ink);border-radius:44px;overflow:hidden;background:var(--p-bg,#fff);color:var(--p-ink,#161616);box-shadow:var(--shadow);scroll-margin-top:84px;font-family:var(--text)}
+@media (max-width:520px){.movil{border-width:8px;border-radius:32px}}
+.vacio{display:grid;place-items:center;text-align:center;min-height:520px;padding:32px;color:var(--ink-2);font-size:15px;background:var(--paper-2)}
+.vacio[hidden],.perfil[hidden]{display:none}
+.p-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 6px;font-weight:700;font-size:16px}
+.p-top small{font-weight:600;font-size:11px;padding:4px 8px;border-radius:99px;background:var(--p-ac);color:var(--p-aci)}
+.p-cab{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:10px 16px}
+.p-av{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:var(--p-ac);color:var(--p-aci);font:800 26px/1 var(--display);box-shadow:0 0 0 3px var(--p-bg),0 0 0 5px var(--p-ac)}
+.p-st{display:flex;gap:16px;font-size:12px;color:var(--p-ink2)}
+.p-st b{display:block;font:800 17px/1.15 var(--display);color:var(--p-ink)}
+.p-bio{padding:4px 16px 10px;font-size:14px;line-height:1.45}
+.p-bio b{display:block;font-size:15px}
+.p-bio span{display:block}
+.p-bio a{color:var(--p-ac);font-weight:600;text-decoration:none}
+.p-bt{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 12px}
+.p-bt i{font-style:normal;text-align:center;font-weight:600;font-size:14px;padding:9px;border-radius:10px;background:var(--p-ac);color:var(--p-aci)}
+.p-bt i+i{background:var(--p-bg2);color:var(--p-ink)}
+.p-dest{display:flex;gap:12px;padding:2px 16px 14px;overflow:hidden}
+.p-dest i{font-style:normal;display:grid;justify-items:center;gap:5px;font-size:11px;color:var(--p-ink2);flex:none;width:58px;text-align:center}
+.p-dest i:before{content:attr(data-l);width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--p-bg2);border:2px solid var(--p-ac);color:var(--p-ac);font:800 20px/1 var(--display)}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tl{aspect-ratio:1;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:9px;text-align:left;border:0;cursor:pointer;font-family:inherit;color:inherit}
+.tl b{font:800 14.5px/1.08 var(--display);letter-spacing:-.01em;text-wrap:balance}
+.tl small{font-size:9px;line-height:1.2;opacity:.8;margin-top:3px}
+.tl.t{background:var(--p-ac);color:var(--p-aci)}
+.tl.t:nth-child(even){background:var(--p-ink);color:var(--p-bg)}
+.tl.l{background:var(--p-bg2);color:var(--p-ink);justify-content:flex-start}
+.tl.l:after{content:"";position:absolute;left:9px;right:9px;bottom:12px;height:34px;background:repeating-linear-gradient(var(--p-line) 0 2px,transparent 2px 11px)}
+.tl.h{background:var(--p-ink);color:var(--p-bg);justify-content:flex-start}
+.tl.h:after{content:"";position:absolute;left:9px;right:30%;bottom:12px;height:34px;background:repeating-linear-gradient(color-mix(in srgb,var(--p-bg) 55%,transparent) 0 2px,transparent 2px 11px)}
+.tl.r{background:var(--p-card);color:var(--p-ink);box-shadow:inset 0 0 0 2px var(--p-bg2);justify-content:center;text-align:center;align-items:center}
+.tl.r:before{content:"★★★★★";color:#d6a54a;font-size:13px;letter-spacing:2px;margin-bottom:5px}
+.tl.f{background:linear-gradient(140deg,color-mix(in srgb,var(--p-ac) 26%,var(--p-bg2)),var(--p-bg2));color:var(--p-ink)}
+.tl.f:before{content:"";position:absolute;right:9px;top:9px;width:22px;height:17px;border:2px solid currentColor;border-radius:4px;opacity:.55}
+.tl.f:after{content:"";position:absolute;right:15px;top:13px;width:6px;height:6px;border:2px solid currentColor;border-radius:50%;opacity:.55}
+.tl.f em{position:absolute;left:9px;top:9px;font-style:normal;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.p-pie{padding:10px 16px 14px;font-size:11.5px;color:var(--p-ink2);text-align:center;line-height:1.4}
+.mes{margin-top:26px;max-width:520px}
+.mes[hidden]{display:none}
+.mes ol{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;counter-reset:m}
+.mes li{counter-increment:m;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:var(--paper-2);border-radius:14px;padding:12px 14px}
+.mes li:before{content:counter(m);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--paper);font:800 14px/1 var(--display)}
+.mes li b{display:block}
+.mes li span{color:var(--ink-2);font-size:14.5px}
+.mes li em{font-style:normal;font-size:12px;font-weight:700;color:var(--blue);display:block;margin-top:2px}
+.cta-final{display:none;margin-top:24px;border:2px solid var(--ink);border-radius:var(--r-m);padding:22px;max-width:520px}
+.cta-final.ok{display:block}
+.cta-final h3{margin-bottom:8px}
+.cta-final p{color:var(--ink-2);margin-bottom:16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7a11.6 11.6 0 0 1-4.6-4c-.3-.5-1-1.4-1-2.6s.7-1.9.9-2.2c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.3.1.2.1.8-.1 1.4z"/></symbol></svg>
+<header><div class="wrap">
+  <a class="brand" href="../"><img src="../img/icono.svg" alt="">Ioritz Martínez</a>
+  <nav aria-label="Principal">
+    <a class="nl" href="../#redes">Redes sociales</a>
+    <a class="nl" href="../#precios">Precios</a>
+    <a class="nl" href="../prueba-tu-web/">Prueba tu web</a>
+  </nav>
+</div></header>
+<main>
+<div class="hero" style="padding:40px 0 24px"><div class="wrap" style="display:block">
+  <div class="kicker">Gratis · al momento · Vitoria-Gasteiz</div>
+  <h1>Mira cómo quedaría <span class="mark">el Instagram de tu negocio.</span></h1>
+  <p class="lead" style="margin-top:16px">Escribe el nombre y el tipo de negocio y ves tu perfil ordenado y lo que publicaría el primer mes. Tú me mandas unas fotos por WhatsApp y yo me encargo del resto.</p>
+  <div class="ig">
+    <div>
+      <form id="f" novalidate>
+        <label>Nombre de tu negocio *<input id="negocio" name="negocio" required autocomplete="organization" placeholder="Ej.: Peluquería Ane"></label>
+        <label>Tipo de negocio *<select id="tipo" name="tipo"><option value="peluqueria">Peluquería</option><option value="barberia">Barbería</option><option value="estetica">Centro de estética</option><option value="unas">Uñas</option><option value="fisioterapia">Fisioterapia o clínica</option><option value="tatuajes">Estudio de tatuajes</option><option value="restaurante">Bar o restaurante</option><option value="cafeteria">Cafetería</option><option value="panaderia">Panadería o pastelería</option><option value="carniceria">Carnicería</option><option value="pescaderia">Pescadería</option><option value="fruteria">Frutería</option><option value="gourmet">Tienda gourmet o vinoteca</option><option value="herbolario">Herbolario o dietética</option><option value="ropa">Tienda de ropa</option><option value="zapateria">Zapatería</option><option value="joyeria">Joyería</option><option value="optica">Óptica</option><option value="libreria">Librería o papelería</option><option value="regalos">Tienda de regalos</option><option value="decoracion">Decoración o muebles</option><option value="floristeria">Floristería</option><option value="ferreteria">Ferretería</option><option value="bicicletas">Tienda de bicicletas</option><option value="arreglos">Arreglos de ropa</option><option value="lavanderia">Lavandería o tintorería</option><option value="cerrajeria">Cerrajería</option><option value="animales">Tienda de animales</option><option value="mascotas">Peluquería canina</option><option value="taller">Taller mecánico</option><option value="oficios">Reformas u oficios</option><option value="tienda">Otra tienda</option></select></label>
+        <label>Colores <span>(es una primera idea: luego uso los de tu marca)</span><select id="estilo" name="estilo"><option value="">Los de mi sector</option><option>Noche y oro</option><option>Blanco elegante</option><option>Rosa empolvado</option><option>Verde natural</option><option>Azul moderno</option><option>Terracota</option><option>Lila</option><option>Negro y rojo</option></select></label>
+        <p class="err" id="err" role="alert"></p>
+        <button class="btn btn-main" type="submit">Ver mi Instagram</button>
+        <p style="font-size:13px;color:var(--ink-2);margin:10px 0 0">Al crear tu muestra, a Ioritz le llega el nombre y el tipo de negocio (nunca tu teléfono), para poder ayudarte si lo necesitas.</p>
+      </form>
+      <div class="mes" id="mes" hidden>
+        <div class="kicker">Tu primer mes</div>
+        <h2 style="font-size:clamp(24px,5vw,32px)">Esto es lo que publicaría</h2>
+        <ol id="lista"></ol>
+        <p style="font-size:14px;color:var(--ink-2);margin-top:12px">Los textos y los diseños los hago yo y tú das el visto bueno antes de publicar nada. Las fotos y las reseñas son siempre las vuestras, reales.</p>
+      </div>
+      <div class="cta-final" id="cta">
+        <h3>¿Te lo llevo yo?</h3>
+        <p>Desde 90 € al mes (4 publicaciones). Con 8 al mes, como en esta muestra, 150 €. Tú eliges cuántas y qué extras. Empezamos con 3 meses y luego sigues mes a mes, sin permanencia. No te prometo miles de seguidores: te prometo un Instagram al día y cuidado.</p>
+        <div class="cta"><a class="btn btn-wa" id="wa" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Me interesa: escribir a Ioritz</a><a class="btn btn-line" href="../#redes">Calcular mi precio</a></div>
+        <p style="font-size:14px;margin:14px 0 0"><a id="aweb" href="../prueba-tu-web/">Mira también cómo quedaría tu web</a></p>
+      </div>
+    </div>
+    <div class="movil" id="movil" aria-live="polite">
+      <div class="vacio" id="vacio">Aquí aparecerá tu Instagram cuando pulses «Ver mi Instagram».</div>
+      <div class="perfil" id="perfil" hidden></div>
+    </div>
+  </div>
+</div></div>
+<section><div class="wrap">
+  <div class="kicker">Cómo trabajo</div>
+  <h2>Tú atiendes tu negocio. Del Instagram me encargo yo.</h2>
+  <div class="steps" style="margin-top:32px">
+    <div class="step"><h3>Me mandas fotos</h3><p>Por WhatsApp, cuando te venga bien. Con el móvil vale.</p></div>
+    <div class="step"><h3>Preparo el mes</h3><p>Calendario, textos y diseños con tus colores.</p></div>
+    <div class="step"><h3>Das el visto bueno</h3><p>Lo ves todo antes. Si quieres cambiar algo, lo cambio.</p></div>
+    <div class="step"><h3>Se publica solo</h3><p>Lo dejo programado y a fin de mes te cuento cómo ha ido.</p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <span>Ioritz Martínez · Webs, Google Maps y redes sociales · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
+  <span><a href="../condiciones/">Condiciones</a> · <a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></span>
+</div></footer>
+<script>
+const D = {"sectores": {"barberia": {"txt": "Barbería", "fam": "belleza", "pal": "Noche y oro"}, "fisioterapia": {"txt": "Fisioterapia", "fam": "salud", "pal": "Verde natural"}, "taller": {"txt": "Taller", "fam": "servicios", "pal": "Negro y rojo"}, "peluqueria": {"txt": "Peluquería", "fam": "belleza", "pal": "Rosa empolvado"}, "estetica": {"txt": "Centro de estética", "fam": "belleza", "pal": "Blanco elegante"}, "unas": {"txt": "Uñas", "fam": "belleza", "pal": "Rosa empolvado"}, "mascotas": {"txt": "Peluquería canina", "fam": "belleza", "pal": "Verde natural"}, "restaurante": {"txt": "Bar · Restaurante", "fam": "hosteleria", "pal": "Terracota"}, "panaderia": {"txt": "Panadería · Pastelería", "fam": "alimentacion", "pal": "Terracota"}, "cafeteria": {"txt": "Cafetería", "fam": "hosteleria", "pal": "Terracota"}, "tienda": {"txt": "Tienda", "fam": "tienda", "pal": "Blanco elegante"}, "oficios": {"txt": "Reformas y oficios", "fam": "servicios", "pal": "Negro y rojo"}, "tatuajes": {"txt": "Estudio de tatuajes", "fam": "tatuajes", "pal": "Negro y rojo"}, "floristeria": {"txt": "Floristería", "fam": "tienda", "pal": "Verde natural"}, "carniceria": {"txt": "Carnicería", "fam": "alimentacion", "pal": "Terracota"}, "pescaderia": {"txt": "Pescadería", "fam": "alimentacion", "pal": "Azul moderno"}, "fruteria": {"txt": "Frutería", "fam": "alimentacion", "pal": "Verde natural"}, "gourmet": {"txt": "Tienda gourmet", "fam": "alimentacion", "pal": "Terracota"}, "herbolario": {"txt": "Herbolario · Dietética", "fam": "tienda", "pal": "Verde natural"}, "ropa": {"txt": "Moda", "fam": "tienda", "pal": "Blanco elegante"}, "zapateria": {"txt": "Zapatería", "fam": "tienda", "pal": "Terracota"}, "joyeria": {"txt": "Joyería", "fam": "tienda", "pal": "Noche y oro"}, "libreria": {"txt": "Librería", "fam": "tienda", "pal": "Terracota"}, "regalos": {"txt": "Regalos", "fam": "tienda", "pal": "Lila"}, "optica": {"txt": "Óptica", "fam": "tienda", "pal": "Azul moderno"}, "ferreteria": {"txt": "Ferretería", "fam": "tienda", "pal": "Negro y rojo"}, "cerrajeria": {"txt": "Cerrajería", "fam": "servicios", "pal": "Negro y rojo"}, "bicicletas": {"txt": "Tienda de bicicletas", "fam": "servicios", "pal": "Verde natural"}, "lavanderia": {"txt": "Lavandería · Tintorería", "fam": "servicios", "pal": "Azul moderno"}, "arreglos": {"txt": "Arreglos de ropa", "fam": "servicios", "pal": "Rosa empolvado"}, "animales": {"txt": "Tienda de animales", "fam": "tienda", "pal": "Verde natural"}, "decoracion": {"txt": "Decoración", "fam": "tienda", "pal": "Blanco elegante"}}, "fam": {"belleza": {"cta": "Pide cita", "dest": ["Precios", "Horario", "Trabajos", "Equipo", "Reseñas"], "posts": [["f", "Antes y después", "Una foto vuestra de un trabajo real"], ["l", "Precios", "Vuestra lista, clara y a la vista"], ["t", "3 consejos para que te dure más", "Lo que siempre explicáis en el local"], ["f", "El equipo", "Quién atiende, con nombre y cara"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo pedir cita en un toque"], ["t", "Huecos libres esta semana", "Para llenar las horas flojas"], ["f", "El local", "Para quien aún no os conoce"], ["t", "Novedad del mes", "Un servicio o un producto nuevo"]]}, "salud": {"cta": "Pide cita", "dest": ["Tratamientos", "Horario", "Equipo", "Reseñas", "Llegar"], "posts": [["l", "Qué tratamos", "Vuestros tratamientos, explicados fácil"], ["f", "Ejercicio de la semana", "Una foto o un vídeo vuestro"], ["t", "¿Calor o frío?", "Dudas que os preguntan cada día"], ["f", "El equipo", "Quién atiende, con nombre y cara"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo pedir cita en un toque"], ["t", "Cómo es la primera visita", "Para quien nunca ha venido"], ["f", "La clínica", "Las salas, por dentro"], ["t", "Novedad del mes", "Un tratamiento o una clase nueva"]]}, "hosteleria": {"cta": "Reserva", "dest": ["Carta", "Horario", "Menú", "Reseñas", "Llegar"], "posts": [["f", "Plato de la semana", "Una foto vuestra, recién salido"], ["l", "La carta", "Lo que más se pide, a la vista"], ["t", "Menú del día", "Para que sepan qué hay hoy"], ["f", "El equipo", "Quién está detrás de la barra"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo reservar en un toque"], ["t", "Grupos y celebraciones", "Cenas de empresa, cumpleaños…"], ["f", "El local", "Para quien aún no os conoce"], ["t", "Especial de temporada", "Lo que solo hay estos días"]]}, "alimentacion": {"cta": "Haz tu encargo", "dest": ["Encargos", "Horario", "Producto", "Reseñas", "Llegar"], "posts": [["f", "Producto de la semana", "Una foto vuestra del mostrador"], ["t", "Encarga por WhatsApp", "Cómo pedirlo y pasar a recogerlo"], ["t", "De temporada", "Lo mejor de estas semanas"], ["f", "Quién está detrás", "Con nombre y cara"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo hacer un encargo"], ["t", "Una receta fácil", "Con lo que vendéis"], ["f", "El mostrador hoy", "Fresco y a la vista"], ["l", "Lotes y encargos", "Para celebraciones y regalos"]]}, "tienda": {"cta": "Pregúntanos", "dest": ["Novedades", "Horario", "Regalos", "Reseñas", "Llegar"], "posts": [["f", "Recién llegado", "Una foto vuestra de la novedad"], ["f", "El escaparate", "Como se ve desde la calle"], ["t", "Ideas para regalar", "Tres propuestas con precio"], ["f", "Quién está detrás", "Con nombre y cara"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo reservar por WhatsApp"], ["l", "Lo más vendido", "Lo que la gente se lleva"], ["t", "Te lo guardamos", "Reserva por WhatsApp y pasa a por ello"], ["t", "Novedad del mes", "Lo que acaba de entrar"]]}, "servicios": {"cta": "Pide presupuesto", "dest": ["Servicios", "Horario", "Trabajos", "Reseñas", "Llegar"], "posts": [["f", "Trabajo terminado", "Una foto vuestra de un trabajo real"], ["l", "Qué hacemos", "Vuestros servicios, a la vista"], ["t", "Un consejo que ahorra dinero", "Lo que siempre explicáis al cliente"], ["f", "El equipo", "Quién hace el trabajo"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Horario", "Y cómo pedir presupuesto"], ["t", "Presupuesto sin compromiso", "Precio y plazo antes de empezar"], ["f", "Antes y después", "Dos fotos del mismo trabajo"], ["t", "La duda de la semana", "Preguntas que os hacen a menudo"]]}, "tatuajes": {"cta": "Pide cita", "dest": ["Trabajos", "Estilos", "Citas", "Cuidados", "Reseñas"], "posts": [["f", "Trabajo de la semana", "Una foto vuestra, ya curado"], ["l", "Estilos", "Lo que hace cada artista"], ["t", "Cómo cuidar tu tatuaje", "Los primeros días, paso a paso"], ["f", "El artista", "Con nombre y cara"], ["r", "Lo que dicen", "Una reseña real de Google"], ["h", "Citas", "Días libres y cómo reservar"], ["t", "Huecos libres", "Para llenar la agenda"], ["f", "Diseños disponibles", "Dibujos listos para tatuar"], ["t", "Cómo pedir presupuesto", "Idea, tamaño y zona"]]}}, "paletas": {"Noche y oro": ["#111111", "#181716", "#1c1b19", "#f2ece2", "#b2a99b", "#2d2a26", "#c8a165", "#15120e"], "Blanco elegante": ["#fafaf8", "#f0efeb", "#ffffff", "#161616", "#5a5a5a", "#e2e0da", "#161616", "#ffffff"], "Rosa empolvado": ["#fbf3f3", "#f5e6e7", "#ffffff", "#2b1d20", "#6e5a5f", "#ecdcdd", "#c2667a", "#ffffff"], "Verde natural": ["#f4f7f2", "#e6eee3", "#ffffff", "#1d2a20", "#56655a", "#d6e1d3", "#3f7d4e", "#ffffff"], "Azul moderno": ["#f5f8fc", "#e8eef7", "#ffffff", "#0f1b2d", "#4f5d70", "#dbe3ee", "#1d4ed8", "#ffffff"], "Terracota": ["#fbf6ef", "#f3eadd", "#fffaf3", "#2a1d14", "#6b5848", "#e8dac7", "#b4441d", "#ffffff"], "Lila": ["#f8f5fc", "#eee7f7", "#ffffff", "#231a33", "#62577a", "#e2d9ef", "#7c4dbd", "#ffffff"], "Negro y rojo": ["#0d0d0e", "#151517", "#19191b", "#ece6da", "#a9a398", "#2a2a2d", "#d6453d", "#ffffff"]}, "desde": 90};
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ADIVINA = [[/peluquer|estilist|hair/i,"peluqueria"],[/barber/i,"barberia"],[/est[eé]tic|belleza|beauty/i,"estetica"],[/uñas|nails/i,"unas"],[/fisio|cl[ií]nica/i,"fisioterapia"],
+  [/tattoo|tatua/i,"tatuajes"],[/\bbar\b|restaurante|taberna|asador|sidrer|pizzer|jatetxe/i,"restaurante"],[/caf[eé]/i,"cafeteria"],[/panader|pasteler|obrador|okindegi/i,"panaderia"],
+  [/carnicer|harategi/i,"carniceria"],[/pescader/i,"pescaderia"],[/fruter/i,"fruteria"],[/librer|papeler/i,"libreria"],[/zapat|calzado/i,"zapateria"],[/joyer|relojer/i,"joyeria"],
+  [/[oó]pti[ck]a/i,"optica"],[/florister|flores|loreak/i,"floristeria"],[/ferreter/i,"ferreteria"],[/taller|motor|neum[aá]tic/i,"taller"],[/reformas|fontaner|electric|pintor/i,"oficios"],
+  [/herbolario|diet[eé]tic/i,"herbolario"],[/moda|boutique|ropa/i,"ropa"]];
+function iniciales(n){
+  return ((n.match(/[A-Za-zÁÉÍÓÚÑáéíóúñ]+/g) || [n]).filter(w => !["de","la","el","y","los","las","del"].includes(w.toLowerCase())).map(w => w[0]).join("").slice(0,2).toUpperCase()) || n.charAt(0).toUpperCase();
+}
+function usuario(n){
+  return n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"").slice(0,24) || "tunegocio";
+}
+function pinta(n, tipo, pal){
+  const s = D.sectores[tipo] || D.sectores.tienda, f = D.fam[s.fam], p = D.paletas[pal || s.pal] || D.paletas["Blanco elegante"];
+  const m = document.getElementById("movil");
+  ["bg","bg2","card","ink","ink2","line","ac","aci"].forEach((k,i) => m.style.setProperty("--p-"+k, p[i]));
+  const tiles = f.posts.map((x,i) => '<button type="button" class="tl '+x[0]+'" data-i="'+i+'">'+(x[0]==="f"?'<em>Tu foto</em>':'')+'<b>'+esc(x[1])+'</b>'+(x[0]==="r"?'<small>Una reseña real vuestra</small>':'')+'</button>').join("");
+  document.getElementById("perfil").innerHTML =
+    '<div class="p-top"><span>'+esc(usuario(n))+'</span><small>Muestra</small></div>'+
+    '<div class="p-cab"><div class="p-av">'+esc(iniciales(n))+'</div><div class="p-st"><span><b>2</b>publicaciones<br>a la semana</span><span><b>'+f.dest.length+'</b>destacados<br>ordenados</span></div></div>'+
+    '<div class="p-bio"><b>'+esc(n)+'</b><span>'+esc(s.txt)+' en Vitoria-Gasteiz</span><span>📍 Tu calle · ⏰ Tu horario</span><span>👇 '+esc(f.cta)+' por WhatsApp</span><a>tu-web.es</a></div>'+
+    '<div class="p-bt"><i>'+esc(f.cta)+'</i><i>Cómo llegar</i></div>'+
+    '<div class="p-dest">'+f.dest.map(d => '<i data-l="'+esc(d[0])+'">'+esc(d)+'</i>').join("")+'</div>'+
+    '<div class="p-grid">'+tiles+'</div>'+
+    '<p class="p-pie">Muestra hecha por Ioritz Martínez. Los huecos «Tu foto» y las reseñas se rellenan con lo vuestro, real.</p>';
+  document.getElementById("lista").innerHTML = f.posts.slice(0,8).map(x => '<li><div><b>'+esc(x[1])+'</b><span>'+esc(x[2])+'</span>'+(x[0]==="f"?'<em>Necesito una foto vuestra</em>':x[0]==="r"?'<em>Necesito una reseña que os guste</em>':'')+'</div></li>').join("");
+  document.getElementById("perfil").hidden = false; document.getElementById("vacio").hidden = true; document.getElementById("mes").hidden = false;
+}
+document.getElementById("f").addEventListener("submit", e => {
+  e.preventDefault();
+  const n = document.getElementById("negocio").value.trim(), tipo = document.getElementById("tipo").value, pal = document.getElementById("estilo").value;
+  const err = document.getElementById("err");
+  if(!n){ err.textContent = "Escribe el nombre de tu negocio."; document.getElementById("negocio").focus(); return; }
+  err.textContent = "";
+  pinta(n, tipo, pal);
+  const tipoTxt = document.getElementById("tipo").selectedOptions[0].textContent;
+  document.getElementById("wa").href = "https://wa.me/34692024735?text="+encodeURIComponent("Hola Ioritz, he visto la muestra de mi Instagram en tu página y me interesa que me lo lleves.\nNegocio: "+n+"\nTipo: "+tipoTxt);
+  document.getElementById("aweb").href = "../prueba-tu-web/?n="+encodeURIComponent(n)+"&tipo="+encodeURIComponent(tipo)+"&ver=1";
+  document.getElementById("cta").classList.add("ok");
+  if(window.radar) radar("igmuestra", "Alguien ha mirado su Instagram de muestra: "+n, "Tipo: "+tipoTxt+". Le interesa lo de las redes: buen candidato al plan mensual.", 4, "camera");
+  if(window.matchMedia("(max-width:900px)").matches) document.getElementById("movil").scrollIntoView({behavior:"smooth",block:"start"});
+});
+document.getElementById("estilo").addEventListener("change", () => { if(!document.getElementById("perfil").hidden) document.getElementById("f").requestSubmit(); });
+// Enlace con el negocio ya puesto (?n=Nombre&tipo=peluqueria&ver=1)
+window.addEventListener("load", () => {
+  const q = new URLSearchParams(location.search), n = (q.get("n") || "").slice(0, 80);
+  if(!n) return;
+  document.getElementById("negocio").value = n;
+  const t = q.get("tipo"), adiv = (ADIVINA.find(a => a[0].test(n)) || [0, "tienda"])[1];
+  document.getElementById("tipo").value = t && D.sectores[t] ? t : adiv;
+  if(q.get("ver")) document.getElementById("f").requestSubmit();
+});
+</script>
+<script src="../radar.js" defer></script>
+</body>
+</html>

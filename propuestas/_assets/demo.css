@@ -313,3 +313,5 @@ body.estilando .bar,body.estilando .pr-pill{display:none!important}
 /* portada sin foto (sectores sin foto de ejemplo que encaje): degradado del color del negocio y su inicial de fondo */
 .hero.nofoto{min-height:min(68svh,600px);background:#111 radial-gradient(130% 95% at 88% 0%,color-mix(in srgb,var(--accent) 62%,#111) 0%,color-mix(in srgb,var(--accent) 16%,#111) 46%,#111 78%)}
 .hero.nofoto::before{content:attr(data-ini);position:absolute;right:-.06em;top:.02em;font-family:var(--display);font-weight:var(--dw,700);font-size:min(64vw,440px);line-height:.82;color:#fff;opacity:.07;pointer-events:none;letter-spacing:-.04em}
+.pr-ig{margin:18px 0 0;font-size:16px;font-weight:600}
+.pr-ig a{color:inherit;text-decoration:underline;text-underline-offset:3px}
