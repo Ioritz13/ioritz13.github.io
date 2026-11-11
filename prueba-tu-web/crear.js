@@ -37,8 +37,10 @@
     var cp = D.copia[s.fam || sector] || D.copia[tema] || D.copia.estetica;
     var fotos = ("fotos" in s) ? s.fotos : (D.fotos[sector] || D.fotos[tema] || null);   // null = sin foto (mejor que una que no encaja)
     var movil = /^[67]\d{8}$/.test(t);
-    var calle = dir || "Vitoria-Gasteiz";
-    var direccion = dir ? dir + ", Vitoria-Gasteiz" : "Vitoria-Gasteiz";
+    var cEl = document.getElementById("ciudad"), ciudad = (cEl && cEl.value.trim()) || "Vitoria-Gasteiz";   // el negocio puede estar en cualquier ciudad
+    var calle = dir || ciudad;
+    var direccion = dir ? dir + ", " + ciudad : ciudad;
+    s = Object.assign({}, s, {lema: s.lema.split("Vitoria-Gasteiz").join(ciudad)});
     var q = encodeURIComponent(n + " " + direccion);
     var maps = "https://www.google.com/maps/search/?api=1&query=" + q;
     var ini = (n.match(/[A-Za-zÁÉÍÓÚÑáéíóúñ]+/g) || [n]).filter(function (w) { return ["de", "la", "el", "y", "los", "las", "del"].indexOf(w.toLowerCase()) < 0; })
@@ -74,7 +76,7 @@
       (t ? '<a class="btn b-main" href="tel:+34' + t + '">' + I.tel + " Llamar</a>" : "") + "</nav></div></header>" +
       '<div class="hero' + (fotos && fotos.hero ? "" : " nofoto") + '"' + (fotos && fotos.hero ? "" : ' data-ini="' + esc(ini) + '"') + ">" +
       (fotos && fotos.hero ? '<img src="' + B + "_fotos/" + fotos.hero + '" alt=""><span class="ph-tag">Foto de ejemplo</span>' : "") +
-      '<div class="wrap"><div class="eyebrow">' + esc(s.txt) + " · Vitoria-Gasteiz</div><h1" + h1c + ">" + esc(n) + '</h1><p class="lead">' + esc(s.lema) + "</p>" +
+      '<div class="wrap"><div class="eyebrow">' + esc(s.txt) + " · " + esc(ciudad) + "</div><h1" + h1c + ">" + esc(n) + '</h1><p class="lead">' + esc(s.lema) + "</p>" +
       '<div class="cta">' + bMain + bSec + '</div><div class="chips"><a class="chip" href="' + maps + '" target="_blank" rel="noopener">' + I.pin + " " + esc(calle) + "</a></div></div></div>" +
       '<section id="servicios"><div class="wrap"><div class="eyebrow">' + esc(cp.svc_t) + "</div><h2>" + esc(cp.svc_h || "Lo que hacemos") + "</h2>" +
       '<p class="sub">Pregunta sin compromiso: te contestamos enseguida.</p><ul class="svc" style="margin-top:28px">' + filas + "</ul>" +

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mira gratis cómo quedaría el Instagram de tu negocio · Vitoria-Gasteiz</title>
+<title>Mira gratis cómo quedaría el Instagram de tu negocio</title>
 <meta name="description" content="Escribe el nombre de tu negocio y mira al momento cómo quedaría tu Instagram ordenado: perfil, destacados y las publicaciones del primer mes. Gratis y sin registrarte.">
 <link rel="canonical" href="https://ioritz13.github.io/tu-instagram/">
 <meta name="theme-color" content="#f7f8fb">
@@ -552,6 +552,7 @@ label.rd-fila:hover{border-color:var(--ink-2)}
       <form id="f" novalidate>
         <label>Nombre de tu negocio *<input id="negocio" name="negocio" required autocomplete="organization" placeholder="Ej.: Peluquería Ane"></label>
         <label>Tipo de negocio *<select id="tipo" name="tipo"><option value="peluqueria">Peluquería</option><option value="barberia">Barbería</option><option value="estetica">Centro de estética</option><option value="unas">Uñas</option><option value="fisioterapia">Fisioterapia o clínica</option><option value="tatuajes">Estudio de tatuajes</option><option value="restaurante">Bar o restaurante</option><option value="cafeteria">Cafetería</option><option value="panaderia">Panadería o pastelería</option><option value="carniceria">Carnicería</option><option value="pescaderia">Pescadería</option><option value="fruteria">Frutería</option><option value="gourmet">Tienda gourmet o vinoteca</option><option value="herbolario">Herbolario o dietética</option><option value="ropa">Tienda de ropa</option><option value="zapateria">Zapatería</option><option value="joyeria">Joyería</option><option value="optica">Óptica</option><option value="libreria">Librería o papelería</option><option value="regalos">Tienda de regalos</option><option value="decoracion">Decoración o muebles</option><option value="floristeria">Floristería</option><option value="ferreteria">Ferretería</option><option value="bicicletas">Tienda de bicicletas</option><option value="arreglos">Arreglos de ropa</option><option value="lavanderia">Lavandería o tintorería</option><option value="cerrajeria">Cerrajería</option><option value="animales">Tienda de animales</option><option value="mascotas">Peluquería canina</option><option value="taller">Taller mecánico</option><option value="oficios">Reformas u oficios</option><option value="tienda">Otra tienda</option></select></label>
+        <label>Ciudad<input id="ciudad" name="ciudad" autocomplete="address-level2" placeholder="Ej.: Vitoria-Gasteiz, Bilbao, Madrid…"></label>
         <label>Colores <span>(es una primera idea: luego uso los de tu marca)</span><select id="estilo" name="estilo"><option value="">Los de mi sector</option><option>Noche y oro</option><option>Blanco elegante</option><option>Rosa empolvado</option><option>Verde natural</option><option>Azul moderno</option><option>Terracota</option><option>Lila</option><option>Negro y rojo</option></select></label>
         <p class="err" id="err" role="alert"></p>
         <button class="btn btn-main" type="submit">Ver mi Instagram</button>
@@ -588,7 +589,7 @@ label.rd-fila:hover{border-color:var(--ink-2)}
 </div></section>
 </main>
 <footer><div class="wrap">
-  <span>Ioritz Martínez · Webs, Google Maps y redes sociales · Vitoria-Gasteiz · <a href="tel:+34692024735">692 02 47 35</a></span>
+  <span>Ioritz Martínez · Webs, Google Maps y redes sociales para negocios de toda España · <a href="tel:+34692024735">692 02 47 35</a></span>
   <span><a href="../condiciones/">Condiciones</a> · <a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></span>
 </div></footer>
 <script>
@@ -606,6 +607,7 @@ function usuario(n){
   return n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"").slice(0,24) || "tunegocio";
 }
 function pinta(n, tipo, pal){
+  const ciudad = (document.getElementById("ciudad").value.trim()) || "tu ciudad";
   const s = D.sectores[tipo] || D.sectores.tienda, f = D.fam[s.fam], p = D.paletas[pal || s.pal] || D.paletas["Blanco elegante"];
   const m = document.getElementById("movil");
   ["bg","bg2","card","ink","ink2","line","ac","aci"].forEach((k,i) => m.style.setProperty("--p-"+k, p[i]));
@@ -613,7 +615,7 @@ function pinta(n, tipo, pal){
   document.getElementById("perfil").innerHTML =
     '<div class="p-top"><span>'+esc(usuario(n))+'</span><small>Muestra</small></div>'+
     '<div class="p-cab"><div class="p-av">'+esc(iniciales(n))+'</div><div class="p-st"><span><b>2</b>publicaciones<br>a la semana</span><span><b>'+f.dest.length+'</b>destacados<br>ordenados</span></div></div>'+
-    '<div class="p-bio"><b>'+esc(n)+'</b><span>'+esc(s.txt)+' en Vitoria-Gasteiz</span><span>📍 Tu calle · ⏰ Tu horario</span><span>👇 '+esc(f.cta)+' por WhatsApp</span><a>tu-web.es</a></div>'+
+    '<div class="p-bio"><b>'+esc(n)+'</b><span>'+esc(s.txt)+' en '+esc(ciudad)+'</span><span>📍 Tu calle · ⏰ Tu horario</span><span>👇 '+esc(f.cta)+' por WhatsApp</span><a>tu-web.es</a></div>'+
     '<div class="p-bt"><i>'+esc(f.cta)+'</i><i>Cómo llegar</i></div>'+
     '<div class="p-dest">'+f.dest.map(d => '<i data-l="'+esc(d[0])+'">'+esc(d)+'</i>').join("")+'</div>'+
     '<div class="p-grid">'+tiles+'</div>'+
@@ -643,6 +645,7 @@ window.addEventListener("load", () => {
   document.getElementById("negocio").value = n;
   const t = q.get("tipo"), adiv = (ADIVINA.find(a => a[0].test(n)) || [0, "tienda"])[1];
   document.getElementById("tipo").value = t && D.sectores[t] ? t : adiv;
+  if(q.get("ciudad")) document.getElementById("ciudad").value = q.get("ciudad").slice(0, 60);
   if(q.get("ver")) document.getElementById("f").requestSubmit();
 });
 </script>
