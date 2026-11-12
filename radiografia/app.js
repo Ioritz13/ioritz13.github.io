@@ -166,7 +166,7 @@ var API_URL = "https://script.google.com/macros/s/AKfycbzANYPXVl3Szaw1Qn2u_fIgal
 
   function mensajeWa() {
     var quiero = estado.cortos.length ? estado.cortos.join(", ") : "mejorarla todavía más";
-    return "Hola Ioritz, soy " + estado.nombre + ". Me he hecho la radiografía y tengo un " + estado.nota + "/100. Quiero arreglar: " + quiero + ". ¿Me ayudas?";
+    return "Hola, soy " + estado.nombre + ". Me he hecho la radiografía y tengo un " + estado.nota + "/100. Quiero arreglar: " + quiero + ". ¿Me ayudas?";
   }
 
   function resultado(d) {

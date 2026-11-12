@@ -1,4 +1,4 @@
-/* Demos "pro": horario en vivo, mapa, hoja de propuesta, «Cámbiala tú mismo» y Radar (avisos a Ioritz vía ntfy).
+/* Demos "pro": horario en vivo, mapa, hoja de propuesta, «Cámbiala tú mismo» y Radar (avisos a Klivo vía ntfy).
    Sin cookies. Solo se guarda en este navegador lo que el propio negocio edita (para no perderlo al recargar). */
 (function () {
   "use strict";
@@ -115,16 +115,16 @@
 
   function wa(texto) { return "https://wa.me/" + IORITZ + "?text=" + encodeURIComponent(texto); }
   $$("[data-quiero]").forEach(function (a) {
-    a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos? " + C.url);
+    a.href = wa("Hola, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos? " + C.url);
     a.addEventListener("click", function () {
       var est = window.__estilo ? window.__estilo() : "";
-      a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos?" + (est ? "\n" + est : "") + "\n" + C.url); radar("quiero", C.n + " ha pulsado «La quiero»", "Escríbele ya: está listo para decir que sí.", 5, "fire"); });
+      a.href = wa("Hola, soy de " + C.n + ". He visto la web que nos has preparado y la queremos. ¿Cómo seguimos?" + (est ? "\n" + est : "") + "\n" + C.url); radar("quiero", C.n + " ha pulsado «La quiero»", "Escríbele ya: está listo para decir que sí.", 5, "fire"); });
   });
   $$("[data-no]").forEach(function (a) {
     a.addEventListener("click", function () { radar("no", C.n + " no está interesado", "Ha pulsado «Dímelo y la borro». No le vuelvas a escribir.", 3, "no_entry"); });
   });
   $$("[data-duda]").forEach(function (a) {
-    a.href = wa("Hola Ioritz, soy de " + C.n + ". He visto la web que nos has preparado y tengo una duda: ");
+    a.href = wa("Hola, soy de " + C.n + ". He visto la web que nos has preparado y tengo una duda: ");
     a.addEventListener("click", function () { radar("duda", C.n + " tiene una duda", "Ha pulsado «Tengo una duda». Mira tu WhatsApp.", 4, "question"); });
   });
 
@@ -284,7 +284,7 @@
   $$("[data-enviar]").forEach(function (b) {
     b.addEventListener("click", function () {
       guardar();
-      var L = ["Hola Ioritz, soy de " + C.n + ". Así quiero mi web:"], cambios = [];
+      var L = ["Hola, soy de " + C.n + ". Así quiero mi web:"], cambios = [];
       $$("[data-k]").forEach(function (el) {
         var t = el.textContent.trim(), o = el.getAttribute("data-o");
         if (t && t !== o && t !== "—") cambios.push(el.getAttribute("data-l") + ": " + t);

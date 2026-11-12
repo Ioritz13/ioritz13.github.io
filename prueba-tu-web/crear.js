@@ -94,7 +94,7 @@
       '<section class="final"><div class="wrap"><h2>' + esc(cp.final) + "</h2><p>" + esc(n) + " · " + esc(calle) + '</p><div class="cta">' +
       (movil ? '<a class="btn b-main" href="' + waNeg + '" target="_blank" rel="noopener">' + I.wa + " Escribir por WhatsApp</a>" : "") +
       (t ? '<a class="btn b-line" href="tel:+34' + t + '">' + I.tel + " " + telFmt(t) + "</a>" : "") + "</div></div></section>" +
-      '<footer class="site"><div class="wrap"><span>© 2026 ' + esc(n) + "</span><span>Vista previa gratis · Ioritz Martínez</span></div></footer>" +
+      '<footer class="site"><div class="wrap"><span>© 2026 ' + esc(n) + "</span><span>Vista previa gratis · Klivo</span></div></footer>" +
       bar + "</body></html>";
   };
 })();

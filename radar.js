@@ -1,5 +1,5 @@
-/* Radar: avisa al móvil de Ioritz (ntfy.sh) cuando alguien escanea su tarjeta o usa sus herramientas. Sin cookies.
-   En el móvil de Ioritz se silencia abriendo una vez /yo/. */
+/* Radar: avisa al móvil de Klivo (ntfy.sh) cuando alguien escanea su tarjeta o usa sus herramientas. Sin cookies.
+   En el móvil de Klivo se silencia abriendo una vez /yo/. */
 (function () {
   var T = "radar-iori-w55l9b611ksj13";
   var prueba = /[?&]radar=test/.test(location.search);

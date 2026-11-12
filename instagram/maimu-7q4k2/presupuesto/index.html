@@ -90,7 +90,7 @@ function pintar(){
   $('#h').checked=est.historias;$('#s').checked=est.sesion;$('#c').checked=est.comentarios;
   $('#cifra').innerHTML=eur(t)+' <small>al mes</small>';
   $('#resumen').textContent=lin.map(l=>l[0]).join(' · ');
-  const msg='Hola Ioritz, hemos visto el presupuesto de Instagram de Maimú. Nos interesa esto:\n'+lin.map(l=>'- '+l[0]+': '+eur(l[1])).join('\n')+'\nTotal: '+eur(t)+' al mes.';
+  const msg='Hola, hemos visto el presupuesto de Instagram de Maimú. Nos interesa esto:\n'+lin.map(l=>'- '+l[0]+': '+eur(l[1])).join('\n')+'\nTotal: '+eur(t)+' al mes.';
   $('#wa').href='https://wa.me/34692024735?text='+encodeURIComponent(msg);
 }
 function paso(k,d,max){est[k]=Math.max(0,Math.min(max,est[k]+d));pintar()}

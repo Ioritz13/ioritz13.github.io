@@ -57,11 +57,11 @@ li.q p::before{counter-increment:q;content:counter(q) ". ";color:var(--ink-2)}
 footer{margin-top:48px;font-size:14px;color:var(--ink-2)}
 footer a{color:var(--ink-2)}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Test gratis: ¿está bien tu ficha de Google Maps?","url":"https://ioritz13.github.io/test-ficha-google/","inLanguage":"es","about":"Ficha de Google Maps (Perfil de Empresa de Google) para negocios locales de Vitoria-Gasteiz","publisher":{"@type":"ProfessionalService","name":"Ioritz Martínez","url":"https://ioritz13.github.io/","telephone":"+34692024735"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Test gratis: ¿está bien tu ficha de Google Maps?","url":"https://ioritz13.github.io/test-ficha-google/","inLanguage":"es","about":"Ficha de Google Maps (Perfil de Empresa de Google) para negocios locales de Vitoria-Gasteiz","publisher":{"@type":"ProfessionalService","name":"Klivo","url":"https://ioritz13.github.io/","telephone":"+34692024735"}}</script>
 </head>
 <body>
 <div class="wrap">
-<header><a class="brand" href="../"><img src="../img/icono.svg" alt="">Ioritz Martínez</a><a href="../#precios">Precios</a></header>
+<header><a class="brand" href="../"><img src="../img/icono.svg" alt="">Klivo</a><a href="../#precios">Precios</a></header>
 <main>
 <div class="k">Test gratis · 1 minuto</div>
 <h1>¿Está bien tu ficha de <span class="mark">Google Maps?</span></h1>
@@ -77,11 +77,11 @@ footer a{color:var(--ink-2)}
   <p id="txt"></p>
   <ol id="fallos"></ol>
   <a class="btn wa" id="cta" href="#" target="_blank" rel="noopener">Quiero que me la revises gratis</a>
-  <p class="note">Te contesto yo, Ioritz, de Vitoria. Revisarla no te compromete a nada.</p>
+  <p class="note">Te contesto yo, desde Klivo. Revisarla no te compromete a nada.</p>
   <p class="note"><b>¿Prefieres que te la deje a punto yo?</b> Ficha completa y kit de reseñas con QR, sin web: <a href="../#sueltos">69&nbsp;€, pago único</a>. O con web incluida, <a href="../#precios">desde 149&nbsp;€</a>. Si prefieres hacerlo tú: <a href="../guias/horario-festivos-google-maps/">guía de horarios</a> · <a href="../guias/conseguir-resenas-google/">guía de reseñas</a>.</p>
 </section>
 </main>
-<footer>Ioritz Martínez · Webs, Google Maps y redes sociales para negocios · Vitoria-Gasteiz · <a href="../test-instagram/">Test de tu Instagram</a> · <a href="../condiciones/">Condiciones</a> · <a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></footer>
+<footer>Klivo · Webs, Google Maps y redes sociales para negocios · Vitoria-Gasteiz · <a href="../test-instagram/">Test de tu Instagram</a> · <a href="../condiciones/">Condiciones</a> · <a href="../aviso-legal">Aviso legal</a> · <a href="../privacidad">Privacidad</a></footer>
 </div>
 <script>
 var Q=[
@@ -115,7 +115,7 @@ document.getElementById('t').addEventListener('submit',function(e){
  var fl=document.getElementById('fallos');fl.innerHTML='';
  fal.forEach(function(q){var li=document.createElement('li');var b=document.createElement('b');b.textContent=q[0].replace('¿','').replace('?','');li.appendChild(b);li.appendChild(document.createTextNode(q[1]));fl.appendChild(li)});
  if(window.radar) radar('test','Alguien ha hecho el test de Google Maps: '+s+'/10','Si te escribe, ya sabe su nota.',3,'clipboard');
- document.getElementById('cta').href='https://wa.me/34692024735?text='+encodeURIComponent('Hola Ioritz, he hecho el test de Google Maps y me ha salido '+s+'/10. Mi negocio es: ');
+ document.getElementById('cta').href='https://wa.me/34692024735?text='+encodeURIComponent('Hola, he hecho el test de Google Maps y me ha salido '+s+'/10. Mi negocio es: ');
  var r=document.getElementById('res');r.style.display='block';r.scrollIntoView({behavior:'smooth',block:'start'});
 });
 </script>

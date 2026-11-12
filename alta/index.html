@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Datos para tu web · Ioritz Martínez</title>
+<title>Datos para tu web · Klivo</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#f7f8fb">
 <link rel="icon" href="../img/icono.svg" type="image/svg+xml">
@@ -37,7 +37,7 @@ button{min-height:52px;border:0;border-radius:999px;background:var(--wa);color:#
 </head>
 <body>
 <div class="wrap">
-  <a class="brand" href="../"><img src="../img/icono.svg" alt="">Ioritz Martínez</a>
+  <a class="brand" href="../"><img src="../img/icono.svg" alt="">Klivo</a>
   <h1>Datos para tu web</h1>
   <p class="lead">Rellena lo que sepas (2-3 minutos). Al pulsar el botón se abre WhatsApp con todo escrito y tú lo envías. Lo que no tengas a mano, me lo pasas luego por el chat.</p>
   <form id="f" novalidate>
@@ -69,7 +69,7 @@ document.getElementById('f').addEventListener('submit',function(e){
   ['Negocio','Contacto','Teléfono'].forEach(function(n){if(!f.elements[n].value.trim())faltan.push(n.toLowerCase())});
   if(faltan.length){err.textContent='Falta: '+faltan.join(', ')+'.';f.elements[faltan[0]==='negocio'?'Negocio':faltan[0]==='contacto'?'Contacto':'Teléfono'].focus();return}
   err.textContent='';
-  var l=['Hola Ioritz, te paso los datos para la web:',''];
+  var l=['Hola, te paso los datos para la web:',''];
   new FormData(f).forEach(function(v,k){v=String(v).trim();if(v)l.push('*'+k+':* '+v)});
   window.location.href='https://wa.me/34692024735?text='+encodeURIComponent(l.join('\n'));
 });
