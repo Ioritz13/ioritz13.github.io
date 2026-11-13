@@ -110,6 +110,24 @@
   .prueba { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--linea); font-size: 14px; }
   .prueba b { flex: none; width: 96px; } .prueba .ok { color: var(--acento-2); } .prueba .mal { color: var(--tenue); }
   .pestanas { overflow-x: auto; } .pestanas button { white-space: nowrap; }
+  .cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0 0 14px; }
+  .cifra { border: 1px solid var(--linea); border-radius: 10px; padding: 12px 14px; background: rgba(20,26,30,.6); min-width: 0; }
+  .cifra small { display: block; font: 10px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--tenue); }
+  .cifra b { display: block; font-size: 24px; line-height: 1.2; margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .cifra b span { font-size: 13px; font-weight: 500; color: var(--tenue); }
+  .barra-meta { height: 4px; border-radius: 2px; background: var(--linea); margin-top: 8px; overflow: hidden; }
+  .barra-meta i { display: block; height: 100%; background: var(--acento); border-radius: 2px; }
+  .lead { padding: 12px 0; border-bottom: 1px solid var(--linea); }
+  .lead:last-child { border-bottom: 0; }
+  .lead .nombre { font-weight: 650; overflow-wrap: anywhere; }
+  .lead .nombre em { font-style: normal; font: 10px var(--mono); letter-spacing: .08em; color: #0b0e05; background: var(--acento);
+    padding: 2px 6px; border-radius: 3px; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+  .lead small { display: block; color: var(--tenue); font-size: 12.5px; margin-top: 2px; overflow-wrap: anywhere; }
+  .lead .botones { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .lead .botones a, .lead .botones button { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--linea); background: var(--panel-2);
+    color: var(--texto); font-size: 13px; text-decoration: none; }
+  .lead .botones a.wa { border-color: var(--acento-2); color: var(--acento-2); }
+  .agenda { white-space: pre-wrap; font-size: 14px; margin-top: 6px; }
 
   .barra { display: flex; gap: 8px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--linea); }
   .barra textarea { flex: 1; min-width: 0; resize: none; height: 46px; max-height: 140px; padding: 11px 14px; border-radius: 10px;
@@ -133,6 +151,8 @@
     .leyenda { min-height: 0; }
     .leyenda .frase { font-size: 18px; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pie { display: none; }
+    body[data-vista]:not([data-vista="chat"]) .orbe, body[data-vista]:not([data-vista="chat"]) .leyenda { display: none; }
+    body[data-vista]:not([data-vista="chat"]) .escena { padding-bottom: 12px; }
     .consola { border-left: 0; border-top: 1px solid var(--linea); }
     .pestanas button { padding: 12px 2px; font-size: 10px; letter-spacing: .1em; }
     .vista { padding: 14px; }
@@ -159,12 +179,14 @@
 
   <section class="consola">
     <div class="pestanas" role="tablist">
+      <button role="tab" aria-selected="false" data-vista="panel" id="tab-panel" hidden>Panel</button>
       <button role="tab" aria-selected="true" data-vista="chat">Conversación</button>
       <button role="tab" aria-selected="false" data-vista="tareas">Tareas</button>
       <button role="tab" aria-selected="false" data-vista="memoria">Memoria</button>
       <button role="tab" aria-selected="false" data-vista="skills">Skills</button>
       <button role="tab" aria-selected="false" data-vista="ajustes" id="tab-ajustes" hidden>Ajustes</button>
     </div>
+    <div class="vista" id="panel"></div>
     <div class="vista activa" id="chat" role="log" aria-live="polite"></div>
     <div class="vista" id="tareas"></div>
     <div class="vista" id="memoria"></div>
@@ -381,6 +403,7 @@ $("micro").onclick = () => {
 document.querySelectorAll(".pestanas button").forEach((b) => b.onclick = () => {
   document.querySelectorAll(".pestanas button").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
   document.querySelectorAll(".vista").forEach((v) => v.classList.toggle("activa", v.id === b.dataset.vista));
+  document.body.dataset.vista = b.dataset.vista;   // en el móvil, fuera de la conversación el orbe se recoge
 });
 function irAChat(texto) { document.querySelector('[data-vista="chat"]').click(); $("entrada").value = texto; $("entrada").focus(); ajustarAltura(); }
 function fechaBonita(f) { return f ? f.replace("T", " · ") : "sin fecha"; }
@@ -403,14 +426,65 @@ function pintarPaneles(s) {
   s.skills.forEach((x) => { const b = el("button", "skill"); b.append(el("b", "", "/" + x.nombre), el("div", "", x.descripcion)); b.onclick = () => irAChat("/" + x.nombre + " "); k.append(b); });
 }
 
+/* --- panel del negocio: cifras, a quién volver hoy y accesos directos --- */
+async function cargarPanel() {
+  const caja = $("panel");
+  let p;
+  try { p = await (await api("/api/panel")).json(); } catch (e) { caja.textContent = e.message; return; }
+  caja.textContent = "";
+  if (!p.configurado) { caja.append(el("div", "vacio", "Conecta GitHub y el repositorio de tu negocio en Ajustes para ver aquí tus cifras.")); return; }
+  if (p.error) { caja.append(el("div", "vacio", "No he podido leer el proyecto: " + p.error)); return; }
+  const c = p.cuentas, cifras = el("div", "cifras");
+  const cifra = (titulo, valor, de, pct) => {
+    const d = el("div", "cifra"), b = el("b", "", String(valor)); d.append(el("small", "", titulo));
+    if (de) b.append(el("span", "", " " + de)); d.append(b);
+    if (pct != null) { const barra = el("div", "barra-meta"), i = document.createElement("i"); i.style.width = Math.max(0, Math.min(100, pct)) + "%"; barra.append(i); d.append(barra); }
+    return d;
+  };
+  cifras.append(
+    cifra("Ingresos al mes", c.mensual + " €", c.objetivo_mensual ? "de " + c.objetivo_mensual + " €" : "", c.objetivo_mensual ? 100 * c.mensual / c.objetivo_mensual : null),
+    cifra("Clientes mensuales", c.clientes_mensuales, c.objetivo_clientes ? "de " + c.objetivo_clientes : "", c.objetivo_clientes ? 100 * c.clientes_mensuales / c.objetivo_clientes : null),
+    cifra("Cobrado en total", c.cobrado + " €", c.clientes.length + (c.clientes.length === 1 ? " cliente" : " clientes")),
+    cifra("Últimos 7 días", p.semana.contactados, "contactados · " + p.semana.respondieron + " respondieron"));
+  caja.append(cifras);
+  const grupo = (titulo, pie) => { const g = el("div", "grupo"), h = el("h3", "", titulo); if (pie) h.append(el("span", "", pie)); g.append(h); caja.append(g); return g; };
+  const lead = (f, etiqueta, detalle) => {
+    const d = el("div", "lead"), n = el("div", "nombre", f.negocio); if (etiqueta) n.append(el("em", "", etiqueta));
+    d.append(n, el("small", "", [f.sector, detalle, f.respuesta && "Respuesta: " + f.respuesta].filter(Boolean).join(" · ")));
+    const b = el("div", "botones");
+    const enlace = (texto, href, cls) => { const a = el("a", cls || "", texto); a.href = href; a.target = "_blank"; a.rel = "noopener"; b.append(a); };
+    if (f.whatsapp) enlace("WhatsApp", f.whatsapp, "wa"); else if (f.telefono) enlace("Llamar", "tel:" + f.telefono.replace(/\s/g, ""));
+    if (f.muestra) enlace("Su muestra", f.muestra);
+    const m = el("button", "", "Prepárame el mensaje"); m.type = "button"; m.onclick = () => { document.querySelector('[data-vista="chat"]').click(); enviar("/seguimiento " + f.negocio, false); }; b.append(m);
+    d.append(b); return d;
+  };
+  const dia = (iso) => iso ? iso.split("-").reverse().slice(0, 2).join("/") : "";
+  if (p.calientes.length) {
+    const g = grupo("Han mirado su muestra", p.calientes.length + "");
+    p.calientes.forEach((f) => g.append(lead(f, f.miro_precio ? "MIRÓ EL PRECIO" : "", f.visitas + (f.visitas === 1 ? " visita" : " visitas") + ", la última el " + dia(f.ultima))));
+  }
+  const g2 = grupo("Seguimientos de hoy", p.tocan.length + "");
+  if (!p.tocan.length) g2.append(el("div", "campo", "Hoy no toca ninguno."));
+  p.tocan.slice(0, 12).forEach((f) => g2.append(lead(f, "", "tocaba el " + dia(f.seguimiento))));
+  if (p.tocan.length > 12) g2.append(el("div", "campo", "… y " + (p.tocan.length - 12) + " más. Pídele la lista completa en la conversación."));
+  p.caducan.forEach((x) => grupo("Presupuesto a punto de caducar").append(el("div", "campo", x.negocio + " · " + x.precio + " € · hasta el " + dia(x.hasta))));
+  const g3 = grupo("Hoy"); g3.append(el("div", "agenda", p.agenda || ""));
+  const g4 = grupo("Embudo", p.total + " negocios");
+  g4.append(el("div", "campo", Object.entries(p.embudo).sort((a, b) => b[1] - a[1]).map(([k, v]) => k.replace(/_/g, " ") + ": " + v).join(" · ")));
+  const nuevos = el("button", "accion", "Búscame clientes nuevos"); nuevos.type = "button";
+  nuevos.onclick = () => { document.querySelector('[data-vista="chat"]').click(); enviar("Búscame clientes nuevos: dime qué sectores tienen más negocios sin web", false); };
+  caja.append(nuevos);
+}
+
 /* --- ajustes (versión en la nube): las claves se guardan en el servidor, nunca vuelven al navegador --- */
 const GRUPOS = [
-  { titulo: "Tú", campos: [["USER_NAME", "Tu nombre"], ["BRIEFING_TIME", "Hora del resumen diario (HH:MM; escribe no para quitarlo)"]] },
+  { titulo: "Tú y sus avisos", campos: [["USER_NAME", "Tu nombre"], ["BRIEFING_TIME", "Resumen de la mañana (HH:MM; escribe no para quitarlo)"],
+    ["CHECKIN_TIME", "Cierre del día: te pregunta con quién has hablado (HH:MM o no)"], ["WEEKLY_TIME", "Resumen semanal de los domingos (HH:MM o no)"]] },
   { titulo: "Cerebro", listo: (a) => a.secretos.GEMINI_API_KEY || a.secretos.GROQ_API_KEY, ayuda: ["Clave gratuita de Gemini: ", "https://aistudio.google.com/apikey"],
     campos: [["GEMINI_API_KEY", "Clave de Gemini"], ["GROQ_API_KEY", "Clave de Groq (opcional: reserva y notas de voz) · console.groq.com/keys"]] },
   { titulo: "Telegram", listo: (a) => a.telegram.vinculado, ayuda: ["En Telegram, habla con @BotFather → /newbot y copia el token. Guarda y pulsa «Conectar Telegram»."],
     campos: [["TELEGRAM_BOT_TOKEN", "Token del bot"]], telegram: true },
-  { titulo: "GitHub y tu proyecto", listo: (a) => a.secretos.GITHUB_TOKEN, ayuda: ["Token de solo lectura (fine-grained, Contents: Read-only): ", "https://github.com/settings/personal-access-tokens"],
+  { titulo: "GitHub y tu proyecto", listo: (a) => a.secretos.GITHUB_TOKEN, ayuda: ["Token fine-grained para el repositorio de tu negocio. Con «Contents: Read-only» solo consulta; con «Read and write» además apunta tus contactos en el seguimiento: ", "https://github.com/settings/personal-access-tokens"],
     campos: [["GITHUB_TOKEN", "Token de GitHub"], ["PROJECT_REPO", "Repositorio de tu negocio (usuario/nombre)"]] },
   { titulo: "Correo", listo: (a) => a.secretos.EMAIL_APP_PASSWORD && a.valores.EMAIL_ADDRESS, ayuda: ["Gmail: crea una contraseña de aplicación en ", "https://myaccount.google.com/apppasswords"],
     campos: [["EMAIL_ADDRESS", "Tu dirección de correo"], ["EMAIL_APP_PASSWORD", "Contraseña de aplicación"]] },
@@ -487,6 +561,9 @@ async function refrescar(conHistorial) {
     [["WhatsApp", s.conexiones.whatsapp], ["Telegram", s.conexiones.telegram], ["Correo", s.conexiones.correo], ["Calendario", s.conexiones.calendario], ["GitHub", s.conexiones.github], ["Voz neuronal", s.voz_servidor]]
       .forEach(([n, on]) => c.append(el("span", on ? "on" : "", n)));
     pintarPaneles(s);
+    if (s.nube && s.conexiones.github && s.configurado) {
+      const estreno = $("tab-panel").hidden; $("tab-panel").hidden = false; cargarPanel(); if (estreno && primera) $("tab-panel").click();
+    }
     if (s.nube && $("tab-ajustes").hidden) { $("tab-ajustes").hidden = false; cargarAjustes(); if (!s.configurado) $("tab-ajustes").click(); }
     if (conHistorial) {
       chat.textContent = "";
