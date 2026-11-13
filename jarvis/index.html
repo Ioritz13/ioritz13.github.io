@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Jarvis">
+<meta name="theme-color" content="#06080a">
+<title>J.A.R.V.I.S.</title>
+<style>
+  :root {
+    --fondo: #06080a; --panel: #0d1114; --panel-2: #141a1e; --linea: #232c31;
+    --texto: #e9efe6; --tenue: #8a968f; --acento: #d6ff3f; --acento-2: #6dffb0;
+    --peligro: #ff6b5e; --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto); font: 15px/1.5 var(--sans);
+    background-image:
+      radial-gradient(ellipse 70% 50% at 30% 40%, rgba(214,255,63,.07), transparent 70%),
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: auto, 44px 44px, 44px 44px;
+    overflow: hidden;
+  }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .app { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); height: 100dvh; }
+
+  /* --- lado izquierdo: el orbe ------------------------------------------ */
+  .escena { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 20px 24px; }
+  .cabecera { display: flex; align-items: center; gap: 12px; font: 11px var(--mono); letter-spacing: .22em;
+    color: var(--tenue); text-transform: uppercase; }
+  .cabecera b { color: var(--acento); font-weight: 600; }
+  .chip { margin-left: auto; padding: 4px 10px; border: 1px solid var(--linea); border-radius: 3px;
+    letter-spacing: .14em; white-space: nowrap; }
+  .chip.ok { color: #0a0d05; background: var(--acento); border-color: var(--acento); }
+  .chip.mal { color: var(--peligro); border-color: var(--peligro); }
+  .orbe { flex: 1; min-height: 0; position: relative; display: grid; place-items: center; }
+  canvas { width: min(100%, 62vh); aspect-ratio: 1; display: block; }
+  .leyenda { text-align: center; min-height: 92px; padding: 0 12px; }
+  .leyenda .estado { font: 11px var(--mono); letter-spacing: .3em; color: var(--acento); text-transform: uppercase; }
+  .leyenda .frase { margin: 8px auto 0; max-width: 30ch; font-size: clamp(20px, 2.6vw, 30px); font-weight: 750;
+    line-height: 1.15; text-wrap: balance; letter-spacing: -.01em; }
+  .leyenda .frase em { font-style: normal; color: var(--acento); }
+  .pie { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; font: 11px var(--mono);
+    color: var(--tenue); letter-spacing: .08em; }
+  .pie span::before { content: "○ "; }
+  .pie span.on { color: var(--acento-2); }
+  .pie span.on::before { content: "● "; }
+
+  /* --- lado derecho: conversación --------------------------------------- */
+  .consola { display: flex; flex-direction: column; min-width: 0; min-height: 0; background: rgba(13,17,20,.86);
+    border-left: 1px solid var(--linea); }
+  .pestanas { display: flex; border-bottom: 1px solid var(--linea); }
+  .pestanas button { flex: 1; padding: 14px 6px; background: none; border: 0; border-bottom: 2px solid transparent;
+    font: 11px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--tenue); }
+  .pestanas button[aria-selected="true"] { color: var(--acento); border-bottom-color: var(--acento); }
+  .pestanas button:focus-visible, .barra button:focus-visible, .tarjeta button:focus-visible,
+  .item button:focus-visible { outline: 2px solid var(--acento); outline-offset: -2px; }
+  .vista { flex: 1; min-height: 0; overflow-y: auto; padding: 18px; display: none; scrollbar-width: thin;
+    scrollbar-color: var(--linea) transparent; }
+  .vista.activa { display: block; }
+  .msg { max-width: 88%; margin: 0 0 12px; padding: 10px 14px; border-radius: 12px; white-space: pre-wrap;
+    overflow-wrap: anywhere; }
+  .msg.yo { margin-left: auto; background: var(--acento); color: #0b0e05; border-bottom-right-radius: 3px; font-weight: 550; }
+  .msg.ia { background: var(--panel-2); border: 1px solid var(--linea); border-bottom-left-radius: 3px; }
+  .msg.ia.error { border-color: var(--peligro); }
+  .msg a { color: var(--acento); }
+  .meta { font: 10px var(--mono); color: var(--tenue); letter-spacing: .1em; margin: -6px 0 12px 4px; }
+  .tarjeta { margin: 0 0 12px; padding: 12px 14px; border: 1px solid var(--acento); border-radius: 10px;
+    background: rgba(214,255,63,.06); max-width: 92%; }
+  .tarjeta h4 { margin: 0 0 6px; font: 11px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
+  .tarjeta pre { margin: 8px 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.45 var(--sans);
+    max-height: 180px; overflow: auto; color: #cfd8cb; }
+  .tarjeta .botones { display: flex; gap: 8px; }
+  .tarjeta button, .item button { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--linea); background: var(--panel-2); }
+  .tarjeta button.si { background: var(--acento); color: #0b0e05; border-color: var(--acento); font-weight: 650; }
+  .doc { display: inline-flex; gap: 8px; align-items: center; margin: 0 0 12px; padding: 9px 14px; border-radius: 8px;
+    background: #f4f1e8; color: #1c1c1c; text-decoration: none; font-weight: 600; }
+  .vacio { color: var(--tenue); text-align: center; padding: 40px 16px; }
+  .vacio .sugerencias { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+  .vacio button, .skill { padding: 8px 12px; border: 1px solid var(--linea); border-radius: 999px; background: var(--panel-2);
+    color: var(--texto); font-size: 13px; }
+  .vacio button:hover, .skill:hover { border-color: var(--acento); }
+  .item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 2px; border-bottom: 1px solid var(--linea); }
+  .item .cuerpo { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .item small { display: block; font: 11px var(--mono); color: var(--tenue); margin-top: 2px; }
+  .skill { display: block; width: 100%; text-align: left; border-radius: 10px; margin-bottom: 10px; padding: 12px 14px; }
+  .skill b { font: 13px var(--mono); color: var(--acento); }
+  .nota { font-size: 13px; color: var(--tenue); margin: 0 0 14px; }
+  .nota a, .campo a { color: var(--acento); }
+  .grupo { border: 1px solid var(--linea); border-radius: 10px; padding: 14px; margin: 0 0 14px; background: rgba(20,26,30,.6); }
+  .grupo h3 { margin: 0 0 4px; font: 12px var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
+  .grupo h3 span { float: right; color: var(--acento-2); letter-spacing: .06em; }
+  .grupo h3 span.falta { color: var(--tenue); }
+  .campo { display: block; margin: 10px 0 0; font-size: 13px; color: var(--tenue); }
+  .campo input, .campo textarea { display: block; width: 100%; margin-top: 4px; padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--linea); background: var(--fondo); color: var(--texto); font: 16px var(--sans); }
+  .campo textarea { min-height: 260px; font: 13px/1.5 var(--mono); }
+  .campo input:focus, .campo textarea:focus { outline: none; border-color: var(--acento); }
+  .accion { margin-top: 12px; padding: 10px 16px; border-radius: 8px; border: 1px solid var(--linea); background: var(--panel-2); }
+  .accion.principal { background: var(--acento); border-color: var(--acento); color: #0b0e05; font-weight: 650; }
+  .accion:disabled { opacity: .5; }
+  .aviso { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: rgba(214,255,63,.08); border: 1px solid var(--acento);
+    font-size: 14px; overflow-wrap: anywhere; }
+  .prueba { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--linea); font-size: 14px; }
+  .prueba b { flex: none; width: 96px; } .prueba .ok { color: var(--acento-2); } .prueba .mal { color: var(--tenue); }
+  .pestanas { overflow-x: auto; } .pestanas button { white-space: nowrap; }
+
+  .barra { display: flex; gap: 8px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--linea); }
+  .barra textarea { flex: 1; min-width: 0; resize: none; height: 46px; max-height: 140px; padding: 11px 14px; border-radius: 10px;
+    border: 1px solid var(--linea); background: var(--fondo); color: var(--texto); font: inherit; }
+  .barra textarea:focus { outline: none; border-color: var(--acento); }
+  .barra button { width: 46px; height: 46px; flex: none; border-radius: 10px; border: 1px solid var(--linea);
+    background: var(--panel-2); display: grid; place-items: center; }
+  .barra button svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .barra button.principal { background: var(--acento); border-color: var(--acento); color: #0b0e05; }
+  .barra button[aria-pressed="true"] { border-color: var(--acento); color: var(--acento); }
+  .barra button.grabando { background: var(--peligro); border-color: var(--peligro); color: #fff; }
+  .barra button:disabled { opacity: .45; cursor: default; }
+
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
+    .escena { padding: 12px 16px 10px; }
+    .cabecera { font-size: 10px; letter-spacing: .16em; gap: 8px; }
+    .cabecera #modelo { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .orbe { flex: none; }
+    canvas { width: min(42vw, 22dvh, 190px); }
+    .leyenda { min-height: 0; }
+    .leyenda .frase { font-size: 18px; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .pie { display: none; }
+    .consola { border-left: 0; border-top: 1px solid var(--linea); }
+    .pestanas button { padding: 12px 2px; font-size: 10px; letter-spacing: .1em; }
+    .vista { padding: 14px; }
+    .barra { padding-left: 10px; padding-right: 10px; gap: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="escena" aria-label="Estado del asistente">
+    <div class="cabecera">
+      <span><b id="marca">J.A.R.V.I.S.</b></span>
+      <span id="modelo"></span>
+      <span class="chip" id="chip">CONECTANDO</span>
+    </div>
+    <div class="orbe"><canvas id="lienzo" width="900" height="900" aria-hidden="true"></canvas></div>
+    <div class="leyenda" aria-live="polite">
+      <div class="estado" id="estado">En espera</div>
+      <div class="frase" id="frase"></div>
+    </div>
+    <div class="pie" id="conexiones"></div>
+  </section>
+
+  <section class="consola">
+    <div class="pestanas" role="tablist">
+      <button role="tab" aria-selected="true" data-vista="chat">Conversación</button>
+      <button role="tab" aria-selected="false" data-vista="tareas">Tareas</button>
+      <button role="tab" aria-selected="false" data-vista="memoria">Memoria</button>
+      <button role="tab" aria-selected="false" data-vista="skills">Skills</button>
+      <button role="tab" aria-selected="false" data-vista="ajustes" id="tab-ajustes" hidden>Ajustes</button>
+    </div>
+    <div class="vista activa" id="chat" role="log" aria-live="polite"></div>
+    <div class="vista" id="tareas"></div>
+    <div class="vista" id="memoria"></div>
+    <div class="vista" id="skills"></div>
+    <div class="vista" id="ajustes"></div>
+    <form class="barra" id="formulario">
+      <button type="button" id="micro" title="Hablar" aria-label="Hablar">
+        <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </button>
+      <textarea id="entrada" placeholder="Escribe o habla…" aria-label="Mensaje" rows="1"></textarea>
+      <button type="button" id="altavoz" title="Respuestas en voz alta" aria-label="Respuestas en voz alta" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+      </button>
+      <button type="submit" class="principal" id="enviar" title="Enviar" aria-label="Enviar">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </section>
+</div>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, texto) => { const e = document.createElement(tag); if (cls) e.className = cls; if (texto != null) e.textContent = texto; return e; };
+
+/* --- acceso ----------------------------------------------------------------- */
+let token = "", BASE = "";   // BASE: dirección del servidor cuando la interfaz vive en otro sitio (versión en la nube)
+function leerEnlace(texto) {
+  const t = (texto.match(/token=([^&\s]+)/) || [])[1], a = (texto.match(/api=([^&\s]+)/) || [])[1];
+  if (a) { const u = decodeURIComponent(a).replace(/\/+$/, ""); if (/^https:\/\/[a-z0-9.-]+(\/[\w\/.-]*)?$/i.test(u)) { BASE = u; try { localStorage.setItem("jarvis_api", BASE); } catch (e) {} } }
+  if (t) { token = decodeURIComponent(t); try { localStorage.setItem("jarvis_token", token); } catch (e) {} }
+  return !!(t || a);
+}
+try {
+  BASE = localStorage.getItem("jarvis_api") || ""; token = localStorage.getItem("jarvis_token") || "";
+  if (leerEnlace(location.hash)) history.replaceState(null, "", location.pathname);
+} catch (e) {}
+let pedido = false;
+async function api(ruta, cuerpo) {
+  const cab = { "X-Jarvis-Token": token };
+  const opciones = cuerpo ? { method: "POST", headers: { ...cab, "Content-Type": "application/json" }, body: JSON.stringify(cuerpo) } : { headers: cab };
+  let r = await fetch(BASE + ruta, opciones).catch(() => null);
+  if ((!r || r.status === 401 || r.status === 404) && !pedido && (!token || !r || r.status === 401)) {
+    pedido = true;   // p. ej. al abrirlo desde el icono de la pantalla de inicio del móvil, que no comparte datos con Safari
+    const dado = window.prompt("Pega el enlace completo de tu Jarvis (el que lleva #api=… y token=…) o solo la clave de acceso");
+    if (dado) {
+      if (!leerEnlace(dado.trim())) { token = dado.trim(); try { localStorage.setItem("jarvis_token", token); } catch (e) {} }
+      opciones.headers["X-Jarvis-Token"] = token; r = await fetch(BASE + ruta, opciones).catch(() => null);
+    }
+  }
+  if (!r) throw new Error("No hay conexión con el servidor de Jarvis.");
+  if (!r.ok) throw new Error(r.status === 401 ? "Acceso denegado: abre el enlace con el token que muestra la terminal." : "Error " + r.status);
+  return r;
+}
+
+/* --- estado y orbe ------------------------------------------------------------ */
+let modo = "espera";            // espera | escuchando | pensando | hablando
+const ETIQUETAS = { espera: "En espera", escuchando: "Escuchando", pensando: "Pensando", hablando: "Hablando" };
+function ponerModo(m) { modo = m; $("estado").textContent = ETIQUETAS[m]; }
+function ponerFrase(texto) {
+  const f = $("frase"); f.textContent = "";
+  const limpio = (texto || "").replace(/[*_#`]/g, "").replace(/\s+/g, " ").trim();
+  const corte = limpio.split(/(?<=[.!?…])\s/)[0].slice(0, 90);
+  const palabras = corte.split(" ");
+  palabras.forEach((p, i) => { f.append(i === palabras.length - 1 && palabras.length > 1 ? el("em", "", p) : p + " "); });
+}
+
+const lienzo = $("lienzo"), ctx = lienzo.getContext("2d");
+const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let energia = 0.2, fase = 0, previo = performance.now();
+const anillos = [0, 1, 2, 3].map((i) => ({ incl: 0.25 + i * 0.2, giro: i * 1.3, vel: (i % 2 ? -1 : 1) * (0.25 + i * 0.09), radio: 0.52 + i * 0.07 }));
+function pintar(ahora) {
+  const dt = Math.min(0.05, (ahora - previo) / 1000); previo = ahora;
+  const objetivo = { espera: 0.2, escuchando: 0.55, pensando: 1, hablando: 0.75 }[modo];
+  energia += (objetivo - energia) * Math.min(1, dt * 4);
+  if (!quieto) fase += dt * (0.5 + energia * 2.2);
+  const W = lienzo.width, c = W / 2, R = W * 0.36;
+  ctx.clearRect(0, 0, W, W);
+  const pulso = modo === "hablando" ? 0.5 + 0.5 * Math.sin(fase * 9) * Math.sin(fase * 3.1) : modo === "escuchando" ? 0.5 + 0.5 * Math.sin(fase * 4) : 0.5 + 0.5 * Math.sin(fase * 1.2);
+
+  // marcas exteriores
+  ctx.save(); ctx.translate(c, c); ctx.rotate(-fase * 0.12);
+  for (let i = 0; i < 72; i++) {
+    ctx.rotate(Math.PI / 36);
+    ctx.strokeStyle = i % 6 === 0 ? "rgba(214,255,63,.55)" : "rgba(214,255,63,.16)";
+    ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(R * 1.17, 0); ctx.lineTo(R * (i % 6 === 0 ? 1.23 : 1.2), 0); ctx.stroke();
+  }
+  ctx.restore();
+  // arco de progreso
+  ctx.strokeStyle = "rgba(214,255,63,.9)"; ctx.lineWidth = 5; ctx.lineCap = "round";
+  ctx.beginPath(); ctx.arc(c, c, R * 1.1, fase * 0.35, fase * 0.35 + Math.PI * (0.35 + energia * 0.9)); ctx.stroke();
+  ctx.strokeStyle = "rgba(255,255,255,.07)"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(c, c, R * 1.1, 0, Math.PI * 2); ctx.stroke();
+  // resplandor
+  const g = ctx.createRadialGradient(c, c, 0, c, c, R * (0.95 + pulso * 0.12));
+  g.addColorStop(0, "rgba(246,255,200," + (0.55 + energia * 0.4) + ")");
+  g.addColorStop(0.18, "rgba(214,255,63," + (0.42 + energia * 0.3) + ")");
+  g.addColorStop(0.55, "rgba(140,190,40,.12)"); g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.arc(c, c, R * 1.1, 0, Math.PI * 2); ctx.fill();
+  // anillos orbitales
+  anillos.forEach((a, i) => {
+    ctx.save(); ctx.translate(c, c); ctx.rotate(a.giro + fase * a.vel);
+    const rx = R * a.radio * (1 + pulso * 0.04 * energia), ry = rx * (0.28 + 0.5 * Math.abs(Math.sin(fase * 0.4 + i + a.incl)));
+    ctx.strokeStyle = "rgba(233,255,150," + (0.5 + energia * 0.4 - i * 0.07) + ")"; ctx.lineWidth = 3;
+    ctx.shadowColor = "#d6ff3f"; ctx.shadowBlur = 18;
+    ctx.beginPath(); ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
+    const ang = fase * (1.4 + i * 0.3);
+    ctx.fillStyle = "#f4ffd0"; ctx.beginPath(); ctx.arc(Math.cos(ang) * rx, Math.sin(ang) * ry, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  });
+  // núcleo
+  const n = ctx.createRadialGradient(c, c, 0, c, c, R * 0.2);
+  n.addColorStop(0, "#ffffff"); n.addColorStop(0.5, "rgba(236,255,150,.9)"); n.addColorStop(1, "rgba(214,255,63,0)");
+  ctx.fillStyle = n; ctx.beginPath(); ctx.arc(c, c, R * (0.17 + pulso * 0.05 * (0.4 + energia)), 0, Math.PI * 2); ctx.fill();
+  requestAnimationFrame(pintar);
+}
+requestAnimationFrame(pintar);
+
+/* --- conversación ----------------------------------------------------------------- */
+const chat = $("chat");
+function alFinal() { chat.scrollTop = chat.scrollHeight; }
+function burbuja(texto, quien, error) {
+  const vacio = chat.querySelector(".vacio"); if (vacio) vacio.remove();
+  const b = el("div", "msg " + quien + (error ? " error" : ""), quien === "ia" ? texto.replace(/\*\*(.+?)\*\*/g, "$1") : texto);
+  chat.append(b); alFinal(); return b;
+}
+function tarjetaAccion(a) {
+  if (document.querySelector('[data-accion="' + a.id + '"]')) return;
+  const t = el("div", "tarjeta"); t.dataset.accion = a.id;
+  t.append(el("h4", "", "Correo listo · confirma para enviar"));
+  t.append(el("div", "", "Para: " + a.datos.para), el("div", "", "Asunto: " + a.datos.asunto), el("pre", "", a.datos.cuerpo));
+  const botones = el("div", "botones"), si = el("button", "si", "Enviar"), no = el("button", "", "Cancelar");
+  const resolver = async (aprobar) => {
+    si.disabled = no.disabled = true;
+    try { const r = await (await api("/api/accion", { id: a.id, aprobar })).json(); t.remove(); burbuja(r.texto, "ia"); }
+    catch (e) { si.disabled = no.disabled = false; burbuja(e.message, "ia", true); }
+  };
+  si.onclick = () => resolver(true); no.onclick = () => resolver(false);
+  botones.append(si, no); t.append(botones); chat.append(t); alFinal();
+}
+function enlaceDoc(d) {
+  const a = el("a", "doc", "📄 " + d.nombre); a.target = "_blank"; a.rel = "noopener";
+  if (BASE) {   // el servidor en la nube no puede servir páginas: se descarga y se abre desde aquí
+    api(d.url + "?formato=json").then((r) => r.json()).then((j) => { a.href = URL.createObjectURL(new Blob([j.html], { type: "text/html" })); }).catch(() => { a.textContent += " (no disponible)"; });
+  } else a.href = d.url + (token ? "?token=" + encodeURIComponent(token) : "");
+  chat.append(a, el("div")); alFinal();
+}
+
+let ocupado = false, vozActiva = false, audioActual = null;
+try { vozActiva = localStorage.getItem("jarvis_voz") === "1"; } catch (e) {}
+$("altavoz").setAttribute("aria-pressed", String(vozActiva));
+$("altavoz").onclick = () => {
+  vozActiva = !vozActiva; $("altavoz").setAttribute("aria-pressed", String(vozActiva));
+  try { localStorage.setItem("jarvis_voz", vozActiva ? "1" : "0"); } catch (e) {}
+  if (!vozActiva) callar();
+};
+function callar() { if (audioActual) { audioActual.pause(); audioActual = null; } if (window.speechSynthesis) speechSynthesis.cancel(); if (modo === "hablando") ponerModo("espera"); }
+
+async function hablar(texto) {
+  callar(); ponerModo("hablando");
+  const fin = () => { if (modo === "hablando") ponerModo("espera"); };
+  try {
+    const r = await api("/api/tts", { texto });
+    if (r.status === 200) {
+      const audio = new Audio(URL.createObjectURL(await r.blob()));
+      audioActual = audio; audio.onended = audio.onerror = fin; await audio.play(); return;
+    }
+  } catch (e) {}
+  if (!window.speechSynthesis) return fin();
+  const limpio = texto.replace(/https?:\/\/\S+/g, "").replace(/[*_#`|>]/g, "");
+  const u = new SpeechSynthesisUtterance(limpio); u.lang = "es-ES"; u.rate = 1.05;
+  const voz = speechSynthesis.getVoices().find((v) => v.lang === "es-ES") || speechSynthesis.getVoices().find((v) => v.lang.startsWith("es"));
+  if (voz) u.voice = voz;
+  u.onend = u.onerror = fin; speechSynthesis.speak(u);
+}
+
+async function enviar(texto, porVoz) {
+  texto = (texto || "").trim(); if (!texto || ocupado) return;
+  ocupado = true; $("enviar").disabled = true; callar();
+  burbuja(texto, "yo"); $("entrada").value = ""; ajustarAltura();
+  ponerModo("pensando"); ponerFrase("");
+  try {
+    const r = await (await api("/api/chat", { texto, voz: porVoz || vozActiva })).json();
+    burbuja(r.texto, "ia", r.error);
+    if (r.modelo) { chat.append(el("div", "meta", r.modelo)); $("modelo").textContent = r.modelo; }
+    (r.archivos || []).forEach(enlaceDoc); (r.acciones || []).forEach(tarjetaAccion);
+    ponerFrase(r.texto);
+    if ((porVoz || vozActiva) && !r.error) hablar(r.texto); else ponerModo("espera");
+    refrescar(false);
+  } catch (e) { burbuja(e.message || "No hay conexión con el asistente.", "ia", true); ponerModo("espera"); }
+  ocupado = false; $("enviar").disabled = false;
+}
+$("formulario").addEventListener("submit", (e) => { e.preventDefault(); enviar($("entrada").value, false); });
+function ajustarAltura() { const t = $("entrada"); t.style.height = "46px"; t.style.height = Math.min(140, t.scrollHeight + 2) + "px"; }
+$("entrada").addEventListener("input", ajustarAltura);
+$("entrada").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); enviar($("entrada").value, false); } });
+
+/* --- micrófono (reconocimiento de voz del navegador, gratis) ---------------------------- */
+const Reconocedor = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null;
+if (!Reconocedor) { $("micro").disabled = true; $("micro").title = "Tu navegador no reconoce voz: usa Chrome o Edge"; }
+$("micro").onclick = () => {
+  if (rec) { rec.stop(); return; }
+  callar(); rec = new Reconocedor(); rec.lang = "es-ES"; rec.interimResults = true;
+  let final = "";
+  rec.onstart = () => { $("micro").classList.add("grabando"); ponerModo("escuchando"); ponerFrase(""); };
+  rec.onresult = (e) => { let t = ""; for (const r of e.results) t += r[0].transcript; final = t; $("entrada").value = t; ajustarAltura(); };
+  rec.onerror = (e) => { if (e.error === "not-allowed") burbuja("No tengo permiso para usar el micrófono. Actívalo en el candado de la barra de direcciones.", "ia", true); };
+  rec.onend = () => { $("micro").classList.remove("grabando"); rec = null; if (modo === "escuchando") ponerModo("espera"); if (final.trim()) enviar(final, true); };
+  rec.start();
+};
+
+/* --- paneles ------------------------------------------------------------------------- */
+document.querySelectorAll(".pestanas button").forEach((b) => b.onclick = () => {
+  document.querySelectorAll(".pestanas button").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+  document.querySelectorAll(".vista").forEach((v) => v.classList.toggle("activa", v.id === b.dataset.vista));
+});
+function irAChat(texto) { document.querySelector('[data-vista="chat"]').click(); $("entrada").value = texto; $("entrada").focus(); ajustarAltura(); }
+function fechaBonita(f) { return f ? f.replace("T", " · ") : "sin fecha"; }
+
+function pintarPaneles(s) {
+  const t = $("tareas"); t.textContent = "";
+  if (!s.tareas.length) t.append(el("div", "vacio", "Sin tareas pendientes. Dile: «recuérdame llamar a Marta el viernes a las 17:00»."));
+  s.tareas.forEach((x) => {
+    const fila = el("div", "item"), cuerpo = el("div", "cuerpo", x.texto), hecho = el("button", "", "Hecha");
+    cuerpo.append(el("small", "", fechaBonita(x.fecha) + (x.avisar ? " · con aviso" : "")));
+    hecho.onclick = async () => { hecho.disabled = true; try { await api("/api/tarea", { id: x.id }); } catch (e) {} refrescar(false); };
+    fila.append(cuerpo, hecho); t.append(fila);
+  });
+  const m = $("memoria"); m.textContent = "";
+  m.append(el("p", "nota", "Lo que recuerda entre conversaciones. Para borrar algo: «olvida el recuerdo 3»."));
+  if (!s.recuerdos.length) m.append(el("div", "vacio", "Todavía no ha guardado nada. Cuéntale cosas de tus clientes o de cómo trabajas."));
+  s.recuerdos.forEach((x) => { const fila = el("div", "item"), cuerpo = el("div", "cuerpo", x.texto); cuerpo.append(el("small", "", "#" + x.id + " · " + x.creado.slice(0, 10) + (x.etiquetas ? " · " + x.etiquetas : ""))); fila.append(cuerpo); m.append(fila); });
+  const k = $("skills"); k.textContent = "";
+  k.append(el("p", "nota", "Tareas que sabe hacer siguiendo tus instrucciones. Cada una es un archivo SKILL.md dentro de la carpeta skills/."));
+  s.skills.forEach((x) => { const b = el("button", "skill"); b.append(el("b", "", "/" + x.nombre), el("div", "", x.descripcion)); b.onclick = () => irAChat("/" + x.nombre + " "); k.append(b); });
+}
+
+/* --- ajustes (versión en la nube): las claves se guardan en el servidor, nunca vuelven al navegador --- */
+const GRUPOS = [
+  { titulo: "Tú", campos: [["USER_NAME", "Tu nombre"], ["BRIEFING_TIME", "Hora del resumen diario (HH:MM; escribe no para quitarlo)"]] },
+  { titulo: "Cerebro", listo: (a) => a.secretos.GEMINI_API_KEY || a.secretos.GROQ_API_KEY, ayuda: ["Clave gratuita de Gemini: ", "https://aistudio.google.com/apikey"],
+    campos: [["GEMINI_API_KEY", "Clave de Gemini"], ["GROQ_API_KEY", "Clave de Groq (opcional: reserva y notas de voz) · console.groq.com/keys"]] },
+  { titulo: "Telegram", listo: (a) => a.telegram.vinculado, ayuda: ["En Telegram, habla con @BotFather → /newbot y copia el token. Guarda y pulsa «Conectar Telegram»."],
+    campos: [["TELEGRAM_BOT_TOKEN", "Token del bot"]], telegram: true },
+  { titulo: "GitHub y tu proyecto", listo: (a) => a.secretos.GITHUB_TOKEN, ayuda: ["Token de solo lectura (fine-grained, Contents: Read-only): ", "https://github.com/settings/personal-access-tokens"],
+    campos: [["GITHUB_TOKEN", "Token de GitHub"], ["PROJECT_REPO", "Repositorio de tu negocio (usuario/nombre)"]] },
+  { titulo: "Correo", listo: (a) => a.secretos.EMAIL_APP_PASSWORD && a.valores.EMAIL_ADDRESS, ayuda: ["Gmail: crea una contraseña de aplicación en ", "https://myaccount.google.com/apppasswords"],
+    campos: [["EMAIL_ADDRESS", "Tu dirección de correo"], ["EMAIL_APP_PASSWORD", "Contraseña de aplicación"]] },
+  { titulo: "Calendario", listo: (a) => a.secretos.CALENDAR_ICS_URL, ayuda: ["Google Calendar (en ordenador o modo escritorio) → Configuración → tu calendario → «Dirección secreta en formato iCal»."],
+    campos: [["CALENDAR_ICS_URL", "Dirección secreta iCal"]] },
+];
+async function cargarAjustes(datos) {
+  const caja = $("ajustes");
+  let a = datos;
+  try { a = a || await (await api("/api/ajustes")).json(); } catch (e) { caja.textContent = e.message; return; }
+  caja.textContent = "";
+  caja.append(el("p", "nota", "Pega aquí tus claves. Se guardan cifradas en tu sitio y no se vuelven a mostrar. Deja en blanco lo que no quieras cambiar."));
+  const entradas = {};
+  const guardar = async (boton) => {
+    const valores = {};
+    Object.entries(entradas).forEach(([k, i]) => { if (k in a.secretos ? i.value.trim() : i.value.trim() !== (a.valores[k] || "")) valores[k] = i.value.trim() || null; });
+    boton.disabled = true;
+    try { return await (await api("/api/ajustes", { valores, perfil: perfil.value })).json(); }
+    catch (e) { alert(e.message); return null; } finally { boton.disabled = false; }
+  };
+  GRUPOS.forEach((g) => {
+    const caja2 = el("div", "grupo"), h = el("h3", "", g.titulo);
+    if (g.listo) { const ok = !!g.listo(a); h.append(el("span", ok ? "" : "falta", ok ? "● conectado" : "○ pendiente")); }
+    caja2.append(h);
+    if (g.ayuda) { const n = el("div", "campo", g.ayuda[0]); if (g.ayuda[1]) { const e = el("a", "", g.ayuda[1].replace("https://", "")); e.href = g.ayuda[1]; e.target = "_blank"; e.rel = "noopener"; n.append(e); } caja2.append(n); }
+    g.campos.forEach(([clave, etiqueta]) => {
+      const secreto = clave in a.secretos, l = el("label", "campo", etiqueta), i = document.createElement("input");
+      i.type = secreto ? "password" : "text"; i.autocomplete = "off"; i.autocapitalize = "off"; i.spellcheck = false;
+      if (secreto) i.placeholder = a.secretos[clave] ? "•••••• guardada (escribe para cambiarla)" : "sin configurar"; else i.value = a.valores[clave] || "";
+      entradas[clave] = i; l.append(i); caja2.append(l);
+    });
+    if (g.telegram) {
+      const b = el("button", "accion", a.telegram.vinculado ? "Volver a vincular Telegram" : "Conectar Telegram"); b.type = "button";
+      const salida = el("div");
+      b.onclick = async () => {
+        if (entradas.TELEGRAM_BOT_TOKEN.value.trim() && !await guardar(b)) return;
+        b.disabled = true; salida.textContent = "";
+        try {
+          const r = await (await api("/api/telegram", {})).json();
+          const aviso = el("div", "aviso", "Bot @" + r.bot + " conectado. Último paso: "), e = el("a", "", "abre tu bot y pulsa Iniciar"); e.href = r.enlace; e.target = "_blank"; e.rel = "noopener";
+          aviso.append(e, " (o envíale: " + r.orden + "). El enlace caduca en 30 minutos."); salida.append(aviso);
+        } catch (e) { salida.append(el("div", "aviso", "No se ha podido conectar. Revisa el token.")); }
+        b.disabled = false;
+      };
+      caja2.append(b, salida);
+    }
+    caja.append(caja2);
+  });
+  const gp = el("div", "grupo"); gp.append(el("h3", "", "Quién eres (perfil)"));
+  const lp = el("label", "campo", "Lo que Jarvis da por cierto sobre ti y tu negocio. Corrígelo cuando cambie algo."), perfil = document.createElement("textarea");
+  perfil.value = a.perfil || ""; lp.append(perfil); gp.append(lp); caja.append(gp);
+  const g = el("button", "accion principal", "Guardar"); g.type = "button";
+  g.onclick = async () => { const r = await guardar(g); if (r) { cargarAjustes(r); refrescar(false); } };
+  const pr = el("button", "accion", "Probar conexiones"); pr.type = "button"; pr.style.marginLeft = "8px";
+  const res = el("div"); res.style.marginTop = "12px";
+  pr.onclick = async () => {
+    pr.disabled = true; res.textContent = "Probando…";
+    try { const r = await (await api("/api/probar", {})).json(); res.textContent = "";
+      r.resultados.forEach((x) => { const f = el("div", "prueba"); f.append(el("b", "", x.nombre), el("span", x.ok ? "ok" : "mal", (x.ok ? "✔ " : "○ ") + x.detalle)); res.append(f); }); }
+    catch (e) { res.textContent = e.message; }
+    pr.disabled = false;
+  };
+  caja.append(g, pr, res);
+}
+
+let primera = true;
+async function refrescar(conHistorial) {
+  try {
+    const s = await (await api("/api/estado")).json();
+    document.title = s.nombre; $("marca").textContent = s.nombre.toUpperCase().split("").join(s.nombre.length <= 8 ? "." : "") + (s.nombre.length <= 8 ? "." : "");
+    $("modelo").textContent = s.modelo || "";
+    $("chip").textContent = s.configurado ? "EN LÍNEA" : "SIN MODELO"; $("chip").className = "chip " + (s.configurado ? "ok" : "mal");
+    const c = $("conexiones"); c.textContent = "";
+    [["WhatsApp", s.conexiones.whatsapp], ["Telegram", s.conexiones.telegram], ["Correo", s.conexiones.correo], ["Calendario", s.conexiones.calendario], ["GitHub", s.conexiones.github], ["Voz neuronal", s.voz_servidor]]
+      .forEach(([n, on]) => c.append(el("span", on ? "on" : "", n)));
+    pintarPaneles(s);
+    if (s.nube && $("tab-ajustes").hidden) { $("tab-ajustes").hidden = false; cargarAjustes(); if (!s.configurado) $("tab-ajustes").click(); }
+    if (conHistorial) {
+      chat.textContent = "";
+      s.historial.forEach((h) => burbuja(h.contenido, h.rol === "user" ? "yo" : "ia"));
+      s.acciones.forEach(tarjetaAccion);
+      if (!s.historial.length) {
+        const v = el("div", "vacio", s.configurado ? "Hola" + (s.usuario ? ", " + s.usuario : "") + ". ¿Qué necesitas?" : (s.nube ? "Falta conectar el cerebro: abre la pestaña Ajustes y pega tu clave de Gemini." : "Falta conectar un modelo. En la terminal: python jarvis.py configurar"));
+        const sug = el("div", "sugerencias");
+        ["¿Qué tengo hoy?", "/seguimiento", "/presupuesto ", "Recuerda que prefiero las llamadas por la tarde"].forEach((x) => { const b = el("button", "", x.trim()); b.onclick = () => x.endsWith(" ") ? irAChat(x) : enviar(x, false); sug.append(b); });
+        v.append(sug); chat.append(v);
+      }
+      ponerFrase(s.configurado ? (s.usuario ? "A tu servicio, " + s.usuario + "." : "A tu servicio.") : "Falta un modelo.");
+    }
+  } catch (e) {
+    $("chip").textContent = "SIN CONEXIÓN"; $("chip").className = "chip mal";
+    if (primera) burbuja(e.message, "ia", true);
+  }
+  primera = false;
+}
+refrescar(true);
+setInterval(() => { if (!ocupado && !document.hidden) refrescar(false); }, 30000);
+</script>
+</body>
+</html>
