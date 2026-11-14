@@ -468,6 +468,11 @@ async function cargarPanel() {
   p.tocan.slice(0, 12).forEach((f) => g2.append(lead(f, "", "tocaba el " + dia(f.seguimiento))));
   if (p.tocan.length > 12) g2.append(el("div", "campo", "… y " + (p.tocan.length - 12) + " más. Pídele la lista completa en la conversación."));
   p.caducan.forEach((x) => grupo("Presupuesto a punto de caducar").append(el("div", "campo", x.negocio + " · " + x.precio + " € · hasta el " + dia(x.hasta))));
+  if ((p.encargos || []).length) {
+    const ge = grupo("Encargos esperando a Claude Code", p.encargos.length + "");
+    p.encargos.slice(0, 8).forEach((x) => ge.append(el("div", "campo", "• " + x)));
+    ge.append(el("div", "campo", "Abre tu sesión de Claude Code del proyecto y dile «mira los encargos de Jarvis»."));
+  }
   const g3 = grupo("Hoy"); g3.append(el("div", "agenda", p.agenda || ""));
   const g4 = grupo("Embudo", p.total + " negocios");
   g4.append(el("div", "campo", Object.entries(p.embudo).sort((a, b) => b[1] - a[1]).map(([k, v]) => k.replace(/_/g, " ") + ": " + v).join(" · ")));
@@ -484,6 +489,8 @@ const GRUPOS = [
     campos: [["GEMINI_API_KEY", "Clave de Gemini"], ["GROQ_API_KEY", "Clave de Groq (opcional: reserva y notas de voz) · console.groq.com/keys"]] },
   { titulo: "Telegram", listo: (a) => a.telegram.vinculado, ayuda: ["En Telegram, habla con @BotFather → /newbot y copia el token. Guarda y pulsa «Conectar Telegram»."],
     campos: [["TELEGRAM_BOT_TOKEN", "Token del bot"]], telegram: true },
+  { titulo: "Voz", ayuda: ["Usa la voz de Gemini con la misma clave del cerebro. Te contesta con audio en Telegram cuando tú le hablas (auto), siempre o nunca. Opcional: clave de ElevenLabs para una voz mejor (unos 10 minutos al mes gratis): ", "https://elevenlabs.io/app/settings/api-keys"],
+    campos: [["VOICE_REPLIES", "Responder con audio en Telegram: auto, siempre o nunca"], ["VOICE", "Voz de Gemini (Charon, Kore, Puck, Aoede…)"], ["ELEVENLABS_API_KEY", "Clave de ElevenLabs (opcional)"]] },
   { titulo: "GitHub y tu proyecto", listo: (a) => a.secretos.GITHUB_TOKEN, ayuda: ["Token fine-grained para el repositorio de tu negocio. Con «Contents: Read-only» solo consulta; con «Read and write» además apunta tus contactos en el seguimiento: ", "https://github.com/settings/personal-access-tokens"],
     campos: [["GITHUB_TOKEN", "Token de GitHub"], ["PROJECT_REPO", "Repositorio de tu negocio (usuario/nombre)"]] },
   { titulo: "Correo", listo: (a) => a.secretos.EMAIL_APP_PASSWORD && a.valores.EMAIL_ADDRESS, ayuda: ["Gmail: crea una contraseña de aplicación en ", "https://myaccount.google.com/apppasswords"],
